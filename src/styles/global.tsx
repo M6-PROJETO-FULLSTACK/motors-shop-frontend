@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 
-
 const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -15,20 +14,21 @@ const GlobalStyle = createGlobalStyle`
     scroll-behavior: smooth;
   }
 
+
   a{
     text-decoration: none;
   }
 
   label{
     font-weight: 500;
-    color: ${props => props.theme.colors.grey2};
-    font-size: 1apx;
+    color: ${(props) => props.theme.colors.grey1};
+    font-size: 14px;
   }
 
   input::placeholder {
     font-weight: 400;
-    color: ${props => props.theme.colors.grey2};
+    color: ${(props) => props.theme.colors.grey3};
     font-size: 16px;
   }
-`
-export default GlobalStyle
+`;
+export default GlobalStyle;

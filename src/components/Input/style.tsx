@@ -1,24 +1,22 @@
 import styled from "styled-components";
-import { variant } from "styled-system";
+import { IinputProps } from ".";
 
-export const InputForm = styled.input`
-  border: 2px solid #e9ecef;
+export const InputForm = styled.input<IinputProps>`
+  border: 2px solid ${(props) => props.theme.colors.grey7};
   padding: 10px;
   border-radius: 4px;
-  padding-bottom: 40px;
+  width: 100%;
+  background-color: ${(props) => props.theme.colors.grey10};
+  padding-bottom: ${(props) => props.large && "40px"};
 
   &:hover {
-    background-color: #f1f3f5;
+    background-color: ${(props) => props.theme.colors.grey8};
     transition: ease-in 0.3s;
-  }
-
-  ::placeholder {
-    color: #868e96;
   }
 
   &:focus {
     outline: none;
-    border: 2px solid #5126ea;
+    border: 2px solid ${(props) => props.theme.colors.brand2};
     transition: 0.5s;
   }
 
@@ -32,4 +30,6 @@ export const Container = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
+  width: 100%;
 `;
