@@ -63,7 +63,11 @@ export const ContainerCard = styled.div<IImgAuctionCard>`
     flex-direction: column;
 
     @media screen and (max-width: 369px) {
-      gap: 40px;
+      gap: 20px
+    }
+
+    @media screen and (max-width: 712px) {
+      justify-content: space-between;
     }
 
     .card__info--time {
@@ -71,14 +75,15 @@ export const ContainerCard = styled.div<IImgAuctionCard>`
       align-items: center;
       justify-content: space-evenly;
       gap: 5px;
+      padding: 8px;
 
       width: 7rem;
-      height: 2rem;
 
       background: #ffffff;
       border-radius: 32px;
 
       .p__info--time {
+        font-family: 'Lexend';
         font-weight: 500;
         font-size: 16px;
         line-height: 20px;
@@ -93,24 +98,15 @@ export const DivInfosCard = styled.div`
   flex-direction: column;
   gap: 15px;
 
+  @media screen and (max-width: 400px) {
+    gap: 8px
+  }
+
   .card__info--name {
-    margin: 0;
-    font-family: "Lexend";
-    font-style: normal;
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 25px;
     color: #fdfdfd;
-    overflow-x: hidden;
   }
 
   .card__info--description {
-    margin: 0;
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 28px;
     color: #ced4da;
   }
 
@@ -129,8 +125,6 @@ export const DivInfosCard = styled.div`
   }
 
   .info__owner--name {
-    font-size: 14px;
-    line-height: 24px;
     color: #ffffff;
   }
 `;
@@ -166,15 +160,12 @@ export const InfosFooterCard = styled.div`
     background: #edeafd;
     border-radius: 4px;
 
-    font-size: 14px;
     line-height: 24px;
 
     color: #4529e6;
   }
 
   .p__infos--price {
-    font-size: 16px;
-    line-height: 20px;
     color: #ffffff;
   }
 `;

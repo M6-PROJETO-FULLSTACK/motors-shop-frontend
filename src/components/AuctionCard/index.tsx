@@ -1,6 +1,7 @@
 import { ContainerCard, ContainerMain, DivAuctionFooter, DivInfosCard, InfosFooterCard } from "./style"
 import {BiTimeFive} from "react-icons/bi"
 import {BsArrowRight} from "react-icons/bs"
+import Text from "../../styles/texts"
 
 interface IPropsCardLeilao {
     name: string,
@@ -21,24 +22,24 @@ const AuctionCard = (props: IPropsCardLeilao) => {
                 <div className="card__infos">
                     <div className="card__info--time">
                         <BiTimeFive color="#4529E6" size="20px"/>
-                        <p className="p__info--time">01:58:00</p>
+                        <Text className="heading7" weight="500">01:58:00</Text>
                     </div>
                     
                     <DivInfosCard>
-                        <h2 className="card__info--name">{props.name}</h2>
-                        <p className="card__info--description">{props.description}</p>
+                        <Text className="heading6 card__info--name" weight="600">{props.name}</Text>
+                        <Text className="body1 card__info--description" weight="400">{props.description}</Text>
 
                         <div className="div__info--owner">
                             <img src="https://cdn-icons-png.flaticon.com/512/21/21104.png" alt="IconUser" className="info__owner--img"/>
-                            <h3 className="info__owner--name">{props.owner}</h3>
+                            <Text className="body2 info__owner--name" weight="500">{props.owner}</Text>
                         </div>
 
                         <InfosFooterCard>
                             <div className="container__footer--price--year">
-                                <p className="p__footer--price--year">{props.year}</p>
-                                <p className="p__footer--price--year">{props.km}KM</p>
+                                <Text className="body2 p__footer--price--year" weight="500">{props.year}</Text>
+                                <Text className="body2 p__footer--price--year" weight="500">{props.km} KM</Text>
                             </div>
-                            <p className="p__infos--price">R$ {props.price},00</p>
+                            <Text className="heading7 p__infos--price" weight="500">R$ {props.price},00</Text>
                         </InfosFooterCard>
                     </DivInfosCard>
 

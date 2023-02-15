@@ -1,13 +1,20 @@
-import React from "react";
+
+import GlobalStyle from "./styles/global";
+import {ThemeProvider} from 'styled-components'
+import light from "./styles/themes/light";
 import HomePage from "./pages/Home";
 
 function App() {
   return (
-    <div className="App">
-      <>
-      <HomePage />
-      </>
-    </div>
+    <ThemeProvider theme={light}>
+
+      <div className="App">
+          <GlobalStyle />
+          <HomePage />
+      </div>
+
+    </ThemeProvider>
+
   );
 }
 
