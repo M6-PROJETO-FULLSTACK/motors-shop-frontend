@@ -1,11 +1,15 @@
 import React from "react";
-import Input from "./components/Input";
+import GlobalStyle from "./styles/global";
+import { ThemeProvider } from "styled-components";
+import light from "./styles/themes/light";
 
 function App() {
   return (
-    <div className="App">
-      <></>
-    </div>
+    <ThemeProvider theme={light}>
+      <div className="App">
+        <GlobalStyle />
+      </div>
+    </ThemeProvider>
   );
 }
 
