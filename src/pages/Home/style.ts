@@ -8,13 +8,13 @@ export const Container = styled.div`
 
     ::-webkit-scrollbar-track {
       border-radius: 8px;
-      background-color: #f5f5f5;
+      background-color: ${(props) => props.theme.colors.grey8};
     }
 
     ::-webkit-scrollbar {
       height: 8px;
       width: 12px;
-      background-color: #f5f5f5;
+      background-color: ${(props) => props.theme.colors.grey8};
     }
 
     ::-webkit-scrollbar-thumb {

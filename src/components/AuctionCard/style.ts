@@ -103,11 +103,11 @@ export const DivInfosCard = styled.div`
   }
 
   .card__info--name {
-    color: #fdfdfd;
+    color: ${(props) => props.theme.colors.grey10};
   }
 
   .card__info--description {
-    color: #ced4da;
+    color: ${(props) => props.theme.colors.grey5};
   }
 
   .div__info--owner {
@@ -120,12 +120,12 @@ export const DivInfosCard = styled.div`
     width: 32px;
     height: 32px;
 
-    background: #4529e6;
+    background: ${(props) => props.theme.colors.brand1};
     border-radius: 150px;
   }
 
   .info__owner--name {
-    color: #ffffff;
+    color: ${(props) => props.theme.colors.whiteFixed};
   }
 `;
 
@@ -157,12 +157,12 @@ export const InfosFooterCard = styled.div`
     align-items: center;
     padding: 4px 8px;
 
-    background: #edeafd;
+    background: ${(props) => props.theme.colors.brand4};
     border-radius: 4px;
 
     line-height: 24px;
 
-    color: #4529e6;
+    color: ${(props) => props.theme.colors.brand1};
   }
 
   .p__infos--price {
@@ -178,7 +178,7 @@ export const DivAuctionFooter = styled.div`
   align-items: center;
   gap: 26rem;
 
-  background: #4529e6;
+  background: ${(props) => props.theme.colors.brand1};
   border-radius: 0px 0px 8px 8px;
 
   
@@ -219,7 +219,7 @@ export const DivAuctionFooter = styled.div`
     font-weight: 600;
     font-size: 16px;
     line-height: 0px;
-    color: #ffffff;
+    color: ${(props) => props.theme.colors.whiteFixed};
 
     cursor: pointer;
 
