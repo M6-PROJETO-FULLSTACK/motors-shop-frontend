@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
     font-weight: 500;
     color: ${(props) => props.theme.colors.grey1};
     font-size: 14px;
+
   }
 
   input::placeholder {
@@ -32,3 +33,4 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 export default GlobalStyle;
+
