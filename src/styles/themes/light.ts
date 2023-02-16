@@ -1,6 +1,6 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 
-export default{
+const LightTheme = {
     title: 'light',
     
     colors:{
@@ -47,3 +47,5 @@ export default{
         texts:"'Inter', sans-serif;",
     }
 }
+
+export default LightTheme;
