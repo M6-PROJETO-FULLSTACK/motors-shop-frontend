@@ -45,7 +45,6 @@ export const ContainerCard = styled.div<IImgAuctionCard>`
   align-items: center;
   justify-content: flex-end;
   border-radius: 8px 8px 0px 0px;
-  
 
   background-image: linear-gradient(
       to bottom,
@@ -53,7 +52,21 @@ export const ContainerCard = styled.div<IImgAuctionCard>`
       #000000 100%
     ),
     url(${({img}) => img});
+  
+  text-shadow: white 0px 0px 2px;
+  background-size: 700px;
   background-repeat: round;
+
+  
+  :hover {
+    transition: ease-in 0.5s;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.70) 0%,
+      #000000 100%
+      ),
+      url(${({img}) => img});
+  }
 
   .card__infos {
     gap: 65px;
