@@ -2,6 +2,7 @@ import React from "react";
 import GlobalStyle from "./styles/global";
 import {ThemeProvider} from 'styled-components'
 import light from "./styles/themes/light";
+import Navbar from "./components/navbar";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
 
       <div className="App">
           <GlobalStyle />
+          <Navbar/>
       </div>
 
     </ThemeProvider>

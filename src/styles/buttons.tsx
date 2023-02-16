@@ -13,7 +13,14 @@ export const Button = styled.button`
     font-weight: 600;
 
     
-    @media (max-width: 400px){
+    @media (min-width: 400px){
+        width: 119px;
+        height: 38px;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+
+    &.medium{
         width: 119px;
         height: 38px;
         padding: 12px 20px;
