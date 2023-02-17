@@ -1,42 +1,46 @@
 import {useState} from 'react'
+import { Link } from 'react-router-dom'
 import { Container, NavContainer, UserUl ,NavUl} from "./style"
 import {BiMenu} from 'react-icons/bi'
 import { GrFormClose } from 'react-icons/gr'
 import { LinkBtn } from "../../styles/buttons"
+import logo from '../../assets/Logo_prymary.png'
 
 const Navbar = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false)
-    const [submenuIsVisible, setSubmenuIsVisible] = useState(false)
+    const [submenuIsVisible, setSubmenuIsVisible] = useState(true)
     const [user, setUser] = useState(true)
     const [isAdm, setIsAdm] = useState(false)
 
     return(
         <>
         <Container>
-            <img src="" alt="Logo" />
-            <NavContainer isVisible={menuIsVisible} submenuIsVisible>
+            {/* <Link to={'/home'}> */}
+                <img src={logo} alt="logo" />
+            {/* </Link> */}
+            <NavContainer isVisible={menuIsVisible}>
                 <NavUl>
                     <li>
-                        <LinkBtn className="medium" as='a'>Carros</LinkBtn>
+                        <LinkBtn className="medium link_li" as='a' href='#'>Carros</LinkBtn>
                     </li>
                     <li>
-                        <LinkBtn className="medium" as='a'>Motos</LinkBtn>
+                        <LinkBtn className="medium link_li" as='a' href='#'>Motos</LinkBtn>
                     </li>
                     <li>
-                        <LinkBtn className="medium" as='a'>Leilão</LinkBtn>
+                        <LinkBtn className="medium link_li" as='a' href='#'>Leilão</LinkBtn>
                     </li>
                 </NavUl>
                 <div className="separator"></div>
                     {
                         user?
-                        (<UserUl>
-                            <li onClick={()=>setSubmenuIsVisible(true)}>
+                        (<UserUl submenuIsVisible={submenuIsVisible}>
+                            <li >
                                 <div>
                                     <span>SL</span>
                                 </div>
-                                <LinkBtn className="medium" as='a'  >Samuel Leão</LinkBtn>
+                                <LinkBtn onClick={()=>setSubmenuIsVisible(!submenuIsVisible)}>Samuel Leão</LinkBtn>
                             </li>
-                            <ul>
+                            <ul className='sub_menu'>
                                 <li>
                                     <LinkBtn className="medium" as='a'>Editar Perfil</LinkBtn>
                                 </li>
@@ -46,7 +50,9 @@ const Navbar = () => {
                                 {
                                     isAdm?
                                     <li>
-                                        <LinkBtn className="medium" as='a'>Meus Anúncios</LinkBtn>
+                                        {/* <Link to={'/profile'}> */}
+                                            <LinkBtn className="medium" as='a'>Meus Anúncios</LinkBtn>
+                                        {/* </Link> */}
                                     </li>
                                     :
                                     null
@@ -60,10 +66,14 @@ const Navbar = () => {
                         (   
                         <NavUl>
                             <li>
-                                <LinkBtn className="medium" as='a'>Fazer Login</LinkBtn>
+                                {/* <Link to={'/login'}> */}
+                                <LinkBtn className="medium link_li" as='a'>Fazer Login</LinkBtn>
+                                {/* </Link> */}
                             </li>
-                            <li>
+                            <li className="li_btn">
+                                {/* <Link to={'/register'}> */}
                                 <LinkBtn className="outlineGrey medium btn_li" as='a'>Cadastrar</LinkBtn>
+                                {/* </Link> */}
                             </li>
                         </NavUl>
                         )
