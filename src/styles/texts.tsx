@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 interface Props {
     weight: number | string ;
-  }
+}
 
 const Text = styled.p<Props>`
     /* EXEMPLO DE USO: <Text className="heading2" weight="600">Ola</Text> */

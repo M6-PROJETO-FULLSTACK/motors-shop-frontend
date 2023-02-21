@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "file-loader": "^6.2.0",
     "@types/styled-system": "^5.1.16"
   }
 }
