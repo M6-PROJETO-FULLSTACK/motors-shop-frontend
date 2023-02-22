@@ -8,7 +8,9 @@ const Container = styled.div`
     box-sizing: border-box;
     margin: 24px 10px 15px 10px;
     padding: 36px 28px;
-    width: 85%;
+    width: 95%;
+    max-width: 751px;
+
     background-color: ${props => props.theme.colors.grey10};
     border-radius: 4px;
     
@@ -16,7 +18,6 @@ const Container = styled.div`
     
     @media (min-width: 700px){
         margin: 24px 12px 15px 12px;
-        width: 85%;
         padding: 36px 44px;
     }
     
