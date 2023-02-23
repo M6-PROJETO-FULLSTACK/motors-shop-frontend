@@ -8,8 +8,20 @@ export const ImgBox = styled.figure`
 
   border-radius: 5px;
 
+  padding: 20px 2px;
+
+  @media screen and (min-width: 768px) {
+    width: 25%;
+    padding: 10px 2px;
+  }
+
+  @media screen and (min-width: 900px) {
+    padding: 30px 2px;
+    margin-bottom: 10px;
+  }
+
   img {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
   }
 `;

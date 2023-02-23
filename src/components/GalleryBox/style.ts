@@ -12,18 +12,21 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.colors.grey10};
 
   width: 95%;
-  height: 45%;
+
+  margin: 10px 10px 15px 10px;
+  padding: 10px;
+  padding-bottom: 30px;
+
+  span {
+    width: 90%;
+    text-align: start;
+    margin-top: 20px;
+  }
 
   @media screen and (min-width: 768px) {
-    width: 40%;
-    height: 55%;
+    width: 80%;
+    margin-top: 45px;
   }
-
-  @media screen and (min-width: 1024px) {
-    width: 30%;
-  }
-
-  margin: 0 auto;
 
   .container__img {
     display: flex;
@@ -34,6 +37,17 @@ export const Container = styled.div`
     gap: 10px;
 
     width: 90%;
-    height: 70%;
+    height: 80%;
+
+    padding-top: 20px;
+
+    @media screen and (min-width: 768px) {
+      padding-top: 15px;
+    }
+
+    @media screen and (min-width: 900px) {
+      gap: 15px;
+      padding-top: 30px;
+    }
   }
 `;

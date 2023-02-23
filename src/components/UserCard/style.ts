@@ -13,20 +13,17 @@ export const Container = styled.div`
   width: 95%;
   height: 45%;
 
+  padding: 10px;
+  margin: 24px 10px 15px 10px;
+
   @media screen and (min-width: 768px) {
-    width: 40%;
+    width: 80%;
     height: 55%;
   }
-
-  @media screen and (min-width: 1024px) {
-    width: 30%;
-  }
-
-  margin: 0 auto;
 `;
 
 export const UserInfo = styled.div`
-  width: 80%;
+  width: 90%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -35,8 +32,27 @@ export const UserInfo = styled.div`
 
   text-align: justify;
 
+  > button,
+  p,
+  img {
+    margin-top: 20px;
+  }
+
   button {
     width: 80%;
+    margin-bottom: 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    button {
+      width: 100%;
+    }
+  }
+
+  @media screen and (min-width: 900px) {
+    button {
+      width: 80%;
+    }
   }
 `;
 
