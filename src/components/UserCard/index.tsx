@@ -1,4 +1,4 @@
-import { Container, UserInfo, UserCardImg, Page } from "./style";
+import { Container, UserInfo, UserCardImg } from "./style";
 import Text from "../../styles/texts";
 import { Button } from "../../styles/buttons";
 
@@ -10,20 +10,18 @@ const UserCard = () => {
   };
 
   return (
-    <Page>
-      <Container>
-        <UserInfo>
-          <UserCardImg src={user.img} alt="" />
-          <Text className="heading6" weight="600">
-            {user.name}
-          </Text>
-          <Text className="body1" weight="400">
-            {user.bio}
-          </Text>
-          <Button className="grey">Ver todos anuncios</Button>
-        </UserInfo>
-      </Container>
-    </Page>
+    <Container>
+      <UserInfo>
+        <UserCardImg src={user.img} alt="" />
+        <Text className="heading6" weight="600">
+          {user.name}
+        </Text>
+        <Text className="body1" weight="400">
+          {user.bio}
+        </Text>
+        <Button className="grey">Ver todos anuncios</Button>
+      </UserInfo>
+    </Container>
   );
 };
 

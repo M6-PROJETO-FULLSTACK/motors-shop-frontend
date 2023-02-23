@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: space-evenly;
+  text-align: start;
 
   border-radius: 5px;
 
@@ -23,24 +24,16 @@ export const Container = styled.div`
   }
 
   margin: 0 auto;
-`;
 
-export const UserInfo = styled.div`
-  width: 80%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
+  .container__img {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
 
-  text-align: justify;
+    gap: 10px;
 
-  button {
-    width: 80%;
+    width: 90%;
+    height: 70%;
   }
-`;
-
-export const UserCardImg = styled.img`
-  border-radius: 50%;
-  max-width: 25%;
 `;
