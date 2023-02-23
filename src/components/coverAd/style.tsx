@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const BoxImage = styled.div`
   width: 95%;
-  /* max-width: 752px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -11,8 +10,9 @@ const BoxImage = styled.div`
   background-color: ${(props) => props.theme.colors.grey10};
 
   img {
-    width: 293px;
+    width: 80%;
     height: 252px;
+    object-fit: contain;
   }
 
   @media (min-width: 700px) {
