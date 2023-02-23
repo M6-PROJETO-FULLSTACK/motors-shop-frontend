@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const BoxImage = styled.div`
   width: 95%;
-  max-width: 752px;
+  /* max-width: 752px; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -30,13 +30,8 @@ const BoxImage = styled.div`
   }
 
   @media (min-width: 1400px) {
-    margin: 45px 12px 15px 90px;
-    width: 50%;
-  }
-
-  @media (min-width: 1500px) {
     margin: 45px 12px 15px 182px;
-    max-width: 751px;
+    width: 80%;
   }
 `;
 

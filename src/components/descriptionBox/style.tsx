@@ -9,7 +9,7 @@ const Container = styled.div`
   margin: 24px 10px 15px 10px;
   padding: 36px 28px;
   width: 95%;
-  max-width: 751px;
+  /* max-width: 751px; */
   text-align: justify;
 
   background-color: ${(props) => props.theme.colors.grey10};
@@ -20,20 +20,20 @@ const Container = styled.div`
     padding: 36px 44px;
   }
 
-  @media (min-width: 1000px) {
+  /* @media (min-width: 1000px) {
     margin: 24px 0px 15px 0px;
     width: 95%;
-  }
+  } */
 
   @media (min-width: 1400px) {
-    margin: 24px 12px 15px 90px;
-    width: 50%;
+    margin: 45px 12px 15px 182px;
+    width: 80%;
   }
 
-  @media (min-width: 1500px) {
+  /* @media (min-width: 1500px) {
     margin: 24px 12px 15px 182px;
     max-width: 751px;
-  }
+  } */
 
   .title {
     width: 100%;
