@@ -6,7 +6,7 @@ export const ProductInfoContainer = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme.colors.grey10};
 
-  max-width: 46rem;
+  max-width: 47rem;
   width: 95%;
   height: 15rem;
 

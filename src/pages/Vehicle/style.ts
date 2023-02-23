@@ -9,6 +9,11 @@ export const ContainerPage = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 
 export const ContainerMain = styled.main`
@@ -17,8 +22,19 @@ export const ContainerMain = styled.main`
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    width: 70%;
+  }
 `;
 
 export const ContainerCards = styled.aside`
   width: 90%;
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 768px) {
+    width: 40%;
+    height: 100%;
+  }
 `;

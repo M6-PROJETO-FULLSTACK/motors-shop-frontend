@@ -8,23 +8,25 @@ import Navbar from "../../components/navbar";
 
 const VehiclePage = () => {
   return (
-    <ContainerPage>
+    <>
       <Navbar />
-      <ContainerMain>
-        <AdCoverImage />
-        <ProductInfo
-          name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200"
-          price="00.000,00"
-          year="2013"
-          km="0"
-        />
-        <BoxDescription />
-      </ContainerMain>
-      <ContainerCards>
-        <GalleryBox />
-        <UserCard />
-      </ContainerCards>
-    </ContainerPage>
+      <ContainerPage>
+        <ContainerMain>
+          <AdCoverImage />
+          <ProductInfo
+            name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200"
+            price="00.000,00"
+            year="2013"
+            km="0"
+          />
+          <BoxDescription />
+        </ContainerMain>
+        <ContainerCards>
+          <GalleryBox />
+          <UserCard />
+        </ContainerCards>
+      </ContainerPage>
+    </>
   );
 };
 

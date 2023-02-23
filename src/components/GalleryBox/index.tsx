@@ -8,7 +8,9 @@ const GalleryBox = () => {
 
   return (
     <Container>
-      <Text weight="600">Fotos</Text>
+      <span>
+        <Text weight="600">Fotos</Text>
+      </span>
       <div className="container__img">
         {gallery.map((elem, index) => (
           <GalleryCard car={elem} key={index} />

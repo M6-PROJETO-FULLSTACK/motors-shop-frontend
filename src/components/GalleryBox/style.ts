@@ -15,17 +15,18 @@ export const Container = styled.div`
 
   margin: 10px 10px 15px 10px;
   padding: 10px;
+  padding-bottom: 30px;
+
+  span {
+    width: 90%;
+    text-align: start;
+    margin-top: 20px;
+  }
 
   @media screen and (min-width: 768px) {
-    width: 40%;
-    height: 55%;
+    width: 80%;
+    margin-top: 45px;
   }
-
-  @media screen and (min-width: 1024px) {
-    width: 30%;
-  }
-
-  padding-bottom: 30px;
 
   .container__img {
     display: flex;
@@ -39,5 +40,14 @@ export const Container = styled.div`
     height: 80%;
 
     padding-top: 20px;
+
+    @media screen and (min-width: 768px) {
+      padding-top: 15px;
+    }
+
+    @media screen and (min-width: 900px) {
+      gap: 15px;
+      padding-top: 30px;
+    }
   }
 `;

@@ -21,8 +21,8 @@ const Container = styled.div`
   }
 
   @media (min-width: 1000px) {
-    margin: 24px 12px 15px 50px;
-    width: 50%;
+    margin: 24px 0px 15px 0px;
+    width: 95%;
   }
 
   @media (min-width: 1400px) {
