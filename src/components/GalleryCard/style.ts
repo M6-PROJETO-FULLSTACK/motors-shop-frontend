@@ -8,8 +8,10 @@ export const ImgBox = styled.figure`
 
   border-radius: 5px;
 
+  padding: 20px 2px;
+
   img {
-    width: 90%;
+    width: 80%;
     margin: 0 auto;
   }
 `;

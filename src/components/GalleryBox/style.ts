@@ -12,7 +12,9 @@ export const Container = styled.div`
   background-color: ${(props) => props.theme.colors.grey10};
 
   width: 95%;
-  height: 45%;
+
+  margin: 10px 10px 15px 10px;
+  padding: 10px;
 
   @media screen and (min-width: 768px) {
     width: 40%;
@@ -23,7 +25,7 @@ export const Container = styled.div`
     width: 30%;
   }
 
-  margin: 0 auto;
+  padding-bottom: 30px;
 
   .container__img {
     display: flex;
@@ -34,6 +36,8 @@ export const Container = styled.div`
     gap: 10px;
 
     width: 90%;
-    height: 70%;
+    height: 80%;
+
+    padding-top: 20px;
   }
 `;

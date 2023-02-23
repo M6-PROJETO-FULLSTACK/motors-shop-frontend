@@ -13,6 +13,8 @@ export const Container = styled.div`
   width: 95%;
   height: 45%;
 
+  padding: 10px;
+
   @media screen and (min-width: 768px) {
     width: 40%;
     height: 55%;
@@ -22,11 +24,11 @@ export const Container = styled.div`
     width: 30%;
   }
 
-  margin: 0 auto;
+  margin: 35px 10px 15px 10px;
 `;
 
 export const UserInfo = styled.div`
-  width: 80%;
+  width: 90%;
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -34,6 +36,12 @@ export const UserInfo = styled.div`
   justify-content: space-evenly;
 
   text-align: justify;
+
+  > button,
+  p,
+  img {
+    margin-top: 15px;
+  }
 
   button {
     width: 80%;
