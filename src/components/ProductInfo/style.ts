@@ -6,7 +6,6 @@ export const ProductInfoContainer = styled.div`
   align-items: center;
   background-color: ${(props) => props.theme.colors.grey10};
 
-  max-width: 47rem;
   width: 95%;
   height: 15rem;
 
@@ -14,6 +13,15 @@ export const ProductInfoContainer = styled.div`
 
   @media screen and (max-width: 425px) {
     height: 17rem;
+  }
+
+  @media (min-width: 720px) {
+    padding: 5px 20px 5px 20px;
+  }
+
+  @media (min-width: 1400px) {
+    margin: 45px 12px 15px 182px;
+    width: 80%;
   }
 `;
 
@@ -31,6 +39,10 @@ export const SectionProductInfo = styled.section`
   @media screen and (max-width: 720px) {
     padding: 5px 20px 5px 20px;
   }
+
+  @media screen and (max-width: 266px) {
+    gap: 10px;
+  }
 `;
 
 export const ContainerProductInfoFooter = styled.div`
@@ -46,6 +58,12 @@ export const ContainerProductInfoFooter = styled.div`
     flex-direction: column;
     gap: 15px;
   }
+
+  @media screen and (max-width: 304px) {
+    padding-top: 0px;
+  }
+
+  
 
   .container__info--km--year {
     display: flex;
