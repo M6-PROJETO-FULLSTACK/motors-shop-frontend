@@ -7,17 +7,27 @@ export const Container = styled.div`
 	gap: 30px;
 	margin: 0 30px;
 
+	.home-title {
+		margin-top: 100px;
+	}
+
+	#motos{
+		margin-bottom: 100px;
+	}
+
 	@media screen and (max-width: 320px) {
 		.home-title {
 			display: none;
 		}
 	}
+
 `;
 
 export const HomeSection = styled.div`
 	display: flex;
 	gap: 15px;
 	overflow-x: scroll;
+	margin-top: 60px;
 
 	::-webkit-scrollbar-track {
 		border-radius: 8px;

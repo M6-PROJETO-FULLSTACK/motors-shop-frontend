@@ -31,11 +31,10 @@ const HomePage = () => {
 		<Navbar/>
 		<MainHome/>
 		<Container>
-			<Text className="heading5" weight="600">
+			<Text className="heading5 home-title" weight="600" >
 				Leilão
 			</Text>
-			<HomeSection>
-				<HomeSection>
+			<HomeSection id='leilao'>
 					<AuctionCard
 						img="https://cdn-icons-png.flaticon.com/512/21/21104.png"
 						name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 "
@@ -81,14 +80,13 @@ const HomePage = () => {
 						price="110000"
 						year="2019"
 					/>
-				</HomeSection>
 			</HomeSection>
 
 
-			<Text className="heading5 home-title" weight="600" id="carros">
+			<Text className="heading5 home-title" weight="600" >
 				Carros
 			</Text>
-			<HomeSection>
+			<HomeSection id="carros">
 				{cards.map((card) => (
 					<ProductCard
 						title={card.title}
@@ -104,10 +102,10 @@ const HomePage = () => {
 					/>
 				))}
 			</HomeSection>
-			<Text className="heading5 home-title" weight="600" id="motos">
+			<Text className="heading5 home-title" weight="600" >
 				Motos
 			</Text>
-			<HomeSection>
+			<HomeSection id="motos">
 				{cards.map((card) => (
 					<ProductCard
 						title={card.title}
