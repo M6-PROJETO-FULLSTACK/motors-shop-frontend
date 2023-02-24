@@ -2,6 +2,9 @@ import AuctionCard from "../../components/AuctionCard";
 import ProductCard from "../../components/ProductCard";
 import Text from "../../styles/texts";
 import { Container, HomeSection } from "./style";
+import Navbar from "../../components/navbar";
+import Footer from "../../components/footer";
+import MainHome from "../../components/mainHome";
 
 const cards = [
 	{
@@ -24,28 +27,10 @@ for (let i = 0; i < 8; i++) {
 }
 
 const HomePage = () => {
-	return (
+	return (<>
+		<Navbar/>
+		<MainHome/>
 		<Container>
-			<Text className="heading5 home-title" weight="600">
-				Carros
-			</Text>
-			<HomeSection>
-				{cards.map((card) => (
-					<ProductCard
-						title={card.title}
-						year={card.year}
-						mileage={card.mileage}
-						price={card.price}
-						description={card.description}
-						cover={card.cover}
-						userName={card.userName}
-						userId={card.userId}
-						isActive={card.isActive}
-						vehicleId={card.vehicleId}
-					/>
-				))}
-			</HomeSection>
-
 			<Text className="heading5" weight="600">
 				Leilão
 			</Text>
@@ -98,7 +83,50 @@ const HomePage = () => {
 					/>
 				</HomeSection>
 			</HomeSection>
+
+
+			<Text className="heading5 home-title" weight="600" id="carros">
+				Carros
+			</Text>
+			<HomeSection>
+				{cards.map((card) => (
+					<ProductCard
+						title={card.title}
+						year={card.year}
+						mileage={card.mileage}
+						price={card.price}
+						description={card.description}
+						cover={card.cover}
+						userName={card.userName}
+						userId={card.userId}
+						isActive={card.isActive}
+						vehicleId={card.vehicleId}
+					/>
+				))}
+			</HomeSection>
+			<Text className="heading5 home-title" weight="600" id="motos">
+				Motos
+			</Text>
+			<HomeSection>
+				{cards.map((card) => (
+					<ProductCard
+						title={card.title}
+						year={card.year}
+						mileage={card.mileage}
+						price={card.price}
+						description={card.description}
+						cover={card.cover}
+						userName={card.userName}
+						userId={card.userId}
+						isActive={card.isActive}
+						vehicleId={card.vehicleId}
+					/>
+				))}
+			</HomeSection>
+
 		</Container>
+		<Footer/>
+		</>
 	);
 };
 

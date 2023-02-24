@@ -9,7 +9,7 @@ const Container = styled.div`
   margin: 24px 10px 15px 10px;
   padding: 36px 28px;
   width: 95%;
-  /* max-width: 751px; */
+  max-width: 751px;
   text-align: justify;
 
   background-color: ${(props) => props.theme.colors.grey10};
