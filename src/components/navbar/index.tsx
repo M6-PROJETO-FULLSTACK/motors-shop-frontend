@@ -15,19 +15,19 @@ const Navbar = () => {
     return(
         <>
         <Container>
-            {/* <Link to={'/home'}> */}
+            <Link to={'/home'}>
                 <img src={logo} alt="logo" />
-            {/* </Link> */}
+            </Link>
             <NavContainer isVisible={menuIsVisible}>
                 <NavUl>
                     <li>
-                        <LinkBtn className="medium link_li" as='a' href='#'>Carros</LinkBtn>
+                        <LinkBtn className="medium link_li" as='a' href='#carros'>Carros</LinkBtn>
                     </li>
                     <li>
-                        <LinkBtn className="medium link_li" as='a' href='#'>Motos</LinkBtn>
+                        <LinkBtn className="medium link_li" as='a' href='#motos'>Motos</LinkBtn>
                     </li>
                     <li>
-                        <LinkBtn className="medium link_li" as='a' href='#'>Leilão</LinkBtn>
+                        <LinkBtn className="medium link_li" as='a' href='#leilao'>Leilão</LinkBtn>
                     </li>
                 </NavUl>
                 <div className="separator"></div>
@@ -50,9 +50,9 @@ const Navbar = () => {
                                 {
                                     isAdm?
                                     <li>
-                                        {/* <Link to={'/profile'}> */}
+                                        <Link to={'/profile'}>
                                             <LinkBtn className="medium" as='a'>Meus Anúncios</LinkBtn>
-                                        {/* </Link> */}
+                                        </Link>
                                     </li>
                                     :
                                     null
@@ -66,14 +66,14 @@ const Navbar = () => {
                         (   
                         <NavUl>
                             <li>
-                                {/* <Link to={'/login'}> */}
+                                <Link to={'/login'}>
                                 <LinkBtn className="medium link_li" as='a'>Fazer Login</LinkBtn>
-                                {/* </Link> */}
+                                </Link>
                             </li>
                             <li className="li_btn">
-                                {/* <Link to={'/register'}> */}
+                                <Link to={'/register'}>
                                 <LinkBtn className="outlineGrey medium btn_li" as='a'>Cadastrar</LinkBtn>
-                                {/* </Link> */}
+                                </Link>
                             </li>
                         </NavUl>
                         )

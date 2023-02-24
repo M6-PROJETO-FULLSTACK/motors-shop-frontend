@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const BoxImage = styled.div`
+  max-width: 751px;
   width: 95%;
   display: flex;
   align-items: center;

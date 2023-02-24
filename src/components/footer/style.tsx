@@ -25,6 +25,9 @@ export const Container = styled.footer`
     }
 
     .btn_footer{
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 53px;
         height: 50px;
         padding: 10px;

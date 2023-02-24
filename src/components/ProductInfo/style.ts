@@ -7,6 +7,7 @@ export const ProductInfoContainer = styled.div`
   background-color: ${(props) => props.theme.colors.grey10};
 
   width: 95%;
+  max-width: 751px;
   height: 15rem;
 
   border-radius: 4px;
@@ -20,7 +21,7 @@ export const ProductInfoContainer = styled.div`
   }
 
   @media (min-width: 1400px) {
-    margin: 45px 12px 15px 182px;
+    margin: 0px 12px 15px 182px;
     width: 80%;
   }
 `;
