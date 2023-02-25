@@ -20,7 +20,7 @@ interface IListProps {
   id: string;
 }
 
-const VeichleList = ({ list, id }: IListProps) => {
+const VehicleList = ({ list, id }: IListProps) => {
   return (
     <ContainerSection>
       <Text className="heading5" weight="500">
@@ -47,4 +47,4 @@ const VeichleList = ({ list, id }: IListProps) => {
   );
 };
 
-export default VeichleList;
+export default VehicleList;
