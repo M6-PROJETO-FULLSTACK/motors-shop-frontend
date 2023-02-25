@@ -1,8 +1,9 @@
+import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
-import ProductCard from "../../components/ProductCard";
 import UserCard from "../../components/UserCard";
+import VeichleList from "../../components/VeichleList";
 import { ContainerPage } from "../Login/style";
-import { ProfileSection, ProductsContainer } from "./style";
+import { ProductsContainer } from "./style";
 
 const Profile = () => {
   const cards = [
@@ -31,24 +32,11 @@ const Profile = () => {
       <ContainerPage>
         <UserCard profile />
         <ProductsContainer>
-          <ProfileSection id="carros">
-            {cards.map((card) => (
-              <ProductCard
-                title={card.title}
-                year={card.year}
-                mileage={card.mileage}
-                price={card.price}
-                description={card.description}
-                cover={card.cover}
-                userName={card.userName}
-                userId={card.userId}
-                isActive={card.isActive}
-                vehicleId={card.vehicleId}
-              />
-            ))}
-          </ProfileSection>
+          <VeichleList list={cards} id="carros" />
+          <VeichleList list={cards} id="motos" />
         </ProductsContainer>
       </ContainerPage>
+      <Footer />
     </>
   );
 };

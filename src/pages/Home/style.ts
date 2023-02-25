@@ -11,10 +11,6 @@ export const Container = styled.div`
     margin-top: 100px;
   }
 
-  #motos {
-    margin-bottom: 100px;
-  }
-
   @media screen and (max-width: 320px) {
     .home-title {
       display: none;
@@ -27,20 +23,4 @@ export const HomeSection = styled.div`
   gap: 15px;
   overflow-x: scroll;
   margin-top: 60px;
-
-  ::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: ${(props) => props.theme.colors.grey8};
-  }
-
-  ::-webkit-scrollbar {
-    height: 8px;
-    width: 12px;
-    background-color: ${(props) => props.theme.colors.grey8};
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
 `;
