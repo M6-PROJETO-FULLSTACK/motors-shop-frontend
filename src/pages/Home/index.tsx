@@ -4,7 +4,7 @@ import { Container, HomeSection } from "./style";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import MainHome from "../../components/mainHome";
-import VeichleList from "../../components/VeichleList";
+import VehicleList from "../../components/VehicleList";
 
 const cards = [
   {
@@ -83,8 +83,8 @@ const HomePage = () => {
             year="2019"
           />
         </HomeSection>
-        <VeichleList list={cards} id="carros" />
-        <VeichleList list={cards} id="motos" />
+        <VehicleList list={cards} id="carros" />
+        <VehicleList list={cards} id="motos" />
       </Container>
       <Footer />
     </>

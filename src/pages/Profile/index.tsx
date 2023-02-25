@@ -1,7 +1,7 @@
 import Footer from "../../components/footer";
 import Navbar from "../../components/navbar";
 import UserCard from "../../components/UserCard";
-import VeichleList from "../../components/VeichleList";
+import VehicleList from "../../components/VehicleList";
 import { ContainerPage } from "../Login/style";
 import { ProductsContainer } from "./style";
 
@@ -32,8 +32,8 @@ const Profile = () => {
       <ContainerPage>
         <UserCard profile />
         <ProductsContainer>
-          <VeichleList list={cards} id="carros" />
-          <VeichleList list={cards} id="motos" />
+          <VehicleList list={cards} id="carros" />
+          <VehicleList list={cards} id="motos" />
         </ProductsContainer>
       </ContainerPage>
       <Footer />
