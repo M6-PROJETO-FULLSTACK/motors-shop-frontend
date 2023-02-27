@@ -6,6 +6,7 @@ import { ContainerPage, ContainerMain, ContainerCards} from "./style";
 import UserCard from "../../components/UserCard";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
+import Comments from "../../components/comments";
 
 const VehiclePage = () => {
   return (
@@ -22,6 +23,7 @@ const VehiclePage = () => {
               km="0"
             />
             <BoxDescription />
+            <Comments/>
           </ContainerMain>
           <ContainerCards>
             <GalleryBox />

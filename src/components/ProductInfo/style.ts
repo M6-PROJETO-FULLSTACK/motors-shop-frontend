@@ -21,7 +21,7 @@ export const ProductInfoContainer = styled.div`
   }
 
   @media (min-width: 1400px) {
-    margin: 0px 12px 15px 182px;
+    margin: 0px 12px 0px 182px;
     width: 80%;
   }
 `;
