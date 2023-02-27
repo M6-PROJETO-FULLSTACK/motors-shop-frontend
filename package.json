@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.10",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -50,7 +53,7 @@
     ]
   },
   "devDependencies": {
-    "file-loader": "^6.2.0",
-    "@types/styled-system": "^5.1.16"
+    "@types/styled-system": "^5.1.16",
+    "file-loader": "^6.2.0"
   }
 }
