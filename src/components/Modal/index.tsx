@@ -1,9 +1,12 @@
-import { Modal, Box, Typography, Button } from "@mui/material";
-import { useContext } from "react";
+import { Modal, Box, Button } from "@mui/material";
+import { ReactNode, useContext } from "react";
 import { ModalContext } from "../../providers/ModalContext";
+import Text from "../../styles/texts";
+import { RiCloseFill } from "react-icons/ri";
+import { TitleBox, Content } from "./style";
 
-const ModalBox = () => {
-  const { open, setOpen, handleClose, handleOpen } = useContext(ModalContext);
+const ModalBox = ({ children }: { children: ReactNode }) => {
+  const { open, handleClose, handleOpen } = useContext(ModalContext);
 
   console.log(handleClose);
 
@@ -12,30 +15,27 @@ const ModalBox = () => {
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    width: 400,
+    width: 500,
     bgcolor: "background.paper",
-    border: "2px solid #000",
     boxShadow: 24,
     p: 4,
-    outline: 0,
+    borderRadius: "5px",
   };
 
   return (
     <>
       <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+      <Modal open={open} onClose={handleClose}>
         <Box sx={style}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Text in a modal
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-          </Typography>
+          <TitleBox>
+            <Text className="heading7" weight="500">
+              Sucesso!
+            </Text>
+            <button onClick={handleClose}>
+              <RiCloseFill />
+            </button>
+          </TitleBox>
+          <Content>{children}</Content>
         </Box>
       </Modal>
     </>
