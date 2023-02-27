@@ -10,7 +10,7 @@ const Register = () => {
 
   return (
     <ContainerPage>
-      <ModalBox>
+      <ModalBox title="Sucesso!">
         <Text className="heading7" weight="500">
           Sua conta foi criada com sucesso!
         </Text>

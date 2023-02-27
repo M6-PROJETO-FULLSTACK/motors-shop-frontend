@@ -5,7 +5,13 @@ import Text from "../../styles/texts";
 import { RiCloseFill } from "react-icons/ri";
 import { TitleBox, Content } from "./style";
 
-const ModalBox = ({ children }: { children: ReactNode }) => {
+const ModalBox = ({
+  children,
+  title,
+}: {
+  children: ReactNode;
+  title: string;
+}) => {
   const { open, handleClose, handleOpen } = useContext(ModalContext);
 
   console.log(handleClose);
@@ -29,7 +35,7 @@ const ModalBox = ({ children }: { children: ReactNode }) => {
         <Box sx={style}>
           <TitleBox>
             <Text className="heading7" weight="500">
-              Sucesso!
+              {title}
             </Text>
             <button onClick={handleClose}>
               <RiCloseFill />
