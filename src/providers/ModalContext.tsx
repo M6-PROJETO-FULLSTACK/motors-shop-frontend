@@ -1,28 +1,23 @@
 import { createContext, ReactNode, useState } from "react";
 
-export const ModalContext = createContext({});
+interface IModelContextProps {
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  handleClose: () => void;
+  handleOpen: () => void;
+}
 
-export const ModalContextProvider = ({ children }: { children: ReactNode }) => {
-  const style = {
-    position: "absolute" as "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: 400,
-    bgcolor: "background.paper",
-    border: "2px solid #000",
-    boxShadow: 24,
-    p: 4,
-  };
+export const ModalContext = createContext<IModelContextProps>(
+  {} as IModelContextProps
+);
 
+export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   return (
-    <ModalContext.Provider
-      value={{ open, setOpen, handleOpen, handleClose, style }}
-    >
+    <ModalContext.Provider value={{ open, setOpen, handleOpen, handleClose }}>
       {children}
     </ModalContext.Provider>
   );

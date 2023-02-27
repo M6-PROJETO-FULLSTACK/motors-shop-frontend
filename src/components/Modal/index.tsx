@@ -1,6 +1,12 @@
-import { Modal, Box, Typography } from "@mui/material";
+import { Modal, Box, Typography, Button } from "@mui/material";
+import { useContext } from "react";
+import { ModalContext } from "../../providers/ModalContext";
 
 const ModalBox = () => {
+  const { open, setOpen, handleClose, handleOpen } = useContext(ModalContext);
+
+  console.log(handleClose);
+
   const style = {
     position: "absolute" as "absolute",
     top: "50%",
@@ -11,14 +17,12 @@ const ModalBox = () => {
     border: "2px solid #000",
     boxShadow: 24,
     p: 4,
+    outline: 0,
   };
-
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
 
   return (
     <>
+      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
