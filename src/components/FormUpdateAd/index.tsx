@@ -17,9 +17,16 @@ const FormUpdateAd = () => {
                   <Text className="body2" weight="500">
                     Tipos de anuncio
                   </Text>
-                  <div className="input--box input--box_button">
-                    <Button className="brand" type="button">Venda</Button>
-                    <Button className="outline" type="button">Leilão</Button>
+                  <div className="box--checkmark">
+                    <label className="form-control--radio">
+                        <input type="radio" name="venda_ou_leilao" checked/>
+                        <span className="checkmark">Venda</span>
+                    </label>
+                  
+                    <label className="form-control--radio">
+                        <input type="radio" name="venda_ou_leilao" />
+                        <span className="checkmark">Leilão</span>
+                    </label>
                   </div>
                   <Text className="body2" weight="500">
                     Infomações do veículo
@@ -47,16 +54,30 @@ const FormUpdateAd = () => {
                   <Text className="body2" weight="500">
                     Tipos do veículo
                   </Text>
-                  <div className="input--box input--box_button">
-                    <Button className="brand" type="button">Carro</Button>
-                    <Button className="outline" type="button">Moto</Button>
+                  <div className="box--checkmark">
+                    <label className="form-control--radio">
+                        <input type="radio" name="carro_ou_moto" checked/>
+                        <span className="checkmark">Carro</span>
+                    </label>
+                  
+                    <label className="form-control--radio">
+                        <input type="radio" name="carro_ou_moto" />
+                        <span className="checkmark">Moto</span>
+                    </label>
                   </div>
                   <Text className="body2" weight="500">
                     Publicado
                   </Text>
-                  <div className="input--box input--box_button">
-                    <Button className="outline" type="button">Sim</Button>
-                    <Button className="brand" type="button">Não</Button>
+                  <div className="box--checkmark">
+                    <label className="form-control--radio">
+                        <input type="radio" name="publicado" />
+                        <span className="checkmark">Sim</span>
+                    </label>
+                  
+                    <label className="form-control--radio">
+                        <input type="radio" name="publicado" checked/>
+                        <span className="checkmark">Não</span>
+                    </label>
                   </div>
                   <Input
                     type="text"

@@ -3,6 +3,7 @@ import Text from "../../styles/texts";
 import { Button } from "../../styles/buttons";
 import FormCreateAd from "../FormCreateAd";
 
+
 export interface IUserCardProps {
   profile?: boolean;
 }
