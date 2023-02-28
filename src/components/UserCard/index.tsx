@@ -1,6 +1,7 @@
 import { Container, UserInfo, UserCardImg } from "./style";
 import Text from "../../styles/texts";
 import { Button } from "../../styles/buttons";
+import FormCreateAd from "../FormCreateAd";
 
 export interface IUserCardProps {
   profile?: boolean;
@@ -32,6 +33,7 @@ const UserCard = ({ profile }: IUserCardProps) => {
         <Text className="body1" weight="400">
           {user.bio}
         </Text>
+        <FormCreateAd />
         {!profile && <Button className="grey">Ver todos anuncios</Button>}
       </UserInfo>
     </Container>

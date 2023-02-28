@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const ContainerModal = styled.div`
+  .button__modal--createad {
+    max-width: 9rem;
+    width: 100%;
+    color: ${(props) => props.theme.colors.brand2};
+    border: 2px solid ${(props) => props.theme.colors.brand2};
+    background-color: ${(props) => props.theme.colors.whiteFixed};
+    display: flex;
+    align-items: center;
+    :hover {
+      background-color: ${(props) => props.theme.colors.brand4};
+    }
+  }
+`;
+
 export const TitleBox = styled.div`
   display: flex;
   flex-direction: row;

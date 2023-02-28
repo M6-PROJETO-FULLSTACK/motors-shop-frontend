@@ -81,3 +81,68 @@ export const UserCardImg = styled.img<IUserCardProps>`
   border-radius: 50%;
   max-width: 25%;
 `;
+
+export const ContainerModalAd = styled.div`
+  width: 90%;
+  height: 90%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  overflow-y: scroll;
+  margin: 0 auto;
+  background-color: ${(props) => props.theme.colors.grey10};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+
+  .button__add--img {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 20px;
+    height: 38px;
+    background: ${(props) => props.theme.colors.brand4};
+    border: 1.5px solid ${(props) => props.theme.colors.brand4};
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  button,
+  a {
+    width: 100%;
+  }
+
+  p {
+    margin-bottom: 15px;
+  }
+
+  @media screen and (min-width: 480px) {
+    width: 70%;
+  }
+  @media screen and (min-width: 768px) {
+    width: 40%;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 30%;
+  }
+`;
+
+export const ContainerBoxModalAd = styled.div`
+  width: 80%;
+
+  .div__header--modalad {
+    display: flex;
+    align-self: center;
+    justify-content: space-between;
+  }
+
+  .header__button--close {
+    color: ${(props) => props.theme.colors.grey4};
+    cursor: pointer;
+    :hover {
+      color: ${(props) => props.theme.colors.grey2};
+    }
+  }
+  
+`;
