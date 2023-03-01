@@ -3,14 +3,17 @@ import Routes from "./routes";
 import { ThemeProvider } from "styled-components";
 import light from "./styles/themes/light";
 import { ModalProvider } from "./providers/ModalContext";
+import AuthProvider from "./providers/AuthContext";
 
 function App() {
   return (
     <ThemeProvider theme={light}>
-      <ModalProvider>
-        <GlobalStyle />
-        <Routes />
-      </ModalProvider>
+      <AuthProvider>
+        <ModalProvider>
+          <GlobalStyle />
+          <Routes />
+        </ModalProvider>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

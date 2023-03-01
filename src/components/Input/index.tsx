@@ -1,7 +1,9 @@
 import { Container, InputForm } from "./style";
 import { forwardRef, InputHTMLAttributes } from "react";
 
+
 export interface IinputProps extends InputHTMLAttributes<HTMLInputElement> {
+  id?: string;
   type?: string;
   title?: string;
   large?: boolean;
