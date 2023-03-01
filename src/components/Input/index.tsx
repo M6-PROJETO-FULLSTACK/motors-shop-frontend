@@ -2,6 +2,7 @@ import { Container, InputForm } from "./style";
 import { forwardRef } from "react";
 
 export interface IinputProps {
+  id?: string;
   type?: string;
   title?: string;
   large?: boolean;
