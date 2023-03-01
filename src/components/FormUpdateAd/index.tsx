@@ -5,63 +5,98 @@ import ModalBox from "../Modal"
 import { FormContainer } from "./style"
 import { useContext, useState } from "react";
 import { ModalContext } from "../../providers/ModalContext"
+import { useForm } from "react-hook-form"
+
 
 const FormUpdateAd = () => {
     const [ quantityImage, setQuantityImage ] = useState([0])
     const {handleClose } = useContext(ModalContext)
 
+    const onUpdate = (data: any) => {
+      
+      if("advertiseType" in data && data.advertiseType === "true") {
+        data.advertiseType = true
+      } else {
+        data.advertiseType = false
+      }
+
+      if("vehicleType" in data && data.vehicleType === "true") {
+        data.vehicleType = true
+      } else {
+        data.vehicleType = false
+      }
+      
+      if("published" in data && data.published === "true") {
+        data.published = true
+      } else {
+        data.published = false
+      }
+      
+      console.log(data);
+    }
+
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+    } = useForm();
+
+
     return (
         <ModalBox title="Criar Anúncio" title_button="Criar Anúncio">
-              <FormContainer>
+              <FormContainer onSubmit={handleSubmit(onUpdate)}>
                 <section>
                   <Text className="body2" weight="500">
                     Tipos de anuncio
                   </Text>
                   <div className="box--checkmark">
                     <label className="form-control--radio">
-                        <input type="radio" name="venda_ou_leilao" checked/>
+                        <input type="radio" value="true" defaultChecked {...register("advertiseType")}/>
                         <span className="checkmark">Venda</span>
                     </label>
                   
                     <label className="form-control--radio">
-                        <input type="radio" name="venda_ou_leilao" />
+                        <input type="radio" value="false" {...register("advertiseType")}/>
                         <span className="checkmark">Leilão</span>
                     </label>
                   </div>
                   <Text className="body2" weight="500">
                     Infomações do veículo
                   </Text>
-                  <Input type="text" title="Título" placeholder="Digitar título" />
+                  <Input type="text" title="Título" placeholder="Digitar título" {...register("title")}/>
                   <div className="input--box">
                     <Input
                       type="text"
                       title="Ano"
                       placeholder="2018"
+                      {...register("year")}
                     />
-                    <Input type="text" title="Quilometragem" placeholder="0" />
+                    <Input type="text" title="Quilometragem" placeholder="0" {...register("mileage")}/>
                   </div>
                   <Input
                     type="text"
                     title="Preço"
                     placeholder="50.000,00"
+                    {...register("price")}
                   />
                   <Input
                     type="text"
                     title="Descrição"
                     placeholder="Digitar descrição"
                     large
+                    {...register("description")}
                   />
                   <Text className="body2" weight="500">
                     Tipos do veículo
                   </Text>
                   <div className="box--checkmark">
                     <label className="form-control--radio">
-                        <input type="radio" name="carro_ou_moto" checked/>
+                        <input type="radio" value="true" defaultChecked  {...register("vehicleType")}/>
                         <span className="checkmark">Carro</span>
                     </label>
                   
                     <label className="form-control--radio">
-                        <input type="radio" name="carro_ou_moto" />
+                        <input type="radio" value="false" {...register("vehicleType")}/>
                         <span className="checkmark">Moto</span>
                     </label>
                   </div>
@@ -70,12 +105,12 @@ const FormUpdateAd = () => {
                   </Text>
                   <div className="box--checkmark">
                     <label className="form-control--radio">
-                        <input type="radio" name="publicado" />
+                        <input type="radio" value="true" {...register("published")}/>
                         <span className="checkmark">Sim</span>
                     </label>
                   
                     <label className="form-control--radio">
-                        <input type="radio" name="publicado" checked/>
+                        <input type="radio" value="false" defaultChecked {...register("published")}/>
                         <span className="checkmark">Não</span>
                     </label>
                   </div>
@@ -83,19 +118,22 @@ const FormUpdateAd = () => {
                     type="text"
                     title="Imagem da capa"
                     placeholder="https://image.com"
+                    {...register("cover")}
                   />
                   <Input
                     type="text"
                     title="1° Imagem da galeria"
                     placeholder="https://image.com"
+                    {...register("url")}
                   />
                   {
                     quantityImage.map( ( value:number, indice )=> 
                     <Input
                     key={indice}
                     type="text"
-                    title={`${indice+2}° Imagem da capa`}
+                    title={`${indice+2}° Imagem da galeria`}
                     placeholder="https://image.com"
+                    {...register(`${indice+2}url`)}
                   />
                       )
                   }
