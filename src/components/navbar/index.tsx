@@ -1,16 +1,20 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { Container, NavContainer, UserUl ,NavUl} from "./style"
 import {BiMenu} from 'react-icons/bi'
 import { GrFormClose } from 'react-icons/gr'
 import { LinkBtn } from "../../styles/buttons"
 import logo from '../../assets/Logo_prymary.png'
+import { AuthContext } from '../../providers/AuthContext'
 
 const Navbar = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false)
-    const [submenuIsVisible, setSubmenuIsVisible] = useState(true)
-    const [user, setUser] = useState(true)
-    const [isAdm, setIsAdm] = useState(false)
+    const [submenuIsVisible, setSubmenuIsVisible] = useState(false)
+    const {user, logOut} = useContext(AuthContext)
+    
+    const fistName = user!.name.split(" ")[0];
+	const lastName = user!.name.split(" ")[user!.name.split(" ").length - 1];
+	const initials = fistName[0] + lastName[0];
 
     return(
         <>
@@ -34,11 +38,12 @@ const Navbar = () => {
                     {
                         user?
                         (<UserUl submenuIsVisible={submenuIsVisible}>
-                            <li >
+                            <li ><>
                                 <div>
-                                    <span>SL</span>
+                                    <span>{initials}</span>
                                 </div>
                                 <LinkBtn onClick={()=>setSubmenuIsVisible(!submenuIsVisible)}>Samuel Leão</LinkBtn>
+                            </>
                             </li>
                             <ul className='sub_menu'>
                                 <li>
@@ -48,7 +53,7 @@ const Navbar = () => {
                                     <LinkBtn className="medium" as='a'>Editar Endereço</LinkBtn>
                                 </li>
                                 {
-                                    isAdm?
+                                    user.type === true?
                                     <li>
                                         <Link to={'/profile'}>
                                             <LinkBtn className="medium" as='a'>Meus Anúncios</LinkBtn>
@@ -58,7 +63,7 @@ const Navbar = () => {
                                     null
                                 }
                                 <li>
-                                    <LinkBtn className="medium" as='a' onClick={() => setUser(false)}>sair</LinkBtn>
+                                    <LinkBtn className="medium" as='a' onClick={() => logOut()}>sair</LinkBtn>
                                 </li>
                             </ul>
                         </UserUl>)
