@@ -7,32 +7,51 @@ import { useContext, useState } from "react";
 import { ModalContext } from "../../providers/ModalContext"
 import { useForm } from "react-hook-form"
 
-
 const FormUpdateAd = () => {
     const [ quantityImage, setQuantityImage ] = useState([0])
     const {handleClose } = useContext(ModalContext)
 
     const onUpdate = (data: any) => {
       
-      if("advertiseType" in data && data.advertiseType === "true") {
+      if(data.advertiseType === "true") {
         data.advertiseType = true
       } else {
         data.advertiseType = false
       }
 
-      if("vehicleType" in data && data.vehicleType === "true") {
+      if(data.vehicleType === "true") {
         data.vehicleType = true
       } else {
         data.vehicleType = false
       }
       
-      if("published" in data && data.published === "true") {
-        data.published = true
+      if(data.isActive === "true") {
+        data.isActive = true
       } else {
-        data.published = false
+        data.isActive = false
       }
       
-      console.log(data);
+      
+      let arrFilteredImage: Array<string> = []
+      let objFinaly: any = {}
+
+      for(let i in data ){
+        if(  i.includes( "url" ) ){
+          // @ts-ignore ou // @ts-expect-error
+          arrFilteredImage.push( data[i]  )
+        }else{
+          // @ts-ignore ou // @ts-expect-error
+          objFinaly[i] = data[i]
+        }
+      }
+
+      let listUrlTreated: Array<object> = []
+
+      arrFilteredImage.map((elem: string, index) => listUrlTreated.push({url: elem}))
+
+      objFinaly.gallery = listUrlTreated
+
+      console.log(objFinaly);
     }
 
     const {
@@ -105,12 +124,12 @@ const FormUpdateAd = () => {
                   </Text>
                   <div className="box--checkmark">
                     <label className="form-control--radio">
-                        <input type="radio" value="true" {...register("published")}/>
+                        <input type="radio" value="true" {...register("isActive")}/>
                         <span className="checkmark">Sim</span>
                     </label>
                   
                     <label className="form-control--radio">
-                        <input type="radio" value="false" defaultChecked {...register("published")}/>
+                        <input type="radio" value="false" defaultChecked {...register("isActive")}/>
                         <span className="checkmark">Não</span>
                     </label>
                   </div>
