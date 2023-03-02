@@ -6,16 +6,13 @@ import { GrFormClose } from 'react-icons/gr'
 import { LinkBtn } from "../../styles/buttons"
 import logo from '../../assets/Logo_prymary.png'
 import { AuthContext } from '../../providers/AuthContext'
+import MiniProfile from '../MiniProfile'
 
 const Navbar = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false)
     const [submenuIsVisible, setSubmenuIsVisible] = useState(false)
     const {user, logOut} = useContext(AuthContext)
     
-    const fistName = user!.name.split(" ")[0];
-	const lastName = user!.name.split(" ")[user!.name.split(" ").length - 1];
-	const initials = fistName[0] + lastName[0];
-
     return(
         <>
         <Container>
@@ -39,10 +36,11 @@ const Navbar = () => {
                         user?
                         (<UserUl submenuIsVisible={submenuIsVisible}>
                             <li ><>
+                            
                                 <div>
-                                    <span>{initials}</span>
+                                    <span>{user.name.split(" ")[0][0] + user.name.split(" ")[user.name.split(" ").length - 1][0]}</span>
                                 </div>
-                                <LinkBtn onClick={()=>setSubmenuIsVisible(!submenuIsVisible)}>Samuel Leão</LinkBtn>
+                                <LinkBtn onClick={()=>setSubmenuIsVisible(!submenuIsVisible)}>{user.name.length > 20 ? user.name.slice(0, 20) + "..." : user.name}</LinkBtn>
                             </>
                             </li>
                             <ul className='sub_menu'>
@@ -55,7 +53,7 @@ const Navbar = () => {
                                 {
                                     user.type === true?
                                     <li>
-                                        <Link to={'/profile'}>
+                                        <Link to={`/profile/${user.id}`}>
                                             <LinkBtn className="medium" as='a'>Meus Anúncios</LinkBtn>
                                         </Link>
                                     </li>
