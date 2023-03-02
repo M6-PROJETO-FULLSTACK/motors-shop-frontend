@@ -8,11 +8,13 @@ import { ModalContext } from "../../providers/ModalContext"
 import { useForm } from "react-hook-form"
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
+import { AuthContext } from "../../providers/AuthContext"
 
 const FormCreateAd = () => {
     const [ quantityImage, setQuantityImage ] = useState([0])
     
     const {handleClose } = useContext(ModalContext)
+    const {createVehicleAd} = useContext(AuthContext)
 
     const shemaRegisterVehicle = yup.object().shape({
       advertiseType: yup.string().required("Tipo de anuncio é obrigatório"),
@@ -23,7 +25,7 @@ const FormCreateAd = () => {
       description: yup.string().required("Descrição é obrigatório"),
       vehicleType: yup.string().required("Tipo do veículo é obrigatório"),
       cover: yup.string().required("Imagem da capa é obrigatória"),
-      gallery: yup.array().required("Gallery da capa é obrigatória")
+      // gallery: yup.array().required("Gallery da capa é obrigatória")
     });
 
     const onCreate = (data: any) => {
@@ -54,13 +56,17 @@ const FormCreateAd = () => {
         }
       }
 
-      let listUrlTreated: Array<object> = []
+      let listUrlTreated: any = []
 
       arrFilteredImage.map((elem: string, index) => listUrlTreated.push({url: elem}))
-
+      
+      listUrlTreated.map((elem: any, index: any) => elem.url.length <= 0 && listUrlTreated.splice(index))
+ 
       objFinaly.gallery = listUrlTreated
-
+      
       console.log(objFinaly);
+
+      createVehicleAd(objFinaly)
     }
 
     const {
@@ -70,7 +76,6 @@ const FormCreateAd = () => {
     } = useForm({
       resolver: yupResolver(shemaRegisterVehicle),
     });
-    
     
     return (
         <ModalBox title="Criar Anúncio" title_button="Criar Anúncio">
