@@ -6,18 +6,15 @@ import { RiCloseFill } from "react-icons/ri";
 import { TitleBox, Content, ContainerModal } from "./style";
 import { Button } from "../../styles/buttons";
 
-const ModalBox = ({
-  children,
-  title,
-  title_button,
-}: {
+export interface IModalProps {
   children: ReactNode;
   title: string;
   title_button?: string;
-}) => {
-  const { open, handleClose, handleOpen } = useContext(ModalContext);
+  small?: boolean;
+}
 
-  console.log(handleClose);
+const ModalBox = ({ children, title, title_button, small }: IModalProps) => {
+  const { open, handleClose, handleOpen } = useContext(ModalContext);
 
   const style = {
     position: "absolute" as "absolute",
@@ -27,9 +24,9 @@ const ModalBox = ({
     width: "100%",
     maxWidth: 500,
     maxHeight: 600,
-    height: "100%",
+    height: small ? "250" : "100%",
     bgcolor: "background.paper",
-    overflowY: "scroll",
+    overflowY: small ? "hidden" : "scroll",
     boxShadow: 24,
     p: 4,
     borderRadius: "5px",
@@ -37,22 +34,27 @@ const ModalBox = ({
 
   return (
     <>
-    <ContainerModal>
-      <Button onClick={handleOpen} className="brand3 medium button__modal--createad">{title_button}</Button>
-      <Modal open={open} onClose={handleClose}>
-        <Box sx={style}>
-          <TitleBox>
-            <Text className="heading7" weight="500">
-              {title}
-            </Text>
-            <button onClick={handleClose}>
-              <RiCloseFill />
-            </button>
-          </TitleBox>
-          <Content>{children}</Content>
-        </Box>
-      </Modal>
-    </ContainerModal>
+      <ContainerModal>
+        <Button
+          onClick={handleOpen}
+          className="brand3 medium button__modal--createad"
+        >
+          {title_button}
+        </Button>
+        <Modal open={open} onClose={handleClose}>
+          <Box sx={style}>
+            <TitleBox>
+              <Text className="heading7" weight="500">
+                {title}
+              </Text>
+              <button onClick={handleClose}>
+                <RiCloseFill />
+              </button>
+            </TitleBox>
+            <Content>{children}</Content>
+          </Box>
+        </Modal>
+      </ContainerModal>
     </>
   );
 };

@@ -2,10 +2,33 @@ import Input from "../Input";
 import { Container, FormContainer, ContainerBox } from "./style";
 import { Button } from "../../styles/buttons";
 import Text from "../../styles/texts";
+import ModalBox from "../Modal";
+import { useNavigate } from "react-router-dom";
+import { ModalContext } from "../../providers/ModalContext";
+import { useContext } from "react";
 
 const FormRegister = () => {
+  const navigate = useNavigate();
+  const { handleOpen } = useContext(ModalContext);
+
   return (
     <Container>
+      <ModalBox small title="Sucesso!">
+        <Text className="heading7" weight="500">
+          Sua conta foi criada com sucesso!
+        </Text>
+        <Text className="body1" weight="400">
+          Agora você poderá ver seus negócios crescendo em grande escala
+        </Text>
+        <Button
+          className="brand"
+          onClick={() => {
+            navigate("/login", { replace: true });
+          }}
+        >
+          Ir para o login
+        </Button>
+      </ModalBox>
       <ContainerBox>
         <Text className="heading5" weight="500">
           Cadastro
@@ -69,7 +92,7 @@ const FormRegister = () => {
               placeholder="Digitar Senha"
             />
           </section>
-          <Button type="submit" className="brand">
+          <Button type="submit" className="brand" onClick={handleOpen}>
             Finalizar cadastro
           </Button>
         </FormContainer>
