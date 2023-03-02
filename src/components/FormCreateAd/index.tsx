@@ -14,17 +14,17 @@ const FormCreateAd = () => {
     
     const {handleClose } = useContext(ModalContext)
 
-    // const shemaRegisterVehicle = yup.object().shape({
-    //   advertiseType: yup.string().required("Tipo de anuncio é obrigatório"),
-    //   title: yup.string().required("Título é obrigatório"),
-    //   year: yup.string().required("Ano do veículo é obrigatório"),
-    //   mileage: yup.string().required("Quilometragem é obrigatório"),
-    //   price: yup.string().required("Preço é obrigatório"),
-    //   description: yup.string().required("Descrição é obrigatório"),
-    //   vehicleType: yup.string().required("Tipo do veículo é obrigatório"),
-    //   cover: yup.string().required("Imagem da capa é obrigatória"),
-    //   gallery: yup.array().required("Gallery da capa é obrigatória")
-    // });
+    const shemaRegisterVehicle = yup.object().shape({
+      advertiseType: yup.string().required("Tipo de anuncio é obrigatório"),
+      title: yup.string().required("Título é obrigatório"),
+      year: yup.string().required("Ano do veículo é obrigatório"),
+      mileage: yup.string().required("Quilometragem é obrigatório"),
+      price: yup.string().required("Preço é obrigatório"),
+      description: yup.string().required("Descrição é obrigatório"),
+      vehicleType: yup.string().required("Tipo do veículo é obrigatório"),
+      cover: yup.string().required("Imagem da capa é obrigatória"),
+      gallery: yup.array().required("Gallery da capa é obrigatória")
+    });
 
     const onCreate = (data: any) => {
       
@@ -51,7 +51,9 @@ const FormCreateAd = () => {
       register,
       handleSubmit,
       formState: { errors },
-    } = useForm();
+    } = useForm({
+      resolver: yupResolver(shemaRegisterVehicle),
+    });
     
     
     return (
