@@ -40,11 +40,27 @@ const FormCreateAd = () => {
         data.vehicleType = false
       }
 
-      data.gallery = []
-
-
       
-      console.log(data);
+      let arrFilteredImage: Array<string> = []
+      let objFinaly: any = {}
+
+      for(let i in data ){
+        if(  i.includes( "url" ) ){
+          // @ts-ignore ou // @ts-expect-error
+          arrFilteredImage.push( data[i]  )
+        }else{
+          // @ts-ignore ou // @ts-expect-error
+          objFinaly[i] = data[i]
+        }
+      }
+
+      let listUrlTreated: Array<object> = []
+
+      arrFilteredImage.map((elem: string, index) => listUrlTreated.push({url: elem}))
+
+      objFinaly.gallery = listUrlTreated
+
+      console.log(objFinaly);
     }
 
     const {
@@ -131,7 +147,7 @@ const FormCreateAd = () => {
                     type="text"
                     title={`${indice+2}° Imagem da galeria`}
                     placeholder="https://image.com"
-                    {...register(`${indice+2}url`)}
+                    {...register(`url${indice+2}`)}
                   />
                       )
                   }
