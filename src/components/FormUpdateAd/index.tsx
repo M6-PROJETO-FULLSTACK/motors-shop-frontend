@@ -6,10 +6,12 @@ import { FormContainer } from "./style"
 import { useContext, useState } from "react";
 import { ModalContext } from "../../providers/ModalContext"
 import { useForm } from "react-hook-form"
+import { AuthContext } from "../../providers/AuthContext"
 
 const FormUpdateAd = () => {
     const [ quantityImage, setQuantityImage ] = useState([0])
     const {handleClose } = useContext(ModalContext)
+    const {updateVehicleAd} = useContext(AuthContext)
 
     const onUpdate = (data: any) => {
       
@@ -45,13 +47,17 @@ const FormUpdateAd = () => {
         }
       }
 
-      let listUrlTreated: Array<object> = []
+      let listUrlTreated: any = []
 
       arrFilteredImage.map((elem: string, index) => listUrlTreated.push({url: elem}))
-
+      
+      listUrlTreated.map((elem: any, index: any) => elem.url.length <= 0 && listUrlTreated.splice(index))
+ 
       objFinaly.gallery = listUrlTreated
-
+      
       console.log(objFinaly);
+
+      updateVehicleAd(objFinaly)
     }
 
     const {

@@ -1,6 +1,6 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import api from '../services/api';
+import api, { config } from '../services/api';
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -14,6 +14,8 @@ export interface IAuthContext {
     recoverPassword: (data: object) => void;
     user: null | IUserResponse;
     loading: boolean;
+    createVehicleAd: (data: object) => void;
+    updateVehicleAd: (data: object) => void;
 }
 
 export interface IUserResponse {
@@ -82,8 +84,16 @@ const AuthProvider = ({ children }:IAuthProviderProp) => {
         navigate('/login', { replace: true });
     }
 
+    const createVehicleAd = (data: object) => {
+      api.post("vehicles", data, config()).then(res => console.log(res)).catch(err => console.log(err))
+    }
+
+    const updateVehicleAd = (data: object) => {
+      api.patch("vehicles", data, config()).then(res => console.log(res)).catch(err => console.log(err))
+    }
+
   return (
-    <AuthContext.Provider value={{login, logOut, user, loading, recoverPassword}}>
+    <AuthContext.Provider value={{login, logOut, user, loading, recoverPassword, createVehicleAd, updateVehicleAd}}>
       {children}
     </AuthContext.Provider>
   );
