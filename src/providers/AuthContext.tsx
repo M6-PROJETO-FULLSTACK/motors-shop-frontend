@@ -47,7 +47,7 @@ const AuthProvider = ({ children }:IAuthProviderProp) => {
         try {
           api.defaults.headers.authorization = `Bearer ${token}`;
           const { data } = await api.get(`/users/${id}`);
-          setUser(data);
+          setUser(data[0]);
         } catch (error) {
           console.error(error);
         }
@@ -78,7 +78,8 @@ const AuthProvider = ({ children }:IAuthProviderProp) => {
     };
 
     const logOut = () => {
-        localStorage.clear();
+        localStorage.removeItem('@MotorsShop:token');
+        localStorage.removeItem('@MotorsShop:id');
         navigate('/login', { replace: true });
     }
 
