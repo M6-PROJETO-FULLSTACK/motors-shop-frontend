@@ -1,17 +1,19 @@
 import { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import {
   CommentsContainer,
   CommentsArea,
   Commentslist,
   Comment,
+  BtnDelete,
 } from "./style";
 import { Button } from "../../styles/buttons";
 import MiniProfile from "../MiniProfile";
 import Text from "../../styles/texts";
 import api from "../../services/api";
 import { VehiclelContext } from "../../providers/VehicleContext";
-import { ICommentProp } from "../../providers/VehicleContext";
+import { IComment } from "../../interfaces/Comments";
+import { FaTrashAlt } from "react-icons/fa";
 
 const Comments = () => {
   const {
@@ -22,16 +24,20 @@ const Comments = () => {
     vehicle,
     setVehicle,
     response,
-    setResponse,
+    getDate,
+    postComment,
+    deleteComment,
+    userId,
   } = useContext(VehiclelContext);
 
   const [user, setUser] = useState(true);
 
+  console.log(listComments);
+
+  const { id } = useParams();
+
   useEffect(() => {
     const getVehicle = async () => {
-      const id = "8cef9bf5-88d4-43ed-9acd-9c7a627cb26d";
-      //id do veiculo
-
       try {
         const { data } = await api.get(`/vehicles/${id}`);
         setVehicle(data);
@@ -43,19 +49,6 @@ const Comments = () => {
     getVehicle();
   }, [response]);
 
-  const sendComment = async (comment: string) => {
-    const id = "8cef9bf5-88d4-43ed-9acd-9c7a627cb26d";
-    const token = localStorage.getItem("@MotorsShop:token");
-    const data = {
-      message: comment,
-    };
-    api.defaults.headers.authorization = `Bearer ${token}`;
-    const res = await api.post(`/comments/${id}`, data);
-
-    setResponse(res.data);
-    console.log(response);
-  };
-
   return (
     <CommentsContainer>
       <Commentslist>
@@ -64,16 +57,23 @@ const Comments = () => {
         </Text>
         {vehicle && (
           <>
-            {listComments.map((comment: ICommentProp) => (
-              <Comment key={comment.id}>
-                <div className="user">
-                  <MiniProfile userId={""} userName={comment.user.name} />
-                  <span>&bull; há 3 dias</span>
-                </div>
-                <Text className="body2 txt_comment" weight={400}>
-                  {comment.message}
-                </Text>
-              </Comment>
+            {listComments.map((comment: IComment) => (
+              <>
+                <Comment key={comment.id}>
+                  <div className="user">
+                    <MiniProfile userId={""} userName={comment.user.name} />
+                    <span>&bull; {getDate(comment.created_at)}</span>
+                    {userId === comment.user_id && (
+                      <BtnDelete onClick={() => deleteComment(comment.id)}>
+                        <FaTrashAlt />
+                      </BtnDelete>
+                    )}
+                  </div>
+                  <Text className="body2 txt_comment" weight={400}>
+                    {comment.message}
+                  </Text>
+                </Comment>
+              </>
             ))}
           </>
         )}
@@ -97,7 +97,7 @@ const Comments = () => {
                 />
                 <Button
                   className="brand medium btn"
-                  onClick={() => sendComment(comment)}
+                  onClick={() => postComment(comment, id)}
                 >
                   Comentar
                 </Button>
