@@ -2,6 +2,8 @@ import { Container, UserInfo, UserCardImg } from "./style";
 import Text from "../../styles/texts";
 import { Button } from "../../styles/buttons";
 import FormCreateAd from "../FormCreateAd";
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthContext";
 
 
 export interface IUserCardProps {
@@ -9,21 +11,26 @@ export interface IUserCardProps {
 }
 
 const UserCard = ({ profile }: IUserCardProps) => {
-  const user = {
-    img: "https://icon-library.com/images/anonymous-user-icon/anonymous-user-icon-2.jpg",
-    name: "Samuel Leão",
-    bio: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's",
-  };
+  const {user} = useContext(AuthContext)
 
   return (
     <Container profile={profile}>
       <UserInfo profile={profile}>
-        <UserCardImg src={user.img} alt="" profile={profile} />
+        <UserCardImg  profile={profile} >
+          <p>{user!.name.split(" ")[0][0] + user!.name.split(" ")[user!.name.split(" ").length - 1][0]}</p>
+        </UserCardImg>
         <div className="info__card--heading">
           <Text className="heading6" weight="600">
-            {user.name}
+            {user!.name}
           </Text>
           {profile && (
+            user!.type === true?
+            <span>
+              <Text className="body2" weight="500">
+                Anunciante
+              </Text>
+            </span>
+            :
             <span>
               <Text className="body2" weight="500">
                 Anunciante
@@ -32,7 +39,7 @@ const UserCard = ({ profile }: IUserCardProps) => {
           )}
         </div>
         <Text className="body1" weight="400">
-          {user.bio}
+          {user!.bio}
         </Text>
         <FormCreateAd />
         {!profile && <Button className="grey">Ver todos anuncios</Button>}
