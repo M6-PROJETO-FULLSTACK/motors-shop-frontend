@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ButtonsContainer, FormContainer } from "./style";
 import { ModalContext } from "../../providers/ModalContext";
 import { useContext, useState } from "react";
-// import ChildModal from "../ModalConfirmation";
+import ChildModal from "../ModalConfirmation";
 
 
 export interface ModalEditAddressProps {
@@ -20,7 +20,7 @@ export interface ModalEditAddressProps {
 
 const ModalEditAddress = () => {
 	const { handleClose } = useContext(ModalContext);
-	// const { childOpen, setChildOpen } = useContext(ModalContext); // Remover comentário quando o modal de confirmação tiver sido mergeado
+	const { childOpen, setChildOpen } = useContext(ModalContext);
 
 	const schema = yup.object({
 		cep: yup.string().required("CEP é obrigatório"),
@@ -42,7 +42,7 @@ const ModalEditAddress = () => {
 
 	const onSubmit = (data: any) => {
 		console.log(data);
-		// setChildOpen(true); // Remover comentário quando o modal de confirmação tiver sido mergeado
+		setChildOpen(true);
 	};
 
 	// Preenchimento automático por CEP em testes...
@@ -157,11 +157,10 @@ const ModalEditAddress = () => {
 					<button className="save-button" type="submit">
 						Salvar alterações
 					</button>
-
-					{/* Remover comentário quando o modal de confirmação tiver sido mergeado */}
-					{/* <ChildModal childOpen={childOpen} setChildOpen={setChildOpen} title="Seu usuário foi editado com sucesso!">
+					
+					<ChildModal childOpen={childOpen} setChildOpen={setChildOpen} title="Seu usuário foi editado com sucesso!">
 						<span>Suas novas já informações foram salvas.</span>
-					</ChildModal> */}
+					</ChildModal> 
 				</ButtonsContainer>
 			</FormContainer>
 		</ModalBox>
