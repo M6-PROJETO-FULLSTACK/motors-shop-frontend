@@ -6,12 +6,12 @@ import { FormContainer } from "./style"
 import { useContext, useState } from "react";
 import { ModalContext } from "../../providers/ModalContext"
 import { useForm } from "react-hook-form"
-import { AuthContext } from "../../providers/AuthContext"
+import api, { config } from "../../services/api"
+import { toast } from "react-toastify"
 
 const FormUpdateAd = () => {
     const [ quantityImage, setQuantityImage ] = useState([0])
-    const {handleClose } = useContext(ModalContext)
-    const {updateVehicleAd} = useContext(AuthContext)
+    const { handleClose } = useContext(ModalContext)
 
     const onUpdate = (data: any) => {
       
@@ -57,7 +57,14 @@ const FormUpdateAd = () => {
       
       console.log(objFinaly);
 
-      updateVehicleAd(objFinaly)
+      api.patch("vehicles", objFinaly, config())
+        .then((res) => {
+          toast.success("Anúncio atualizado!")
+          handleClose()
+        })
+        .catch((err) => {
+          toast.error("Erro ao atualizar, verifique os dados!")
+        });
     }
 
     const {
