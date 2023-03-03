@@ -6,7 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ButtonsContainer, FormContainer } from "./style";
 import { ModalContext } from "../../providers/ModalContext";
 import { useContext, useState } from "react";
-import ChildModal from "../ModalConfirmation";
+import ChildModal from "../ConfirmationModal";
 
 
 export interface ModalEditAddressProps {
