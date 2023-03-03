@@ -6,8 +6,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ButtonsContainer, FormContainer } from "./style";
 import { ModalContext } from "../../providers/ModalContext";
 import { useContext, useState } from "react";
-import ChildModal from "../ModalConfirmation";
-
+import ChildModal from "../ConfirmationModal";
 
 export interface ModalEditAddressProps {
 	cep: string;
@@ -39,7 +38,6 @@ const ModalEditAddress = () => {
 		resolver: yupResolver(schema),
 	});
 
-
 	const onSubmit = (data: any) => {
 		console.log(data);
 		setChildOpen(true);
@@ -55,7 +53,7 @@ const ModalEditAddress = () => {
 		number: "",
 		complement: "",
 	} as ModalEditAddressProps);
-	
+
 	const handleCep = (event: any) => {
 		const cep = event.target.value;
 		if (cep.length === 8) {
@@ -69,7 +67,7 @@ const ModalEditAddress = () => {
 						street: data.logradouro,
 						number: "",
 						complement: "",
-                    });
+					});
 				});
 		}
 	};
@@ -88,14 +86,13 @@ const ModalEditAddress = () => {
 						type="text"
 						id="cep"
 						placeholder="00000-000"
-                        onChange={
-                            (event) => {
-                                event.target.value = event.target.value.replace(/[^0-9]/g, "").replace(/(\d{5})(\d)/, "$1-$2");
-
-                            }
-                        }
-                        defaultValue={address.cep}
-                        maxLength={9}
+						onChange={(event) => {
+							event.target.value = event.target.value
+								.replace(/[^0-9]/g, "")
+								.replace(/(\d{5})(\d)/, "$1-$2");
+						}}
+						defaultValue={address.cep}
+						maxLength={9}
 					/>
 					{errors.cep && <span className="error-message">{errors.cep.message?.toString()}</span>}
 				</div>
@@ -157,10 +154,14 @@ const ModalEditAddress = () => {
 					<button className="save-button" type="submit">
 						Salvar alterações
 					</button>
-					
-					<ChildModal childOpen={childOpen} setChildOpen={setChildOpen} title="Seu usuário foi editado com sucesso!">
-						<span>Suas novas já informações foram salvas.</span>
-					</ChildModal> 
+
+					<ChildModal
+						childOpen={childOpen}
+						setChildOpen={setChildOpen}
+						title="Seu usuário foi editado com sucesso!"
+					>
+						<span>Suas novas informações já informações foram salvas.</span>
+					</ChildModal>
 				</ButtonsContainer>
 			</FormContainer>
 		</ModalBox>
