@@ -8,13 +8,13 @@ import { ModalContext } from "../../providers/ModalContext"
 import { useForm } from "react-hook-form"
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup"
-import { AuthContext } from "../../providers/AuthContext"
+import api, { config } from "../../services/api"
+import { toast } from "react-toastify"
 
 const FormCreateAd = () => {
     const [ quantityImage, setQuantityImage ] = useState([0])
     
-    const {handleClose } = useContext(ModalContext)
-    const {createVehicleAd} = useContext(AuthContext)
+    const { handleClose } = useContext(ModalContext)
 
     const shemaRegisterVehicle = yup.object().shape({
       advertiseType: yup.string().required("Tipo de anuncio é obrigatório"),
@@ -24,8 +24,7 @@ const FormCreateAd = () => {
       price: yup.string().required("Preço é obrigatório"),
       description: yup.string().required("Descrição é obrigatório"),
       vehicleType: yup.string().required("Tipo do veículo é obrigatório"),
-      cover: yup.string().required("Imagem da capa é obrigatória"),
-      // gallery: yup.array().required("Gallery da capa é obrigatória")
+      cover: yup.string().required("Imagem da capa é obrigatória")
     });
 
     const onCreate = (data: any) => {
@@ -66,7 +65,14 @@ const FormCreateAd = () => {
       
       console.log(objFinaly);
 
-      createVehicleAd(objFinaly)
+      api.post("vehicles", objFinaly, config())
+        .then((res) => {
+          toast.success("Anúncio Criado!")
+          handleClose()
+        })
+        .catch((err) => {
+          toast.error("Erro ao criar, verifique os dados!")
+        });
     }
 
     const {
@@ -164,7 +170,7 @@ const FormCreateAd = () => {
                 </section>
                 <div className="input--box input--box_button">
                     <Button className="negative" onClick={handleClose}>Cancelar</Button>
-                    <Button type="submit" className="brandDisable">Criar Anúncio</Button>
+                    <Button type="submit" className="brand">Criar Anúncio</Button>
                 </div>
               </FormContainer>
         </ModalBox>
