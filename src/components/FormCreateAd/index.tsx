@@ -170,7 +170,7 @@ const FormCreateAd = () => {
                 </section>
                 <div className="input--box input--box_button">
                     <Button className="negative" onClick={handleClose}>Cancelar</Button>
-                    <Button type="submit" className="brandDisable">Criar Anúncio</Button>
+                    <Button type="submit" className="brand">Criar Anúncio</Button>
                 </div>
               </FormContainer>
         </ModalBox>
