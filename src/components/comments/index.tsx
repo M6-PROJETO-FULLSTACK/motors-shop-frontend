@@ -12,8 +12,10 @@ import MiniProfile from "../MiniProfile";
 import Text from "../../styles/texts";
 import api from "../../services/api";
 import { VehiclelContext } from "../../providers/VehicleContext";
+import { AuthContext } from "../../providers/AuthContext";
 import { IComment } from "../../interfaces/Comments";
 import { FaTrashAlt } from "react-icons/fa";
+import { IUser } from "../../interfaces/User";
 
 const Comments = () => {
   const {
@@ -30,7 +32,10 @@ const Comments = () => {
     userId,
   } = useContext(VehiclelContext);
 
-  const [user, setUser] = useState(true);
+  const { user } = useContext(AuthContext);
+
+  // const [user, setUser] = useState(true);
+  // const [userData, setUserData] = useState<IUser>({} as IUser);
 
   console.log(listComments);
 
@@ -79,55 +84,56 @@ const Comments = () => {
         )}
       </Commentslist>
       <CommentsArea>
-        <>
-          <div className="user">
-            <MiniProfile userId={""} userName={"Samuel Leão"} />
-          </div>
-          <div className="txt_area">
-            {user ? (
-              <>
-                <textarea
-                  name="comment"
-                  id="comment"
-                  placeholder="Digitar comentário"
-                  value={comment}
-                  cols={2}
-                  rows={10}
-                  onChange={(e) => setComment(e.target.value)}
-                />
-                <Button
-                  className="brand medium btn"
-                  onClick={() => postComment(comment, id)}
-                >
-                  Comentar
-                </Button>
-              </>
-            ) : (
-              <>
-                <textarea
-                  name="comment"
-                  id="comment"
-                  placeholder="Digitar comentário"
-                  cols={2}
-                  rows={10}
-                  disabled
-                />
-                <Link to={"/login"}>
-                  <Button className="disable medium btn">Comentar</Button>
-                </Link>
-              </>
-            )}
-          </div>
-          <div className="shortcut">
-            <span onClick={() => setComment("Gostei muito!")}>
-              Gostei muito!
-            </span>
-            <span onClick={() => setComment("Incrível")}>Incrível</span>
-            <span onClick={() => setComment("Recomendarei para meus amigos!")}>
-              Recomendarei para meus amigos!
-            </span>
-          </div>
-        </>
+        {user ? (
+          <>
+            <div className="user">
+              <MiniProfile userId={""} userName={user.name} />
+            </div>
+            <div className="txt_area">
+              <textarea
+                name="comment"
+                id="comment"
+                placeholder="Digitar comentário"
+                value={comment}
+                cols={2}
+                rows={10}
+                onChange={(e) => setComment(e.target.value)}
+              />
+              <Button
+                className="brand medium btn"
+                onClick={() => postComment(comment, id)}
+              >
+                Comentar
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="user">
+              <MiniProfile userId={""} userName={"Anônimo"} />
+            </div>
+            <div className="txt_area">
+              <textarea
+                name="comment"
+                id="comment"
+                placeholder="Digitar comentário"
+                cols={2}
+                rows={10}
+                disabled
+              />
+              <Link to={"/login"}>
+                <Button className="disable medium btn">Comentar</Button>
+              </Link>
+            </div>
+          </>
+        )}
+        <div className="shortcut">
+          <span onClick={() => setComment("Gostei muito!")}>Gostei muito!</span>
+          <span onClick={() => setComment("Incrível")}>Incrível</span>
+          <span onClick={() => setComment("Recomendarei para meus amigos!")}>
+            Recomendarei para meus amigos!
+          </span>
+        </div>
       </CommentsArea>
     </CommentsContainer>
   );
