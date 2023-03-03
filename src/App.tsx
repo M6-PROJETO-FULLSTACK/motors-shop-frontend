@@ -6,22 +6,24 @@ import { ModalProvider } from "./providers/ModalContext";
 import AuthProvider from "./providers/AuthContext";
 import { VehiclelProvider } from "./providers/VehicleContext";
 import { ModalProviderImg } from "./providers/ModalImgContext";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-    <ThemeProvider theme={light}>
-      <AuthProvider>
-        <VehiclelProvider>
-          <ModalProvider>
-            <ModalProviderImg>
-              <GlobalStyle />
-              <Routes />
-            </ModalProviderImg>
-          </ModalProvider>
-        </VehiclelProvider>
-      </AuthProvider>
-    </ThemeProvider>
+		<ThemeProvider theme={light}>
+			<AuthProvider>
+				<VehiclelProvider>
+					<ModalProvider>
+						<ModalProviderImg>
+							<GlobalStyle />
+							<Routes />
+						</ModalProviderImg>
+					</ModalProvider>
+				</VehiclelProvider>
+			</AuthProvider>
+			<ToastContainer />
+		</ThemeProvider>
   );
 }
 

@@ -7,20 +7,19 @@ import MainHome from "../../components/mainHome";
 import VehicleList from "../../components/VehicleList";
 
 const cards = [
-  {
-    title: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200",
-    year: "2019",
-    mileage: "0",
-    price: 110000,
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    cover:
-      "https://i.pinimg.com/originals/24/13/73/241373ff7d3ad9202834eb7428ba4750.jpg",
-    userName: "Nome de Teste Realmente Muito Grande",
-    userId: "1",
-    isActive: true,
-    id: "8cef9bf5-88d4-43ed-9acd-9c7a627cb26d",
-  },
+	{
+		title: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200",
+		year: "2019",
+		mileage: "0",
+		price: 110000,
+		description:
+			"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+		cover: "https://i.pinimg.com/originals/24/13/73/241373ff7d3ad9202834eb7428ba4750.jpg",
+		userName: "Nome de Teste Realmente Muito Grande",
+		userId: "1",
+		isActive: true,
+		id: "6d18e274-098f-4e15-a30e-3704fbbe20ca",
+	},
 ];
 
 for (let i = 0; i < 8; i++) {
