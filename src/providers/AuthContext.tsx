@@ -1,6 +1,7 @@
 import { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api, { config } from "../services/api";
+import { toast } from "react-toastify";
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -39,6 +40,14 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
 	const [loading, setLoading] = useState(true);
 	const navigate = useNavigate();
 
+	const sucessToast = () => {
+		toast.success("Usuário cadastrado com sucesso!");
+	};
+
+	const errorToast = () => {
+		toast.error("Erro ao realizar cadastro, verifique os dados!");
+	};
+
 	useEffect(() => {
 		const getUser = async () => {
 			const token = localStorage.getItem("@MotorsShop:token");
@@ -61,13 +70,14 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
 	const registerUser = async (data: any) => {
 		api.post("/users", {
 			name: data.name,
+			password: data.password,
 			email: data.email,
 			cpf: data.cpf,
 			phone: data.phone,
 			birthdate: data.birthdate,
 			bio: data.bio,
-			type: data.type,
-			address: {
+			type: data.userType,
+			adress: {
 				cep: data.cep,
 				city: data.city,
 				complement: data.complement,
@@ -78,9 +88,12 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
 		})
 			.then((res) => {
 				console.log(res);
+				sucessToast();
+				navigate("/login", { replace: true });
 			})
 			.catch((err) => {
 				console.log(err);
+				errorToast();
 			});
 	};
 
