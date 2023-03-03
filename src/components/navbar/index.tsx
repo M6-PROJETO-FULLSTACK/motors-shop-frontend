@@ -1,17 +1,18 @@
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { Container, NavContainer, UserUl ,NavUl} from "./style"
 import {BiMenu} from 'react-icons/bi'
 import { GrFormClose } from 'react-icons/gr'
 import { LinkBtn } from "../../styles/buttons"
 import logo from '../../assets/Logo_prymary.png'
+import { AuthContext } from '../../providers/AuthContext'
+import MiniProfile from '../MiniProfile'
 
 const Navbar = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false)
-    const [submenuIsVisible, setSubmenuIsVisible] = useState(true)
-    const [user, setUser] = useState(true)
-    const [isAdm, setIsAdm] = useState(false)
-
+    const [submenuIsVisible, setSubmenuIsVisible] = useState(false)
+    const {user, logOut} = useContext(AuthContext)
+    
     return(
         <>
         <Container>
@@ -34,11 +35,13 @@ const Navbar = () => {
                     {
                         user?
                         (<UserUl submenuIsVisible={submenuIsVisible}>
-                            <li >
+                            <li ><>
+                            
                                 <div>
-                                    <span>SL</span>
+                                    <span>{user.name.split(" ")[0][0] + user.name.split(" ")[user.name.split(" ").length - 1][0]}</span>
                                 </div>
-                                <LinkBtn onClick={()=>setSubmenuIsVisible(!submenuIsVisible)}>Samuel Leão</LinkBtn>
+                                <LinkBtn onClick={()=>setSubmenuIsVisible(!submenuIsVisible)}>{user.name.length > 20 ? user.name.slice(0, 20) + "..." : user.name}</LinkBtn>
+                            </>
                             </li>
                             <ul className='sub_menu'>
                                 <li>
@@ -48,9 +51,9 @@ const Navbar = () => {
                                     <LinkBtn className="medium" as='a'>Editar Endereço</LinkBtn>
                                 </li>
                                 {
-                                    isAdm?
+                                    user.type === true?
                                     <li>
-                                        <Link to={'/profile'}>
+                                        <Link to={`/profile/${user.id}`}>
                                             <LinkBtn className="medium" as='a'>Meus Anúncios</LinkBtn>
                                         </Link>
                                     </li>
@@ -58,7 +61,7 @@ const Navbar = () => {
                                     null
                                 }
                                 <li>
-                                    <LinkBtn className="medium" as='a' onClick={() => setUser(false)}>sair</LinkBtn>
+                                    <LinkBtn className="medium" as='a' onClick={() => logOut()}>sair</LinkBtn>
                                 </li>
                             </ul>
                         </UserUl>)
