@@ -5,6 +5,8 @@ import light from "./styles/themes/light";
 import { ModalProvider } from "./providers/ModalContext";
 import AuthProvider from "./providers/AuthContext";
 import { VehiclelProvider } from "./providers/VehicleContext";
+import { ModalProviderImg } from "./providers/ModalImgContext";
+
 
 function App() {
   return (
@@ -12,8 +14,10 @@ function App() {
       <AuthProvider>
         <VehiclelProvider>
           <ModalProvider>
-            <GlobalStyle />
-            <Routes />
+            <ModalProviderImg>
+              <GlobalStyle />
+              <Routes />
+            </ModalProviderImg>
           </ModalProvider>
         </VehiclelProvider>
       </AuthProvider>
