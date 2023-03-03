@@ -12,7 +12,7 @@ interface ICardProps {
   userName: string;
   userId: string;
   isActive: boolean;
-  vehicleId: string;
+  id: string;
 }
 
 interface IListProps {
@@ -39,7 +39,7 @@ const VehicleList = ({ list, id }: IListProps) => {
             userName={card.userName}
             userId={card.userId}
             isActive={card.isActive}
-            vehicleId={card.vehicleId}
+            id={card.id}
           />
         ))}
       </ContainerList>

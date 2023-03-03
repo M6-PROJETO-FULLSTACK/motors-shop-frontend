@@ -16,6 +16,7 @@ const RoutesMain = () => {
       <Route path="*" element={<HomePage/>} />
       <Route element={<ProtectedRoute/>}>
         <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/vehicle/:id" element={<VehiclePage />} />
       </Route>
     </Routes>
   );

@@ -6,3 +6,13 @@ const api = axios.create({
 });
 
 export default api;
+
+export const config = () => {
+  const token = localStorage.getItem("@MotorsShop:token");
+  
+  return {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+}

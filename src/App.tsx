@@ -4,15 +4,22 @@ import { ThemeProvider } from "styled-components";
 import light from "./styles/themes/light";
 import { ModalProvider } from "./providers/ModalContext";
 import AuthProvider from "./providers/AuthContext";
+import { VehiclelProvider } from "./providers/VehicleContext";
+import { ModalProviderImg } from "./providers/ModalImgContext";
+
 
 function App() {
   return (
     <ThemeProvider theme={light}>
       <AuthProvider>
-        <ModalProvider>
-          <GlobalStyle />
-          <Routes />
-        </ModalProvider>
+        <VehiclelProvider>
+          <ModalProvider>
+            <ModalProviderImg>
+              <GlobalStyle />
+              <Routes />
+            </ModalProviderImg>
+          </ModalProvider>
+        </VehiclelProvider>
       </AuthProvider>
     </ThemeProvider>
   );

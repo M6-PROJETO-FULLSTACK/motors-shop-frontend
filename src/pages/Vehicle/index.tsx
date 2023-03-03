@@ -7,6 +7,7 @@ import UserCard from "../../components/UserCard";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import Comments from "../../components/comments";
+import ModalImgVehicle from "../../components/ModalImgVehicle";
 
 const VehiclePage = () => {
   return (
@@ -27,6 +28,7 @@ const VehiclePage = () => {
           </ContainerMain>
           <ContainerCards>
             <GalleryBox />
+            <ModalImgVehicle />
             <UserCard />
           </ContainerCards>
       </ContainerPage>
