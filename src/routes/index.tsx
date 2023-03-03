@@ -8,16 +8,17 @@ import ProtectedRoute from "./protectedRoutes/index ";
 
 const RoutesMain = () => {
   return (
-		<Routes>
-			<Route path="/" element={<Login />} />
-			<Route path="/login" element={<Login />} />
-			<Route path="/register" element={<Register />} />
-			<Route path="/home" element={<HomePage />} />
-			<Route path="/vehicle/:id" element={<VehiclePage />} />
-			<Route element={<ProtectedRoute />}>
-				<Route path="/profile" element={<Profile />} />
-			</Route>
-		</Routes>
+    <Routes>
+      <Route path="/login" element={<Login />} />
+      <Route path="/register" element={<Register />} />
+      <Route path="/home" element={<HomePage />} />
+      <Route path="/vehicle" element={<VehiclePage />} />
+      <Route path="*" element={<HomePage/>} />
+      <Route element={<ProtectedRoute/>}>
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/vehicle/:id" element={<VehiclePage />} />
+      </Route>
+    </Routes>
   );
 };
 
