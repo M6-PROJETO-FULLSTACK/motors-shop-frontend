@@ -40,13 +40,13 @@ const Profile = () => {
       <ContainerPage>
         <UserCard profile />
         <ProductsContainer>
-          {
+          {/* {
             vehicles!.length === 0 ?
             <VehicleSection>
               <Text className="heading1 text" weight={600}>Você ainda não possui nenhum veículo cadastrado</Text>
             </VehicleSection>
             :
-            (
+            ( */}
             <>
               <VehicleSection id="leilao">
               <AuctionCard 
@@ -62,8 +62,8 @@ const Profile = () => {
               <VehicleList list={cards} id="carros" />
               <VehicleList list={cards} id="motos" />
           </>
-          )
-          }
+           {/* )
+          } */}
         </ProductsContainer>
       </ContainerPage>
       <Footer />

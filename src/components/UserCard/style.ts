@@ -75,11 +75,23 @@ export const UserInfo = styled.div<IUserCardProps>`
   }
 `;
 
-export const UserCardImg = styled.img<IUserCardProps>`
+export const UserCardImg = styled.div<IUserCardProps>`
   width: ${(props) => props.profile && "80px"};
+  height: 80px;
+  background-color: ${props => props.theme.colors.random6};
   margin-bottom: 15px;
   border-radius: 50%;
   max-width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    color: ${props => props.theme.colors.whiteFixed};
+    font-weight: 700;
+    font-size: 40px;
+
+  }
 `;
 
 export const ContainerModalAd = styled.div`
