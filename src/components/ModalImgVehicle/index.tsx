@@ -2,16 +2,14 @@ import { Modal, Box } from "@mui/material";
 import { useContext } from "react";
 import Text from "../../styles/texts";
 import { RiCloseFill } from "react-icons/ri";
-import { Button } from "../../styles/buttons";
 import { ContainerModal, Content, TitleBox } from "../Modal/style";
 import { ModalContextImg } from "../../providers/ModalImgContext";
-import GalleryCard from "../GalleryCard";
 import { ContainerModalImg } from "./style";
 
 
-const ModalImgVehicle = (src: any) => {
+const ModalImgVehicle = () => {
 
-    const {handleClose, handleOpen, open, setOpen, img} = useContext(ModalContextImg)
+    const {handleClose, open, img} = useContext(ModalContextImg)
 
     const style = {
         position: "absolute" as "absolute",
@@ -32,7 +30,6 @@ const ModalImgVehicle = (src: any) => {
       return (
         <>
         {open && <ContainerModal>
-          <Button onClick={handleOpen} className="brand3 medium button__modal--createad">Image</Button>
           <Modal open={open} onClose={handleClose}>
             <Box sx={style}>
               <TitleBox>
@@ -45,7 +42,7 @@ const ModalImgVehicle = (src: any) => {
               </TitleBox>
               <Content>
                 <ContainerModalImg>
-                    <img src={img}/>
+                    <img src={img} alt="image car"/>
                 </ContainerModalImg>
               </Content>
             </Box>
