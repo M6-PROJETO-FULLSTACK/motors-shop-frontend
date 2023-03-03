@@ -65,7 +65,7 @@ const Profile = () => {
            {/* )
           } */}
         </ProductsContainer>
-      </ContainerPage>
+      </ContainerPage>''
       <Footer />
     </>
   );
