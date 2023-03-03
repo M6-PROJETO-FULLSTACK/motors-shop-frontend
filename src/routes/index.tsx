@@ -13,8 +13,9 @@ const RoutesMain = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/home" element={<HomePage />} />
       <Route path="/vehicle" element={<VehiclePage />} />
+      <Route path="*" element={<HomePage/>} />
       <Route element={<ProtectedRoute/>}>
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:id" element={<Profile />} />
       </Route>
     </Routes>
   );
