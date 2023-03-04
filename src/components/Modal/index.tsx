@@ -11,9 +11,16 @@ export interface IModalProps {
   title: string;
   title_button?: string;
   small?: boolean;
+  recovery?: boolean;
 }
 
-const ModalBox = ({ children, title, title_button, small }: IModalProps) => {
+const ModalBox = ({
+  children,
+  title,
+  title_button,
+  small,
+  recovery,
+}: IModalProps) => {
   const { open, handleClose, handleOpen } = useContext(ModalContext);
 
   const style = {
@@ -35,12 +42,14 @@ const ModalBox = ({ children, title, title_button, small }: IModalProps) => {
   return (
     <>
       <ContainerModal>
-        <Button
-          onClick={handleOpen}
-          className="brand3 medium button__modal--createad"
-        >
-          {title_button}
-        </Button>
+        {!recovery && (
+          <Button
+            onClick={handleOpen}
+            className="brand3 medium button__modal--createad"
+          >
+            {title_button}
+          </Button>
+        )}
         <Modal open={open} onClose={handleClose}>
           <Box sx={style}>
             <TitleBox>
