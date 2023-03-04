@@ -64,7 +64,6 @@ export const FormContainer = styled.form`
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
-    
   }
 
   .form-control--radio input {
@@ -83,8 +82,8 @@ export const FormContainer = styled.form`
     border-radius: 4px;
 
     font-size: 14px;
-    font-family: ${props => props.theme.fonts.texts};
-    border: 1.5px solid ${props => props.theme.colors.grey1};
+    font-family: ${(props) => props.theme.fonts.texts};
+    border: 1.5px solid ${(props) => props.theme.colors.grey1};
     font-weight: 600;
 
     display: flex;
@@ -101,13 +100,13 @@ export const FormContainer = styled.form`
   }
 
   .form-control--radio:hover input ~ .checkmark {
-    background-color: ${props => props.theme.colors.grey0};
-    color: ${props => props => props.theme.colors.whiteFixed};
+    background-color: ${(props) => props.theme.colors.grey0};
+    color: ${(props) => (props) => props.theme.colors.whiteFixed};
   }
 
   .form-control--radio input:checked ~ .checkmark {
-    background-color: ${props => props.theme.colors.brand1};
-    color: ${props => props => props.theme.colors.whiteFixed};
+    background-color: ${(props) => props.theme.colors.brand1};
+    color: ${(props) => (props) => props.theme.colors.whiteFixed};
   }
 
   .checkmark:after {
@@ -118,5 +117,45 @@ export const FormContainer = styled.form`
 
   .form-control--radio input:checked ~ .checkmark:after {
     display: block;
+  }
+`;
+
+export const ModalBtns = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+
+  button {
+    margin: 10px 5px;
+  }
+
+  @media screen and (max-width: 409px) {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .delete--btn__cancel {
+    width: 30%;
+
+    @media screen and (min-width: 768px) {
+      width: 30%;
+    }
+
+    @media screen and (max-width: 409px) {
+      width: 100%;
+    }
+  }
+
+  .delete--btn__confirm {
+    width: 70%;
+
+    @media screen and (min-width: 768px) {
+      width: 45%;
+    }
+
+    @media screen and (max-width: 409px) {
+      width: 100%;
+    }
   }
 `;
