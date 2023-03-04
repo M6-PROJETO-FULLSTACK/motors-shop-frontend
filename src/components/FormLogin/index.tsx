@@ -12,7 +12,7 @@ import { ModalContext } from "../../providers/ModalContext";
 
 const FormLogin = () => {
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext);
+  const { login, recoverPassword } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
 
   const { handleOpen, handleClose } = useContext(ModalContext);
@@ -21,22 +21,26 @@ const FormLogin = () => {
     <>
       <Container>
         <ModalBox title="Esqueceu sua senha?" small recovery>
-          <p>Insira seu e-mail e enviaremos uma nova senha.</p>
-          <Input
-            id="email_recovery"
-            type="email"
-            title="E-mail"
-            placeholder="Digite seu e-mail"
-          />
-          <ContainerBtn>
-            <Button onClick={handleClose} className="outline">
-              Cancelar
-            </Button>
-            <Button onClick={handleClose} className="brand">
-              Solicitar senha
-            </Button>
-          </ContainerBtn>
+          <form onSubmit={handleSubmit(recoverPassword)}>
+            <p>Insira seu e-mail e enviaremos uma nova senha.</p>
+            <Input
+              id="email_recovery"
+              type="email"
+              title="E-mail"
+              placeholder="Digite seu e-mail"
+              {...register("email")}
+            />
+            <ContainerBtn>
+              <Button onClick={handleClose} className="outline">
+                Cancelar
+              </Button>
+              <Button className="brand" type="submit">
+                Solicitar senha
+              </Button>
+            </ContainerBtn>
+          </form>
         </ModalBox>
+
         <ContainerBox>
           <Text className="heading5" weight="500">
             Login
