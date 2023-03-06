@@ -40,6 +40,12 @@ export const ContainerBox = styled.div`
     width: 100%;
     text-align: end;
     margin-bottom: 5px;
+
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 `;
 
@@ -48,4 +54,25 @@ export const FormContainer = styled.form`
   flex-direction: column;
   align-items: center;
   width: 100%;
+`;
+
+export const ContainerBtn = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  button {
+    width: 100%;
+    margin: 10px 0px;
+
+    @media screen and (min-width: 768px) {
+      width: 45%;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
