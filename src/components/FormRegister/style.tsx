@@ -8,6 +8,8 @@ export const Container = styled.div`
   flex-direction: column;
   align-items: center;
   border-radius: 5px;
+  margin-top: 46px;
+  margin-bottom: 96px;
 
   button,
   a {
@@ -31,6 +33,7 @@ export const Container = styled.div`
 
 export const ContainerBox = styled.div`
   width: 80%;
+  padding: 44px 0;
 `;
 
 export const FormContainer = styled.form`
