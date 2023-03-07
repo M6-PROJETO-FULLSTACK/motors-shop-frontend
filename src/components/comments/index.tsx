@@ -37,7 +37,7 @@ const Comments = () => {
   // const [user, setUser] = useState(true);
   // const [userData, setUserData] = useState<IUser>({} as IUser);
 
-  console.log(listComments);
+  // console.log(listComments);
 
   const { id } = useParams();
 
@@ -45,8 +45,8 @@ const Comments = () => {
     const getVehicle = async () => {
       try {
         const { data } = await api.get(`/vehicles/${id}`);
-        setVehicle(data);
-        setListComments(data.comments);
+        setVehicle(data.vehicle);
+        setListComments(data.vehicle.comments);
       } catch (error) {
         console.error(error);
       }
