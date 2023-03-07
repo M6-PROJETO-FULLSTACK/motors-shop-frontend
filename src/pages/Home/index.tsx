@@ -5,29 +5,24 @@ import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import MainHome from "../../components/mainHome";
 import VehicleList from "../../components/VehicleList";
+import api from "../../services/api";
+import { useEffect, useState } from "react";
+import { IVehicleProps } from "../Anaunces";
 
-const cards = [
-  {
-    title: "Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200",
-    year: "2019",
-    mileage: "0",
-    price: 110000,
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    cover:
-      "https://i.pinimg.com/originals/24/13/73/241373ff7d3ad9202834eb7428ba4750.jpg",
-    userName: "Nome de Teste Realmente Muito Grande",
-    userId: "1",
-    isActive: true,
-    id: "6d18e274-098f-4e15-a30e-3704fbbe20ca",
-  },
-];
-
-for (let i = 0; i < 8; i++) {
-  cards.push(cards[0]);
-}
 
 const HomePage = () => {
+  const [cars, setCars] = useState<IVehicleProps[]>([])
+  const [motocycles, setMotocycles] = useState<IVehicleProps[]>([])
+
+  useEffect(() => {
+    api.get("/vehicles")
+        .then(res => {
+          setCars(res.data.filter((elem: IVehicleProps) => elem.vehicleType))
+          setMotocycles(res.data.filter((elem: IVehicleProps) => !elem.vehicleType))
+        })
+        .catch(err => console.log(err))
+  }, [])
+
   return (
     <>
       <Navbar />
@@ -38,53 +33,44 @@ const HomePage = () => {
         </Text>
         <HomeSection id="leilao">
           <AuctionCard
-            img="https://cdn-icons-png.flaticon.com/512/21/21104.png"
-            name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 "
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem..."
-            km="0"
-            owner="Rodrigo Tavares"
-            price="110000"
+            img="https://s2.glbimg.com/soQAYHwEEuJm7qRINw2oUm9Czqs=/fit-in/940x590/e.glbimg.com/og/ed/f/original/2013/03/05/laferrari1_1.jpg"
+            name="Ferrari LaFerrari 62 V12 "
+            description="O LaFerrari é o primeiro híbrido completo produzido pela marca automotiva italiana, fornecendo a maior potência de qualquer carro de estrada da Ferrari. "
+            km="19200"
+            owner="WebMotors"
+            price="14.000.000"
+            year="2014"
+          />
+          <AuctionCard
+            img="https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cG9yc2NoZSUyMDkxMXxlbnwwfHwwfHw%3D&w=1000&q=80"
+            name="Porshe 911 Carrera"
+            description="O 911 Carrera. Quando o contato com a pista se torna mais importante. Quando a redução de cada quilo promete mais agilidade."
+            km="12000"
+            owner="WebMotors"
+            price="1.279.000"
+            year="2022"
+          />
+          <AuctionCard
+            img="https://images.unsplash.com/photo-1603553329474-99f95f35394f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8bXVzdGFuZyUyMGd0fGVufDB8fDB8fA%3D%3D&w=1000&q=80"
+            name="Ford Mustang GT Fastback 5.0L v8"
+            description="Esta variante GT Fastback 5.0L v8 vem com um motor que produz 396 cv a 6500 rpm e 515 Nm a 4250 rpm de potência máxima e torque máximo, respectivamente."
+            km="29020"
+            owner="WebMotors"
+            price="566.300"
             year="2019"
           />
           <AuctionCard
-            img="https://i.pinimg.com/originals/24/13/73/241373ff7d3ad9202834eb7428ba4750.jpg"
-            name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 "
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem..."
+            img="https://autoentusiastas.com.br/ae/wp-content/uploads/2023/02/Lamborghini-Invencible-2023-1280-01.jpg"
+            name="Lamborghini Invencible"
+            description="Motor V12 6.5 com a mesma calibração do Ultimae, ou seja, um propulsor aspirado de 780 cv a 8.500 rpm, enquanto o torque máximo de 73,4 é entregue a 6.750 rpm."
             km="0"
-            owner="Rodrigo Tavares"
-            price="110000"
-            year="2019"
-          />
-          <AuctionCard
-            img="https://www.mensjournal.com/wp-content/uploads/m0516_nb_cartech_a-e64f3b6c-97be-4dac-8c8b-322ce8b7280b.jpg?w=1200&crop=0px%2C200px%2C2548px%2C1432px&resize=1200%2C675&quality=82&strip=all"
-            name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 "
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem..."
-            km="0"
-            owner="Rodrigo Tavares"
-            price="110000"
-            year="2019"
-          />
-          <AuctionCard
-            img="https://i.pinimg.com/originals/e4/d6/8f/e4d68fd0d62bcafceb8642039876e6fe.jpg"
-            name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 "
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem..."
-            km="0"
-            owner="Rodrigo Tavares"
-            price="110000"
-            year="2019"
-          />
-          <AuctionCard
-            img="https://i.kinja-img.com/gawker-media/image/upload/c_fill,f_auto,fl_progressive,g_center,h_180,pg_1,q_80,w_320/4bbe8bdf0b2fa3c74d56ac1079f6e92f.jpg"
-            name="Mercedes Benz A 200 CGI ADVANCE SEDAN Mercedes Benz A 200 "
-            description="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem..."
-            km="0"
-            owner="Rodrigo Tavares"
-            price="110000"
-            year="2019"
+            owner="WebMotors"
+            price="2.595.650"
+            year="2023"
           />
         </HomeSection>
-        <VehicleList list={cards} id="carros" />
-        <VehicleList list={cards} id="motos" />
+        <VehicleList list={cars} id="carros" />
+        <VehicleList list={motocycles} id="motos" />
       </Container>
       <Footer />
     </>
