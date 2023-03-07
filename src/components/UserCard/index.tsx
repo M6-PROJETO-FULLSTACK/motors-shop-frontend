@@ -8,9 +8,10 @@ import { AuthContext } from "../../providers/AuthContext";
 
 export interface IUserCardProps {
   profile?: boolean;
+  createButton?: boolean
 }
 
-const UserCard = ({ profile }: IUserCardProps) => {
+const UserCard = ({ profile, createButton }: IUserCardProps) => {
   const {user} = useContext(AuthContext)
 
   return (
@@ -41,7 +42,7 @@ const UserCard = ({ profile }: IUserCardProps) => {
         <Text className="body1" weight="400">
           {user!.bio}
         </Text>
-        <FormCreateAd />
+        {createButton && <FormCreateAd />}
         {!profile && <Button className="grey">Ver todos anuncios</Button>}
       </UserInfo>
     </Container>
