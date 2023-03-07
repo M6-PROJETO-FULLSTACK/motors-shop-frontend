@@ -11,6 +11,7 @@ interface IPropsProductInfo {
   price: string;
   year: string;
   km: string;
+  phone: number
 }
 
 const ProductInfo = (props: IPropsProductInfo) => {
@@ -36,7 +37,7 @@ const ProductInfo = (props: IPropsProductInfo) => {
           </div>
         </ContainerProductInfoFooter>
         <div className="container__info--button">
-          <Button className="brand">Comprar</Button>
+          <Button as="a" href={`http://wa.me/55${props.phone}?text=Olá%20tenho%20interesse%20em%20comprar%20seu%20veículo%20${props.name}`} className="brand">Comprar</Button>
         </div>
       </SectionProductInfo>
     </ProductInfoContainer>

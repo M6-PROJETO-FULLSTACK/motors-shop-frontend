@@ -22,6 +22,7 @@ const VehiclePage = () => {
               price="00.000,00"
               year="2013"
               km="0"
+              phone={11984228022}
             />
             <BoxDescription />
             <Comments/>
