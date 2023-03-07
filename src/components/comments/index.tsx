@@ -5,7 +5,8 @@ import {
   CommentsArea,
   Commentslist,
   Comment,
-  BtnDelete,
+  BtnEditComment,
+  EditArea,
 } from "./style";
 import { Button } from "../../styles/buttons";
 import MiniProfile from "../MiniProfile";
@@ -16,6 +17,8 @@ import { AuthContext } from "../../providers/AuthContext";
 import { IComment } from "../../interfaces/Comments";
 import { FaTrashAlt } from "react-icons/fa";
 import { IUser } from "../../interfaces/User";
+import { FiEdit3 } from "react-icons/fi";
+import { BsCheckLg } from "react-icons/bs";
 
 const Comments = () => {
   const {
@@ -30,14 +33,15 @@ const Comments = () => {
     postComment,
     deleteComment,
     userId,
+    editCommentFn,
   } = useContext(VehiclelContext);
 
   const { user } = useContext(AuthContext);
 
-  // const [user, setUser] = useState(true);
-  // const [userData, setUserData] = useState<IUser>({} as IUser);
+  const [targetComment, setTargetComment] = useState("");
+  const [editContent, setEditContent] = useState("");
 
-  console.log(listComments);
+  // const [userData, setUserData] = useState<IUser>({} as IUser);
 
   const { id } = useParams();
 
@@ -67,16 +71,56 @@ const Comments = () => {
                 <Comment key={comment.id}>
                   <div className="user">
                     <MiniProfile userId={""} userName={comment.user.name} />
-                    <span>&bull; {getDate(comment.created_at)}</span>
+                    <span>
+                      &bull;{" "}
+                      {comment.created_at !== comment.updated_at
+                        ? getDate(comment.updated_at)
+                        : getDate(comment.created_at)}
+                    </span>
                     {userId === comment.user_id && (
-                      <BtnDelete onClick={() => deleteComment(comment.id)}>
-                        <FaTrashAlt />
-                      </BtnDelete>
+                      <>
+                        <BtnEditComment
+                          onClick={() => {
+                            setTargetComment(comment.id);
+                            setEditContent(comment.message);
+                          }}
+                        >
+                          <FiEdit3 />
+                        </BtnEditComment>
+                      </>
                     )}
                   </div>
-                  <Text className="body2 txt_comment" weight={400}>
-                    {comment.message}
-                  </Text>
+                  {targetComment === comment.id ? (
+                    <EditArea>
+                      <textarea
+                        name=""
+                        id=""
+                        placeholder="Teste"
+                        value={editContent}
+                        onChange={(e) => setEditContent(e.target.value)}
+                      />
+                      <div>
+                        <BtnEditComment
+                          className="brand"
+                          onClick={() => {
+                            editCommentFn(comment.id, editContent);
+                            setTargetComment("");
+                          }}
+                        >
+                          <BsCheckLg />
+                        </BtnEditComment>
+                        <BtnEditComment
+                          onClick={() => deleteComment(comment.id)}
+                        >
+                          <FaTrashAlt />
+                        </BtnEditComment>
+                      </div>
+                    </EditArea>
+                  ) : (
+                    <Text className="body2 txt_comment" weight={400}>
+                      {comment.message}
+                    </Text>
+                  )}
                 </Comment>
               </>
             ))}

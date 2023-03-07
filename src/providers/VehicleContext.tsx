@@ -16,6 +16,7 @@ interface IVehicleContextProps {
   postComment: (comment: string, id: string | undefined) => void;
   deleteComment: (id: string) => void;
   userId: string | null;
+  editCommentFn: (id: string, message: string) => void;
 }
 
 export const VehiclelContext = createContext<IVehicleContextProps>(
@@ -66,8 +67,18 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
     api.defaults.headers.authorization = `Bearer ${token}`;
     const res = await api.delete(`/comments/${id}`);
 
-    console.log(res);
     setResponse(!response);
+  };
+
+  const editCommentFn = (id: string, message: string) => {
+    const data = {
+      message: message,
+    };
+    api.defaults.headers.authorization = `Bearer ${token}`;
+
+    api.patch(`comments/${id}`, data).then((res) => {
+      setResponse(!response);
+    });
   };
 
   return (
@@ -85,6 +96,7 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
         postComment,
         deleteComment,
         userId,
+        editCommentFn,
       }}
     >
       {children}

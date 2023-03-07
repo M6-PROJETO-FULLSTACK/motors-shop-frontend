@@ -148,9 +148,39 @@ export const CommentsArea = styled.div`
   }
 `;
 
-export const BtnDelete = styled.button`
+export const BtnEditComment = styled.button`
   background-color: transparent;
   border: none;
   color: ${(props) => props.theme.colors.grey3};
   margin: 0px 10px;
+`;
+
+export const EditArea = styled.div`
+  width: 50%;
+  display: flex;
+  margin-top: 10px;
+  border: 1.5px solid ${(props) => props.theme.colors.grey7};
+  border-radius: 4px;
+
+  textarea {
+    width: 90%;
+    height: 90px;
+    border: none;
+    font-weight: 400;
+    padding: 28px 10px 10px 28px;
+    outline: none;
+    resize: none;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+
+    button {
+      padding: 0;
+      width: 100%;
+      margin: 5px;
+    }
+  }
 `;
