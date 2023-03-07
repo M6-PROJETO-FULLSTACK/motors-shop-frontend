@@ -31,6 +31,21 @@ const GlobalStyle = createGlobalStyle`
     color: ${(props) => props.theme.colors.grey3};
     font-size: 16px;
   }
+
+  ::-webkit-scrollbar{
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track{
+    background: ${(props) => props.theme.colors.grey5};
+    border-radius: 20px;
+  }
+  ::-webkit-scrollbar-thumb{
+  background: ${(props) => props.theme.colors.grey4};
+  border-radius: 30px;
+  }
+
+
+
 `;
 export default GlobalStyle;
-

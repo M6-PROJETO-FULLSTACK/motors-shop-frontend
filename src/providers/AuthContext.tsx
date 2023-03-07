@@ -114,12 +114,9 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
     await api
       .post("/login/recover-password", data)
       .then((res) => {
-        console.log(res);
         toast.success("E-mail enviado com sucesso!");
-        navigate("/login", { replace: true });
       })
       .catch((err) => {
-        console.log(err);
         toast.error("Erro ao enviar e-mail, verifique os dados!");
       });
   };
