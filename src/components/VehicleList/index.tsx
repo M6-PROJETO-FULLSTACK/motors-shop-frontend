@@ -28,8 +28,9 @@ const VehicleList = ({ list, id }: IListProps) => {
       </Text>
 
       <ContainerList id={id}>
-        {list.map((card) => (
+        {list.map((card, index) => (
           <ProductCard
+            key={index}
             title={card.title}
             year={card.year}
             mileage={card.mileage}
