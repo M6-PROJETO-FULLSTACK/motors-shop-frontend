@@ -30,10 +30,26 @@ export const Commentslist = styled.div`
     width: 100%;
   }
 `;
+
+export const EmptyComments = styled.div`
+  margin: 35px 0px;
+  text-align: center;
+
+  p {
+    margin: 10px;
+  }
+`;
+
 export const Comment = styled.div`
   background-color: ${(props) => props.theme.colors.grey10};
   width: 100%;
   margin-top: 44px;
+
+  .comment__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
   div {
     display: flex;
@@ -148,9 +164,90 @@ export const CommentsArea = styled.div`
   }
 `;
 
-export const BtnDelete = styled.button`
+export const BtnEditComment = styled.button`
   background-color: transparent;
   border: none;
   color: ${(props) => props.theme.colors.grey3};
-  margin: 0px 10px;
+  margin: 0px 5px;
+  cursor: pointer;
+`;
+
+export const EditArea = styled.div`
+  width: 100%;
+  height: 130px;
+  display: flex;
+  margin-top: 10px;
+  border: 1.5px solid ${(props) => props.theme.colors.grey7};
+  border-radius: 4px;
+  padding-right: 5px;
+
+  @media (min-width: 700px) {
+    width: 60%;
+    height: 90px;
+  }
+
+  textarea {
+    width: 90%;
+    height: 100%;
+    border: none;
+    font-weight: 400;
+    padding: 28px 10px 10px 28px;
+    outline: none;
+    resize: none;
+  }
+
+  div {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    height: 100%;
+    justify-content: space-between;
+    align-items: flex-end;
+
+    > button {
+      width: 50%;
+      margin-top: 5px;
+      background-color: transparent;
+      border: none;
+      color: ${(props) => props.theme.colors.grey3};
+      cursor: pointer;
+    }
+
+    .comment--edit__buttons {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 10px;
+      height: 30%;
+      width: 100%;
+
+      .edit--button__delete {
+        &:hover {
+          color: ${(props) => props.theme.colors.alert1};
+          opacity: 0.5;
+        }
+      }
+
+      .edit--button__confirm {
+        &:hover {
+          color: ${(props) => props.theme.colors.sucess1};
+        }
+      }
+
+      @media (min-width: 700px) {
+        flex-direction: row;
+      }
+    }
+  }
+`;
+
+export const ContainerDelete = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  button {
+    width: 45%;
+    padding: 0;
+  }
 `;

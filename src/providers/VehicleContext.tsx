@@ -1,7 +1,8 @@
-import { createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from "react";
 import { IComment } from "../interfaces/Comments";
 import { IVehicle } from "../interfaces/Vehicle";
 import api from "../services/api";
+import { ModalContext } from "./ModalContext";
 
 interface IVehicleContextProps {
   comment: string;
@@ -16,6 +17,7 @@ interface IVehicleContextProps {
   postComment: (comment: string, id: string | undefined) => void;
   deleteComment: (id: string) => void;
   userId: string | null;
+  editCommentFn: (id: string, message: string) => void;
 }
 
 export const VehiclelContext = createContext<IVehicleContextProps>(
@@ -23,6 +25,8 @@ export const VehiclelContext = createContext<IVehicleContextProps>(
 );
 
 export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
+  const { setOpenDelete } = useContext(ModalContext);
+
   const [comment, setComment] = useState<string>("");
   const [listComments, setListComments] = useState<IComment[]>([]);
   const [vehicle, setVehicle] = useState<IVehicle>({} as IVehicle);
@@ -64,10 +68,21 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteComment = async (id: string) => {
     api.defaults.headers.authorization = `Bearer ${token}`;
-    const res = await api.delete(`/comments/${id}`);
+    await api.delete(`/comments/${id}`).then((res) =>
+      // setOpenDelete(false)
+      setResponse(!response)
+    );
+  };
 
-    console.log(res);
-    setResponse(!response);
+  const editCommentFn = async (id: string, message: string) => {
+    const data = {
+      message: message,
+    };
+    api.defaults.headers.authorization = `Bearer ${token}`;
+
+    await api.patch(`comments/${id}`, data).then((res) => {
+      setResponse(!response);
+    });
   };
 
   return (
@@ -85,6 +100,7 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
         postComment,
         deleteComment,
         userId,
+        editCommentFn,
       }}
     >
       {children}
