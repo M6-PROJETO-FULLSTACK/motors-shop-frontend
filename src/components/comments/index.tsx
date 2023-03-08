@@ -7,6 +7,7 @@ import {
   Comment,
   BtnEditComment,
   EditArea,
+  ContainerDelete,
 } from "./style";
 import { Button } from "../../styles/buttons";
 import MiniProfile from "../MiniProfile";
@@ -20,6 +21,8 @@ import { IUser } from "../../interfaces/User";
 import { FiEdit3 } from "react-icons/fi";
 import { BsCheckLg } from "react-icons/bs";
 import { RiCloseFill } from "react-icons/ri";
+import ModalDelete from "../DeleteModal";
+import { ModalContext } from "../../providers/ModalContext";
 
 const Comments = () => {
   const {
@@ -38,6 +41,7 @@ const Comments = () => {
   } = useContext(VehiclelContext);
 
   const { user } = useContext(AuthContext);
+  const { setOpenDelete } = useContext(ModalContext);
 
   const [targetComment, setTargetComment] = useState("");
   const [editContent, setEditContent] = useState("");
@@ -108,7 +112,7 @@ const Comments = () => {
                           <div className="comment--edit__buttons">
                             <BtnEditComment
                               className="edit--button__delete"
-                              onClick={() => deleteComment(comment.id)}
+                              onClick={() => setOpenDelete(true)}
                             >
                               <FaTrashAlt />
                             </BtnEditComment>
@@ -190,6 +194,23 @@ const Comments = () => {
           </div>
         </CommentsArea>
       </CommentsContainer>
+
+      <ModalDelete title="Excluir comentário">
+        <h3>Tem certeza que deseja remover este comentário?</h3>
+        <p>
+          Essa ação não pode ser desfeita. Isso excluirá permanentemente seu
+          comentário de nossos servidores.
+        </p>
+        <ContainerDelete>
+          <Button onClick={() => setOpenDelete(false)}>Cancelar</Button>
+          <Button
+            className="alert"
+            onClick={() => deleteComment(targetComment)}
+          >
+            Excluir
+          </Button>
+        </ContainerDelete>
+      </ModalDelete>
     </>
   );
 };

@@ -223,3 +223,15 @@ export const EditArea = styled.div`
     }
   }
 `;
+
+export const ContainerDelete = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  button {
+    width: 45%;
+    padding: 0;
+  }
+`;
