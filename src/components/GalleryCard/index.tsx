@@ -4,9 +4,10 @@ import { ModalContextImg } from "../../providers/ModalImgContext";
 
 interface IPropsGalleryCard {
   car: string;
+  name: string
 }
 
-const GalleryCard = ({ car }: IPropsGalleryCard) => {
+const GalleryCard = ({ car, name }: IPropsGalleryCard) => {
 
   const {handleOpen, setImg} = useContext(ModalContextImg)
 
@@ -17,7 +18,7 @@ const GalleryCard = ({ car }: IPropsGalleryCard) => {
 
   return (
     <ImgBox>
-      <img src={car} alt="Product image" onClick={callBackModal}/>
+      <img src={car} alt={`Imagem do veiculo ${name}`} onClick={callBackModal}/>
     </ImgBox>
   );
 };

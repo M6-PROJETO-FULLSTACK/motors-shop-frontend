@@ -9,7 +9,11 @@ import MiniProfile from "../MiniProfile";
 import { Button } from "../../styles/buttons";
 import { ModalContext } from "../../providers/ModalContext";
 import { useContext } from "react";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+>>>>>>> e3d9d4db9a05ae75ee97e58239ae6b719eabe932
 import FormUpdateAd from "../FormUpdateAd";
 
 interface ProductCardProps {
@@ -23,6 +27,7 @@ interface ProductCardProps {
   userId: string;
   isActive?: boolean;
   id: string;
+  isOwner?: boolean;
 }
 
 const ProductCard = ({
@@ -36,16 +41,28 @@ const ProductCard = ({
   userId,
   isActive,
   id,
+  isOwner,
 }: ProductCardProps) => {
   const { handleOpenEditAd, setVehicleIdClicked } = useContext(ModalContext);
   const loggedId = localStorage.getItem("@MotorsShop:id");
 
   const navigate = useNavigate();
 
+  // const { id } = useParams();
+
+  const profileId = useParams().id;
+
   return (
     <>
       <ProductCardContainer>
-        <img src={cover} alt={title} />
+        <div className="card__container-header">
+          <img src={cover} alt={title} />
+          {isActive ? (
+            <span className="card--status active">Ativo</span>
+          ) : (
+            <span className="card--status inactive">Inativo</span>
+          )}
+        </div>
 
         <ProductCardInfo>
           <a href={`/vehicle/${id}`} className="productLink">
@@ -70,6 +87,7 @@ const ProductCard = ({
               R$ {price}
             </Text>
           </ProductCardFooter>
+<<<<<<< HEAD
           {userId === loggedId && (
             <ProductCardBtn>
               <Button id={id} onClick={(e: any) => {
@@ -85,6 +103,23 @@ const ProductCard = ({
               </Button>
               <FormUpdateAd />
             </ProductCardBtn>
+=======
+          {profileId && (
+            <>
+              {loggedId === userId && (
+                <ProductCardBtn>
+                  <Button onClick={handleOpen}>Editar</Button>
+                  <Button
+                    onClick={() => {
+                      navigate(`/vehicle/${id}`, { replace: true });
+                    }}
+                  >
+                    Ver como
+                  </Button>
+                </ProductCardBtn>
+              )}
+            </>
+>>>>>>> e3d9d4db9a05ae75ee97e58239ae6b719eabe932
           )}
         </ProductCardInfo>
       </ProductCardContainer>

@@ -27,6 +27,7 @@ export const ProductInfoContainer = styled.div`
 `;
 
 export const SectionProductInfo = styled.section`
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,7 +41,7 @@ export const SectionProductInfo = styled.section`
   @media screen and (max-width: 720px) {
     padding: 5px 20px 5px 20px;
   }
-
+  
   @media screen and (max-width: 266px) {
     gap: 10px;
   }
@@ -53,6 +54,8 @@ export const ContainerProductInfoFooter = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-top: 20px;
+  gap: 20px;
+  margin: 20px 0px;
 
   @media screen and (max-width: 425px) {
     align-items: flex-start;
