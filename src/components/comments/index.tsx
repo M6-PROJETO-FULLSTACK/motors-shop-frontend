@@ -49,11 +49,6 @@ const Comments = () => {
 
   // const [userData, setUserData] = useState<IUser>({} as IUser);
 
-<<<<<<< HEAD
-  // console.log(listComments);
-
-=======
->>>>>>> 79a55934e64c1ae0e77d7aec9a9f8e3679b7a6c0
   const { id } = useParams();
 
   useEffect(() => {
