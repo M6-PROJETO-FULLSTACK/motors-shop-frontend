@@ -8,11 +8,12 @@ interface MiniProfileProps {
 	userName: string;
 }
 
-// const MiniProfile = ({ userId, userName }: MiniProfileProps) => {
-const MiniProfile = () => {
-	const { user } = useContext(AuthContext);
-	const userName = user?.name || "Anônimo";
-	const userId = user?.id || "0";
+const MiniProfile = ({ userId, userName }: MiniProfileProps) => {
+
+	if (!userName || !userId) {
+		userName = "Anônimo";
+		userId = "0";
+	}
 
 	const fistName = userName.split(" ")[0];
 	const lastName = userName.split(" ")[userName.split(" ").length - 1];
