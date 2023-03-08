@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import Footer from "../../components/footer"
 import Navbar from "../../components/navbar"
-import { IUserCardProps } from "../../components/UserCard"
 import VehicleList from "../../components/VehicleList"
+import { VehiclelContext } from "../../providers/VehicleContext"
 import api from "../../services/api"
 import Text from "../../styles/texts"
 import { ContainerPage } from "../Login/style"
@@ -38,6 +38,8 @@ const AnauncesPage = () => {
     const [existsProduct, setExistsProduct] = useState(true)
     const [user, setUser] = useState<IUserProps[]>([])
 
+    const { response } = useContext(VehiclelContext)
+
     const {id} = useParams()
 
     useEffect(() => {
@@ -53,7 +55,7 @@ const AnauncesPage = () => {
                     .catch(err => err)
             })
             .catch(err => setExistsProduct(false))
-    }, [])
+    }, [response])
     
     return (
         <>  
