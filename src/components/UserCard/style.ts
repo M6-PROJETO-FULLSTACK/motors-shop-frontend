@@ -57,13 +57,17 @@ export const UserInfo = styled.div<IUserCardProps>`
     }
   }
 
-  button {
-    width: 80%;
+  a {
+    width: 100%;
     margin: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
   }
 
   @media screen and (min-width: 768px) {
-    button {
+    a {
       width: 100%;
     }
   }
@@ -76,12 +80,11 @@ export const UserInfo = styled.div<IUserCardProps>`
 `;
 
 export const UserCardImg = styled.div<IUserCardProps>`
-  width: ${(props) => props.profile && "80px"};
+  width:80px;
   height: 80px;
   background-color: ${props => props.theme.colors.random6};
   margin-bottom: 15px;
   border-radius: 50%;
-  max-width: 25%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -89,9 +92,10 @@ export const UserCardImg = styled.div<IUserCardProps>`
   p{
     color: ${props => props.theme.colors.whiteFixed};
     font-weight: 700;
-    font-size: 40px;
-
+    font-size: 35px;
+    padding: 5px;
   }
+
 `;
 
 export const ContainerModalAd = styled.div`

@@ -4,6 +4,7 @@ import { Button } from "../../styles/buttons";
 import FormCreateAd from "../FormCreateAd";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
+import { Link } from "react-router-dom";
 
 
 export interface IUserCardProps {
@@ -34,7 +35,7 @@ const UserCard = ({ profile, createButton }: IUserCardProps) => {
             :
             <span>
               <Text className="body2" weight="500">
-                Anunciante
+                Comprador
               </Text>
             </span>
           )}
@@ -43,7 +44,7 @@ const UserCard = ({ profile, createButton }: IUserCardProps) => {
           {user!.bio}
         </Text>
         {createButton && <FormCreateAd />}
-        {!profile && <Button className="grey">Ver todos anuncios</Button>}
+        {!profile && <Link to={`/anaunces/${user?.id}`}><Button className="grey veiw_more">Ver todos anuncios</Button></Link>}
       </UserInfo>
     </Container>
   );

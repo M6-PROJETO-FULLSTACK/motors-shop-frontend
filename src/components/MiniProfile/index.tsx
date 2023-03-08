@@ -13,7 +13,7 @@ const MiniProfile = ({ userId, userName }: MiniProfileProps) => {
 	if (!userName || !userId) {
 		userName = "Anônimo";
 		userId = "0";
-	}
+  }
 
 	const fistName = userName.split(" ")[0];
 	const lastName = userName.split(" ")[userName.split(" ").length - 1];

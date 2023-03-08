@@ -55,8 +55,8 @@ const Comments = () => {
     const getVehicle = async () => {
       try {
         const { data } = await api.get(`/vehicles/${id}`);
-        setVehicle(data);
-        setListComments(data.comments);
+        setVehicle(data.vehicle);
+        setListComments(data.vehicle.comments);
       } catch (error) {
         console.error(error);
       }
