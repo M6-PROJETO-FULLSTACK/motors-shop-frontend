@@ -12,6 +12,9 @@ export interface IModalProps {
   title_button?: string;
   small?: boolean;
   recovery?: boolean;
+  open: boolean;
+  handleClose: () => void;
+  handleOpen: () => void;
 }
 
 const ModalBox = ({
@@ -20,8 +23,10 @@ const ModalBox = ({
   title_button,
   small,
   recovery,
+  open,
+  handleClose, 
+  handleOpen
 }: IModalProps) => {
-  const { open, handleClose, handleOpen } = useContext(ModalContext);
 
   const style = {
     position: "absolute" as "absolute",

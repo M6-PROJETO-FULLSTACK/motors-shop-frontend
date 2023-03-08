@@ -16,7 +16,8 @@ export interface ModalEditUserProps {
 
 const ModalEditUser = () => {
 
-    const { handleClose } = useContext(ModalContext);
+    const { handleCloseEditUser, handleOpenEditUser, openEditUser } = useContext(ModalContext);
+
 	const {
 		register,
 		handleSubmit,
@@ -27,7 +28,7 @@ const ModalEditUser = () => {
 	};
 
 	return (
-		<ModalBox title="Editar perfil" title_button="Editar perfil">
+		<ModalBox recovery title="Editar perfil" title_button="Editar perfil" open={openEditUser} handleClose={handleCloseEditUser} handleOpen={handleOpenEditUser}>
 			<Text className="body2" weight={500}>
 				Informações pessoais
 			</Text>
@@ -97,7 +98,7 @@ const ModalEditUser = () => {
                 </div>
                 
                 <ButtonsContainer>
-                    <button className="cancel-button" type="button" onClick={handleClose}>Cancelar</button>
+                    <button className="cancel-button" type="button" onClick={handleCloseEditUser}>Cancelar</button>
                     <button className="save-button" type="submit">Salvar alterações</button>
                 </ButtonsContainer>
             </FormContainer>

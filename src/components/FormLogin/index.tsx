@@ -15,12 +15,12 @@ const FormLogin = () => {
   const { login, recoverPassword } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
 
-  const { handleOpen, handleClose } = useContext(ModalContext);
+  const { handleOpenForgotPassword, handleCloseForgotPassword, openForgotPassword } = useContext(ModalContext);
 
   return (
     <>
       <Container>
-        <ModalBox title="Esqueceu sua senha?" small recovery>
+        <ModalBox title="Esqueceu sua senha?" small recovery open={openForgotPassword} handleClose={handleCloseForgotPassword} handleOpen={handleOpenForgotPassword}>
           <form onSubmit={handleSubmit(recoverPassword)}>
             <p>Insira seu e-mail e enviaremos uma nova senha.</p>
             <Input
@@ -31,7 +31,7 @@ const FormLogin = () => {
               {...register("email")}
             />
             <ContainerBtn>
-              <Button onClick={handleClose} className="outline">
+              <Button onClick={handleCloseForgotPassword} className="outline">
                 Cancelar
               </Button>
               <Button className="brand" type="submit">
@@ -61,7 +61,7 @@ const FormLogin = () => {
               {...register("password")}
             />
             <span>
-              <Text className="body2" weight="400" onClick={handleOpen}>
+              <Text className="body2" weight="400" onClick={handleOpenForgotPassword}>
                 Esqueci minha senha
               </Text>
             </span>

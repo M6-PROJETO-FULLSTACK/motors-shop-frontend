@@ -7,11 +7,16 @@ import { LinkBtn } from "../../styles/buttons"
 import logo from '../../assets/Logo_prymary.png'
 import { AuthContext } from '../../providers/AuthContext'
 import MiniProfile from '../MiniProfile'
+import { ModalContext } from '../../providers/ModalContext'
+import ModalEditUser from '../ModalEditUser'
+import ModalEditAddress from '../ModalEditAddress'
 
 const Navbar = () => {
     const [menuIsVisible, setMenuIsVisible] = useState(false)
     const [submenuIsVisible, setSubmenuIsVisible] = useState(false)
     const {user, logOut} = useContext(AuthContext)
+
+    const { handleOpenEditAddress, handleOpenEditUser } = useContext(ModalContext);
     
     return(
         <>
@@ -19,6 +24,8 @@ const Navbar = () => {
             <Link to={'/home'}>
                 <img src={logo} alt="logo" />
             </Link>
+            <ModalEditUser />
+            <ModalEditAddress />
             <NavContainer isVisible={menuIsVisible}>
                 <NavUl>
                     <li>
@@ -45,10 +52,10 @@ const Navbar = () => {
                             </li>
                             <ul className='sub_menu'>
                                 <li>
-                                    <LinkBtn className="medium" as='a'>Editar Perfil</LinkBtn>
+                                    <LinkBtn className="medium" as='a' onClick={handleOpenEditUser}>Editar Perfil</LinkBtn>
                                 </li>
                                 <li>
-                                    <LinkBtn className="medium" as='a'>Editar Endereço</LinkBtn>
+                                    <LinkBtn className="medium" as='a' onClick={handleOpenEditAddress}>Editar Endereço</LinkBtn>
                                 </li>
                                 {
                                     user.type === true?
@@ -61,7 +68,7 @@ const Navbar = () => {
                                     null
                                 }
                                 <li>
-                                    <LinkBtn className="medium" as='a' onClick={() => logOut()}>sair</LinkBtn>
+                                    <LinkBtn className="medium" as='a' onClick={() => logOut()}>Sair</LinkBtn>
                                 </li>
                             </ul>
                         </UserUl>)

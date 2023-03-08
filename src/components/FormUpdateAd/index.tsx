@@ -9,11 +9,12 @@ import { useForm } from "react-hook-form";
 import api, { config } from "../../services/api";
 import { toast } from "react-toastify";
 import ModalDelete from "../DeleteModal";
+import { VehiclelContext } from "../../providers/VehicleContext";
 
 const FormUpdateAd = () => {
   const [quantityImage, setQuantityImage] = useState([0]);
-  const { handleClose, setOpenDelete, deleteVehicle } =
-    useContext(ModalContext);
+  const { vehicleIdClicked, openEditAd, handleOpenEditAd, handleCloseEditAd } = useContext(ModalContext);
+  const {setOpenDelete, deleteVehicle, setResponse, response } = useContext(VehiclelContext)
 
   const onUpdate = (data: any) => {
     if (data.advertiseType === "true") {
@@ -59,29 +60,31 @@ const FormUpdateAd = () => {
     );
 
     objFinaly.gallery = listUrlTreated;
-
-    console.log(objFinaly);
-
+    
     api
-      .patch("vehicles", objFinaly, config())
+      .patch(`vehicles/${vehicleIdClicked}`, objFinaly, config())
       .then((res) => {
         toast.success("Anúncio atualizado!");
-        handleClose();
+        handleCloseEditAd();
+        setResponse(!response)
       })
       .catch((err) => {
         toast.error("Erro ao atualizar, verifique os dados!");
       });
+    
+    reset()
   };
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
   return (
     <>
-      <ModalBox title="Criar Anúncio" title_button="Criar Anúncio">
+      <ModalBox recovery title="Atualizar Anúncio" title_button="Atualizar Anúncio" open={openEditAd} handleOpen={handleOpenEditAd} handleClose={handleCloseEditAd} >
         <FormContainer onSubmit={handleSubmit(onUpdate)}>
           <section>
             <Text className="body2" weight="500">
@@ -222,13 +225,13 @@ const FormUpdateAd = () => {
             <Button
               className="negative"
               onClick={() => {
-                handleClose();
+                handleCloseEditAd();
                 setOpenDelete(true);
               }}
             >
               Excluir anúncio
             </Button>
-            <Button type="submit" className="brandDisable">
+            <Button type="submit" className="brand">
               Salvar alterações
             </Button>
           </div>
@@ -251,7 +254,7 @@ const FormUpdateAd = () => {
           <Button
             className="alert delete--btn__confirm"
             onClick={() => {
-              deleteVehicle("id");
+              deleteVehicle(vehicleIdClicked);
             }}
           >
             Sim, excluir anúncio
