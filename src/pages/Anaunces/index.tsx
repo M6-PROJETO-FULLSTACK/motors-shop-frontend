@@ -10,7 +10,7 @@ import { ContainerPage } from "../Login/style"
 import { ProductsContainer } from "../Profile/style"
 import { ContainerAnaunces, ContainerUserCard, UserCardImg, UserInfo } from "./style"
 
-interface IVehicleProps {
+export interface IVehicleProps {
     id: string;
     advertiseType: boolean;
     cover: string;
@@ -32,7 +32,7 @@ interface IUserProps {
 	type: true,
 }
 
-const AnauncesPage = ({profile, createButton}: IUserCardProps) => {
+const AnauncesPage = () => {
     const [cars, setCars] = useState<IVehicleProps[]>([])
     const [motocycles, setMotocycles] = useState<IVehicleProps[]>([])
     const [existsProduct, setExistsProduct] = useState(true)

@@ -49,8 +49,8 @@ const FormLogin = () => {
             <Input
               id="email"
               type="email"
-              title="Usuário"
-              placeholder="Digitar usuário"
+              title="E-mail"
+              placeholder="Digitar e-mail"
               {...register("email")}
             />
             <Input
