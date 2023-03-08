@@ -26,24 +26,29 @@ const VehicleList = ({ list, id }: IListProps) => {
       <Text className="heading5" weight="500">
         {id[0].toUpperCase() + id.slice(1)}
       </Text>
-
-      <ContainerList id={id}>
-        {list.map((card, index) => (
-          <ProductCard
-            key={index}
-            title={card.title}
-            year={card.year}
-            mileage={card.mileage}
-            price={card.price}
-            description={card.description}
-            cover={card.cover}
-            userName={card.userName}
-            userId={card.userId}
-            isActive={card.isActive}
-            id={card.id}
-          />
-        ))}
-      </ContainerList>
+      {list.length > 0 ? (
+        <ContainerList id={id}>
+          {list.map((card, index) => (
+            <ProductCard
+              key={index}
+              title={card.title}
+              year={card.year}
+              mileage={card.mileage}
+              price={card.price}
+              description={card.description}
+              cover={card.cover}
+              userName={card.userName}
+              userId={card.userId}
+              isActive={card.isActive}
+              id={card.id}
+            />
+          ))}
+        </ContainerList>
+      ) : (
+        <div className="list--cards__empty">
+          <Text weight="500">Ainda não existem {id} cadastrados</Text>
+        </div>
+      )}
     </ContainerSection>
   );
 };
