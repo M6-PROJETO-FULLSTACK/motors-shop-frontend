@@ -30,6 +30,6 @@ export const Container = styled.div`
   gap: 5px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 20px;
+  margin-top: 20px;
   width: 100%;
 `;

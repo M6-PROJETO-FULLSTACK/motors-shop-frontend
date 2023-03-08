@@ -1,42 +1,20 @@
 import ModalBox from "../Modal";
 import Text from "../../styles/texts";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { ButtonsContainer, FormContainer } from "./style";
 import { ModalContext } from "../../providers/ModalContext";
 import { useContext, useState } from "react";
 import ChildModal from "../ConfirmationModal";
-
-export interface ModalEditAddressProps {
-	cep: string;
-	state: string;
-	city: string;
-	street: string;
-	number: string;
-	complement: string;
-}
+import { ModalEditAddressProps } from "../../interfaces/User";
 
 const ModalEditAddress = () => {
 	const { handleClose } = useContext(ModalContext);
 	const { childOpen, setChildOpen } = useContext(ModalContext);
 
-	const schema = yup.object({
-		cep: yup.string().required("CEP é obrigatório"),
-		state: yup.string().required("Estado é obrigatório"),
-		city: yup.string().required("Cidade é obrigatória"),
-		street: yup.string().required("Rua é obrigatória"),
-		number: yup.string().required("Número é obrigatório"),
-		complement: yup.string(),
-	});
-
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
-	} = useForm({
-		resolver: yupResolver(schema),
-	});
+	} = useForm();
 
 	const onSubmit = (data: any) => {
 		console.log(data);
@@ -55,6 +33,7 @@ const ModalEditAddress = () => {
 	} as ModalEditAddressProps);
 
 	const handleCep = (event: any) => {
+		console.log(event.target);
 		const cep = event.target.value;
 		if (cep.length === 8) {
 			fetch(`https://viacep.com.br/ws/${cep}/json/`)
@@ -85,16 +64,11 @@ const ModalEditAddress = () => {
 						{...register("cep")}
 						type="text"
 						id="cep"
-						placeholder="00000-000"
-						onChange={(event) => {
-							event.target.value = event.target.value
-								.replace(/[^0-9]/g, "")
-								.replace(/(\d{5})(\d)/, "$1-$2");
-						}}
+						placeholder="00000000"
+						onChange={handleCep}
 						defaultValue={address.cep}
-						maxLength={9}
+						maxLength={8}
 					/>
-					{errors.cep && <span className="error-message">{errors.cep.message?.toString()}</span>}
 				</div>
 
 				<div>
@@ -106,7 +80,6 @@ const ModalEditAddress = () => {
 						placeholder="SP"
 						defaultValue={address.state}
 					/>
-					{errors.state && <span className="error-message">{errors.state.message?.toString()}</span>}
 				</div>
 
 				<div>
@@ -118,7 +91,6 @@ const ModalEditAddress = () => {
 						placeholder="São Paulo"
 						defaultValue={address.city}
 					/>
-					{errors.city && <span className="error-message">{errors.city.message?.toString()}</span>}
 				</div>
 
 				<div>
@@ -130,21 +102,16 @@ const ModalEditAddress = () => {
 						placeholder="Rua Primeira"
 						defaultValue={address.street}
 					/>
-					{errors.street && <span className="error-message">{errors.street.message?.toString()}</span>}
 				</div>
 
 				<div>
 					<label htmlFor="number">Número</label>
 					<input {...register("number")} type="number" id="number" placeholder="0" />
-					{errors.number && <span className="error-message">{errors.number.message?.toString()}</span>}
 				</div>
 
 				<div>
 					<label htmlFor="complement">Complemento</label>
 					<textarea {...register("complement")} id="complement" placeholder="Casa, apartamento, etc." />
-					{errors.complement && (
-						<span className="error-message">{errors.complement.message?.toString()}</span>
-					)}
 				</div>
 
 				<ButtonsContainer>
