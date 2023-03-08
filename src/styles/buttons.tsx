@@ -12,8 +12,12 @@ export const Button = styled.button`
     font-family: ${props => props.theme.fonts.texts};
     font-weight: 600;
 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
     
-    @media (min-width: 400px){
+    @media (min-width: 200px){
         width: 119px;
         height: 38px;
         padding: 12px 20px;

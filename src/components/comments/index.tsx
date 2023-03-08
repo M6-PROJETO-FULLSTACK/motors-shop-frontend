@@ -18,12 +18,11 @@ import { VehiclelContext } from "../../providers/VehicleContext";
 import { AuthContext } from "../../providers/AuthContext";
 import { IComment } from "../../interfaces/Comments";
 import { FaTrashAlt } from "react-icons/fa";
-import { IUser } from "../../interfaces/User";
 import { FiEdit3 } from "react-icons/fi";
 import { BsCheckLg } from "react-icons/bs";
 import { RiCloseFill } from "react-icons/ri";
 import ModalDelete from "../DeleteModal";
-import { ModalContext } from "../../providers/ModalContext";
+
 
 const Comments = () => {
   const {
@@ -39,15 +38,13 @@ const Comments = () => {
     deleteComment,
     userId,
     editCommentFn,
+    setOpenDelete
   } = useContext(VehiclelContext);
 
   const { user } = useContext(AuthContext);
-  const { setOpenDelete } = useContext(ModalContext);
 
   const [targetComment, setTargetComment] = useState("");
   const [editContent, setEditContent] = useState("");
-
-  // const [userData, setUserData] = useState<IUser>({} as IUser);
 
   const { id } = useParams();
 
@@ -82,8 +79,8 @@ const Comments = () => {
                           <div className="comment__header">
                             <div className="user">
                               <MiniProfile
-                              // userId={""}
-                              // userName={comment.user.name}
+                              userId={comment.user.id}
+                              userName={comment.user.name}
                               />
                               <span>
                                 &bull;{" "}
@@ -164,7 +161,7 @@ const Comments = () => {
           {user ? (
             <>
               <div className="user">
-                {/* <MiniProfile userId={""} userName={user.name} /> */}
+                <MiniProfile userId={user.id} userName={user.name} />
               </div>
               <div className="txt_area">
                 <textarea
@@ -187,7 +184,7 @@ const Comments = () => {
           ) : (
             <>
               <div className="user">
-                {/* <MiniProfile userId={""} userName={"Anônimo"} /> */}
+                <MiniProfile />
               </div>
               <div className="txt_area">
                 <textarea
