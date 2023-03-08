@@ -30,6 +30,16 @@ export const Commentslist = styled.div`
     width: 100%;
   }
 `;
+
+export const EmptyComments = styled.div`
+  margin: 35px 0px;
+  text-align: center;
+
+  p {
+    margin: 10px;
+  }
+`;
+
 export const Comment = styled.div`
   background-color: ${(props) => props.theme.colors.grey10};
   width: 100%;

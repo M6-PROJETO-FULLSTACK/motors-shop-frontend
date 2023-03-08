@@ -8,6 +8,7 @@ import {
   BtnEditComment,
   EditArea,
   ContainerDelete,
+  EmptyComments,
 } from "./style";
 import { Button } from "../../styles/buttons";
 import MiniProfile from "../MiniProfile";
@@ -67,77 +68,95 @@ const Comments = () => {
     <>
       <CommentsContainer>
         <Commentslist>
-          <Text className="heading6" weight={600}>
-            Comentários
-          </Text>
-          {vehicle && (
-            <>
-              {listComments.map((comment: IComment) => (
-                <>
-                  <Comment key={comment.id}>
-                    <div className="user">
-                      <MiniProfile userId={""} userName={comment.user.name} />
-                      <span>
-                        &bull;{" "}
-                        {comment.created_at !== comment.updated_at
-                          ? getDate(comment.updated_at)
-                          : getDate(comment.created_at)}
-                      </span>
-                      {userId === comment.user_id && (
-                        <>
-                          <BtnEditComment
-                            onClick={() => {
-                              setTargetComment(comment.id);
-                              setEditContent(comment.message);
-                            }}
-                          >
-                            <FiEdit3 />
-                          </BtnEditComment>
-                        </>
-                      )}
-                    </div>
-                    {targetComment === comment.id ? (
-                      <EditArea>
-                        <textarea
-                          name=""
-                          id=""
-                          placeholder="Teste"
-                          value={editContent}
-                          onChange={(e) => setEditContent(e.target.value)}
-                        />
-                        <div>
-                          <button onClick={() => setTargetComment("")}>
-                            <RiCloseFill />
-                          </button>
-                          <div className="comment--edit__buttons">
-                            <BtnEditComment
-                              className="edit--button__delete"
-                              onClick={() => setOpenDelete(true)}
-                            >
-                              <FaTrashAlt />
-                            </BtnEditComment>
-                            <BtnEditComment
-                              className="edit--button__confirm"
-                              onClick={() => {
-                                editCommentFn(comment.id, editContent);
-                                setTargetComment("");
-                              }}
-                            >
-                              <BsCheckLg />
-                            </BtnEditComment>
+          <>
+            <Text className="heading6" weight={600}>
+              Comentários
+            </Text>
+            {vehicle && (
+              <>
+                {listComments.length > 0 ? (
+                  <>
+                    {listComments.map((comment: IComment) => (
+                      <>
+                        <Comment key={comment.id}>
+                          <div className="user">
+                            <MiniProfile
+                              userId={""}
+                              userName={comment.user.name}
+                            />
+                            <span>
+                              &bull;{" "}
+                              {comment.created_at !== comment.updated_at
+                                ? getDate(comment.updated_at)
+                                : getDate(comment.created_at)}
+                            </span>
+                            {userId === comment.user_id && (
+                              <>
+                                <BtnEditComment
+                                  onClick={() => {
+                                    setTargetComment(comment.id);
+                                    setEditContent(comment.message);
+                                  }}
+                                >
+                                  <FiEdit3 />
+                                </BtnEditComment>
+                              </>
+                            )}
                           </div>
-                        </div>
-                      </EditArea>
-                    ) : (
-                      <Text className="body2 txt_comment" weight={400}>
-                        {comment.message}
-                      </Text>
-                    )}
-                  </Comment>
-                </>
-              ))}
-            </>
-          )}
+                          {targetComment === comment.id ? (
+                            <EditArea>
+                              <textarea
+                                name=""
+                                id=""
+                                placeholder="Teste"
+                                value={editContent}
+                                onChange={(e) => setEditContent(e.target.value)}
+                              />
+                              <div>
+                                <button onClick={() => setTargetComment("")}>
+                                  <RiCloseFill />
+                                </button>
+                                <div className="comment--edit__buttons">
+                                  <BtnEditComment
+                                    className="edit--button__delete"
+                                    onClick={() => setOpenDelete(true)}
+                                  >
+                                    <FaTrashAlt />
+                                  </BtnEditComment>
+                                  <BtnEditComment
+                                    className="edit--button__confirm"
+                                    onClick={() => {
+                                      editCommentFn(comment.id, editContent);
+                                      setTargetComment("");
+                                    }}
+                                  >
+                                    <BsCheckLg />
+                                  </BtnEditComment>
+                                </div>
+                              </div>
+                            </EditArea>
+                          ) : (
+                            <Text className="body2 txt_comment" weight={400}>
+                              {comment.message}
+                            </Text>
+                          )}
+                        </Comment>
+                      </>
+                    ))}
+                  </>
+                ) : (
+                  <EmptyComments>
+                    <Text weight="600">
+                      Ops! Parece que não há nada por aqui...
+                    </Text>
+                    <Text className="body2" weight="400">
+                      Seja você o primeiro a comentar
+                    </Text>
+                  </EmptyComments>
+                )}
+              </>
+            )}
+          </>
         </Commentslist>
         <CommentsArea>
           {user ? (
