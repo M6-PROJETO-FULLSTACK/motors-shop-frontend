@@ -21,3 +21,12 @@ export interface IUser {
   type: boolean;
   updated_at: string;
 }
+
+export interface ModalEditAddressProps {
+	cep: string;
+	state: string;
+	city: string;
+	street: string;
+	number: string;
+	complement: string;
+}

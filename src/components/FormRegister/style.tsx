@@ -1,39 +1,39 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  width: 90%;
-  margin: 0 auto;
-  background-color: ${(props) => props.theme.colors.grey10};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 5px;
-  margin-top: 46px;
-  margin-bottom: 96px;
+	width: 90%;
+	margin: 0 auto;
+	background-color: ${(props) => props.theme.colors.grey10};
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	border-radius: 5px;
+	margin-top: 46px;
+	margin-bottom: 96px;
 
-  button,
-  a {
-    width: 100%;
-  }
+	button,
+	a {
+		width: 100%;
+	}
 
-  p {
-    margin-bottom: 15px;
-  }
+	p {
+		margin-bottom: 15px;
+	}
 
-  @media screen and (min-width: 480px) {
-    width: 70%;
-  }
-  @media screen and (min-width: 768px) {
-    width: 40%;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 30%;
-  }
+	@media screen and (min-width: 480px) {
+		width: 70%;
+	}
+	@media screen and (min-width: 768px) {
+		width: 40%;
+	}
+	@media screen and (min-width: 1024px) {
+		width: 30%;
+	}
 `;
 
 export const ContainerBox = styled.div`
-  width: 80%;
-  padding: 44px 0;
+	width: 80%;
+	padding: 44px 0;
 `;
 
 export const FormContainer = styled.form`
@@ -44,6 +44,14 @@ export const FormContainer = styled.form`
 
 	section {
 		width: 100%;
+		margin-bottom: 10px;
+
+		.error-message {
+			font-size: 12px;
+			font-weight: 400;
+			color: ${({ theme }) => theme.colors.alert1};
+			margin-bottom: 8px;
+		}
 	}
 
 	.input--box {
