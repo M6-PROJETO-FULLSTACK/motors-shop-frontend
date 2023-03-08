@@ -1,8 +1,6 @@
 import ModalBox from "../Modal";
 import Text from "../../styles/texts";
-import * as yup from "yup";
 import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { ButtonsContainer, FormContainer } from "./style";
 import { ModalContext } from "../../providers/ModalContext";
 import { useContext } from "react";
@@ -19,23 +17,10 @@ export interface ModalEditUserProps {
 const ModalEditUser = () => {
 
     const { handleClose } = useContext(ModalContext);
-
-	const schema = yup.object({
-		name: yup.string().required("Nome obrigatório"),
-		email: yup.string().required("E-mail obrigatório"),
-		cpf: yup.string().required("CPF obrigatório"),
-		phone: yup.string().required("Telefone obrigatório"),
-		birthdate: yup.date().required("Data de nascimento obrigatória").typeError("Data de nascimento inválida"),
-		bio: yup.string()
-	});
-
 	const {
 		register,
 		handleSubmit,
-		formState: { errors },
-	} = useForm({
-		resolver: yupResolver(schema),
-	});
+	} = useForm();
 
 	const onSubmit = (data: any) => {
 		console.log(data);
@@ -51,13 +36,11 @@ const ModalEditUser = () => {
 				<div>
 					<label htmlFor="name">Nome:</label>
                     <input {...register("name")} type="text" id="name" placeholder="João Silva" />
-                    {errors.name && <span className="error-message">{errors.name.message?.toString()}</span>}
 				</div>
 
 				<div>
 					<label htmlFor="email">E-mail:</label>
 					<input {...register("email")} type="email" id="email" placeholder="joao@email.com" />
-					{errors.email && <span className="error-message">{errors.email.message?.toString()}</span>}
 				</div>
 
 				<div>
@@ -74,7 +57,6 @@ const ModalEditUser = () => {
 						maxLength={14}
 						placeholder="000.000.000-00"
                     />
-                    {errors.cpf && <span className="error-message">{errors.cpf.message?.toString()}</span>}
 				</div>
 
 				<div>
@@ -91,7 +73,6 @@ const ModalEditUser = () => {
 						maxLength={15}
 						placeholder="(00) 00000-0000"
                     />
-                    {errors.phone && <span className="error-message">{errors.phone.message?.toString()}</span>}
 				</div>
 
 				<div>
@@ -108,13 +89,11 @@ const ModalEditUser = () => {
 							e.target.type = "text";
 						}}
                     />
-                    {errors.birthdate && <span className="error-message">{errors.birthdate.message?.toString()}</span>}
 				</div>
 
 				<div>
 					<label htmlFor="bio">Descrição:</label>
                     <textarea {...register("bio")} id="bio" placeholder="Escreva uma breve descrição sobre você." />
-                    {errors.bio && <span className="error-message">{errors.bio.message?.toString()}</span>}
                 </div>
                 
                 <ButtonsContainer>

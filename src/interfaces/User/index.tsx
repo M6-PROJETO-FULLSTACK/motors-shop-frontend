@@ -37,3 +37,12 @@ export interface IUserResponse {
   updated_at: string;
   vehicles: IVehicle
 }
+
+export interface ModalEditAddressProps {
+	cep: string;
+	state: string;
+	city: string;
+	street: string;
+	number: string;
+	complement: string;
+}

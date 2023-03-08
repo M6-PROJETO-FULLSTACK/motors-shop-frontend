@@ -238,8 +238,8 @@ const FormUpdateAd = () => {
       <ModalDelete title="Excluir anúncio">
         <h3>Tem certeza que deseja remover este anúncio?</h3>
         <p>
-          Essa ação não pode ser desfeita. Isso excluirá permanentemente sua
-          conta e removerá seus dados de nossos servidores.
+          Essa ação não pode ser desfeita. Isso excluirá permanentemente seu
+          anúncio de nossos servidores.
         </p>
         <ModalBtns>
           <Button
