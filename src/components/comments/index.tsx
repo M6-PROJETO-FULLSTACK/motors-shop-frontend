@@ -66,7 +66,7 @@ const Comments = () => {
               <>
                 <Comment key={comment.id}>
                   <div className="user">
-                    <MiniProfile userId={""} userName={comment.user.name} />
+                    <MiniProfile />
                     <span>&bull; {getDate(comment.created_at)}</span>
                     {userId === comment.user_id && (
                       <BtnDelete onClick={() => deleteComment(comment.id)}>
@@ -87,7 +87,7 @@ const Comments = () => {
         {user ? (
           <>
             <div className="user">
-              <MiniProfile userId={""} userName={user.name} />
+              <MiniProfile />
             </div>
             <div className="txt_area">
               <textarea
@@ -110,7 +110,7 @@ const Comments = () => {
         ) : (
           <>
             <div className="user">
-              <MiniProfile userId={""} userName={"Anônimo"} />
+              <MiniProfile />
             </div>
             <div className="txt_area">
               <textarea

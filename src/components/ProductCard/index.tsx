@@ -58,7 +58,7 @@ const ProductCard = ({
               ? description.slice(0, 100) + "..."
               : description}
           </Text>
-          <MiniProfile userId={userId} userName={userName} />
+          <MiniProfile />
           <ProductCardFooter>
             <Text className="body2" weight={500}>
               {mileage} KM
