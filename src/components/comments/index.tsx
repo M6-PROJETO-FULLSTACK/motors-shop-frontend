@@ -74,7 +74,6 @@ const Comments = () => {
             </Text>
             {vehicle && (
               <>
-
                 {listComments.length > 0 ? (
                   <>
                     {listComments.map((comment: IComment) => (
@@ -234,7 +233,6 @@ const Comments = () => {
         </ContainerDelete>
       </ModalDelete>
     </>
-
   );
 };
 
