@@ -11,15 +11,38 @@ export const ProductCardContainer = styled.div`
   background-color: #fff;
   /* border: 1px solid red; */
 
-  & img {
-    width: 100%;
-    height: 50%;
-    object-fit: cover;
-  }
-
   .productLink {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.grey1};
+  }
+
+  .card__container-header {
+    width: 100%;
+    height: 48%;
+    position: relative;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: relative;
+    }
+  }
+
+  .card--status {
+    padding: 4px 9px;
+    color: ${({ theme }) => theme.colors.grey8};
+    position: absolute;
+    left: 8px;
+    top: 8px;
+  }
+
+  .active {
+    background-color: ${({ theme }) => theme.colors.brand1};
+  }
+
+  .inactive {
+    background-color: ${({ theme }) => theme.colors.grey4};
   }
 
   @media screen and (max-width: 375px) {
