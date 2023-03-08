@@ -74,7 +74,7 @@ const Comments = () => {
             </Text>
             {vehicle && (
               <>
-                {listComments.length > 0 ? (
+                {listComments ? (
                   <>
                     {listComments.map((comment: IComment) => (
                       <>
@@ -82,8 +82,8 @@ const Comments = () => {
                           <div className="comment__header">
                             <div className="user">
                               <MiniProfile
-                                userId={""}
-                                userName={comment.user.name}
+                              // userId={""}
+                              // userName={comment.user.name}
                               />
                               <span>
                                 &bull;{" "}
@@ -164,7 +164,7 @@ const Comments = () => {
           {user ? (
             <>
               <div className="user">
-                <MiniProfile userId={""} userName={user.name} />
+                {/* <MiniProfile userId={""} userName={user.name} /> */}
               </div>
               <div className="txt_area">
                 <textarea
@@ -187,7 +187,7 @@ const Comments = () => {
           ) : (
             <>
               <div className="user">
-                <MiniProfile userId={""} userName={"Anônimo"} />
+                {/* <MiniProfile userId={""} userName={"Anônimo"} /> */}
               </div>
               <div className="txt_area">
                 <textarea
