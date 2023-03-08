@@ -53,7 +53,7 @@ const VehiclePage = () => {
               phone={11984228022}
             />
             <BoxDescription />
-            <Comments/>
+            {/* <Comments/> */}
           </ContainerMain>
           <ContainerCards>
             <GalleryBox />

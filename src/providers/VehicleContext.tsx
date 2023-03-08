@@ -1,8 +1,8 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
 import { IComment } from "../interfaces/Comments";
 import { IVehicle } from "../interfaces/Vehicle";
 import api from "../services/api";
-import { ModalContext } from "./ModalContext";
+
 
 interface IVehicleContextProps {
   comment: string;
@@ -18,6 +18,9 @@ interface IVehicleContextProps {
   deleteComment: (id: string) => void;
   userId: string | null;
   editCommentFn: (id: string, message: string) => void;
+  deleteVehicle: (id: string) => void;
+  isOpenDelete: boolean;
+  setOpenDelete: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const VehiclelContext = createContext<IVehicleContextProps>(
@@ -25,12 +28,12 @@ export const VehiclelContext = createContext<IVehicleContextProps>(
 );
 
 export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
-  const { setOpenDelete } = useContext(ModalContext);
 
   const [comment, setComment] = useState<string>("");
   const [listComments, setListComments] = useState<IComment[]>([]);
   const [vehicle, setVehicle] = useState<IVehicle>({} as IVehicle);
   const [response, setResponse] = useState<boolean>(true);
+  const [isOpenDelete, setOpenDelete] = useState(false);
 
   const token = localStorage.getItem("@MotorsShop:token");
   const userId = localStorage.getItem("@MotorsShop:id");
@@ -68,10 +71,10 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
 
   const deleteComment = async (id: string) => {
     api.defaults.headers.authorization = `Bearer ${token}`;
-    await api.delete(`/comments/${id}`).then((res) =>
-      // setOpenDelete(false)
+    await api.delete(`/comments/${id}`).then((res) =>{
+      setOpenDelete(false)
       setResponse(!response)
-    );
+    });
   };
 
   const editCommentFn = async (id: string, message: string) => {
@@ -83,6 +86,16 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
     await api.patch(`comments/${id}`, data).then((res) => {
       setResponse(!response);
     });
+  };
+
+  const deleteVehicle = (id: string) => {
+    api
+      .delete(`vehicles/${id}`)
+      .then((res) => {
+        setOpenDelete(false);
+        setResponse(!response)
+      })
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -101,6 +114,9 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
         deleteComment,
         userId,
         editCommentFn,
+        deleteVehicle,
+        isOpenDelete,
+        setOpenDelete,
       }}
     >
       {children}

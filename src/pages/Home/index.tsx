@@ -6,13 +6,16 @@ import Footer from "../../components/footer";
 import MainHome from "../../components/mainHome";
 import VehicleList from "../../components/VehicleList";
 import api from "../../services/api";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IVehicleProps } from "../Anaunces";
+import { VehiclelContext } from "../../providers/VehicleContext";
 
 
 const HomePage = () => {
   const [cars, setCars] = useState<IVehicleProps[]>([])
   const [motocycles, setMotocycles] = useState<IVehicleProps[]>([])
+
+  const { response } = useContext(VehiclelContext)
 
   useEffect(() => {
     api.get("/vehicles")
@@ -21,7 +24,7 @@ const HomePage = () => {
           setMotocycles(res.data.filter((elem: IVehicleProps) => !elem.vehicleType))
         })
         .catch(err => console.log(err))
-  }, [])
+  }, [response])
 
   return (
     <>

@@ -1,9 +1,9 @@
 import { Modal, Box } from "@mui/material";
-import { ReactNode, useContext, useState } from "react";
+import { ReactNode, useContext } from "react";
 import Text from "../../styles/texts";
 import { RiCloseFill } from "react-icons/ri";
 import { TitleBox, Content, ContainerModal } from "../Modal/style";
-import { ModalContext } from "../../providers/ModalContext";
+import { VehiclelContext } from "../../providers/VehicleContext";
 
 export interface IModalProps {
   children: ReactNode;
@@ -11,7 +11,7 @@ export interface IModalProps {
 }
 
 const ModalDelete = ({ children, title }: IModalProps) => {
-  const { isOpenDelete, setOpenDelete } = useContext(ModalContext);
+  const { isOpenDelete, setOpenDelete } = useContext(VehiclelContext);
 
   const style = {
     position: "absolute" as "absolute",

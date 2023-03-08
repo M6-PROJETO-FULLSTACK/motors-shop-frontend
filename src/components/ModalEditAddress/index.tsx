@@ -9,7 +9,7 @@ import { ModalEditAddressProps } from "../../interfaces/User";
 
 const ModalEditAddress = () => {
 	const { handleClose } = useContext(ModalContext);
-	const { childOpen, setChildOpen } = useContext(ModalContext);
+	const { childOpen, setChildOpen, handleCloseEditAddress, handleOpenEditAddress, openEditAddress } = useContext(ModalContext);
 
 	const {
 		register,
@@ -18,7 +18,7 @@ const ModalEditAddress = () => {
 
 	const onSubmit = (data: any) => {
 		console.log(data);
-		setChildOpen(true);
+		// setOpenEditAddress(true);
 	};
 
 	// Preenchimento automático por CEP em testes...
@@ -52,7 +52,7 @@ const ModalEditAddress = () => {
 	};
 
 	return (
-		<ModalBox title="Editar endereço" title_button="Editar Endereço">
+		<ModalBox recovery title="Editar endereço" title_button="Editar Endereço" open={openEditAddress} handleClose={handleCloseEditAddress} handleOpen={handleOpenEditAddress}>
 			<Text className="body2" weight={500}>
 				Informações de endereço
 			</Text>

@@ -9,7 +9,7 @@ import MiniProfile from "../MiniProfile";
 import { Button } from "../../styles/buttons";
 import { ModalContext } from "../../providers/ModalContext";
 import { useContext } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import FormUpdateAd from "../FormUpdateAd";
 
 interface ProductCardProps {
@@ -37,7 +37,7 @@ const ProductCard = ({
   isActive,
   id,
 }: ProductCardProps) => {
-  const { handleOpen } = useContext(ModalContext);
+  const { handleOpenEditAd, setVehicleIdClicked } = useContext(ModalContext);
   const loggedId = localStorage.getItem("@MotorsShop:id");
 
   const navigate = useNavigate();
@@ -72,7 +72,10 @@ const ProductCard = ({
           </ProductCardFooter>
           {userId === loggedId && (
             <ProductCardBtn>
-              <Button onClick={handleOpen}>Editar</Button>
+              <Button id={id} onClick={(e: any) => {
+                setVehicleIdClicked(e.target.id)
+                handleOpenEditAd()
+              }}>Editar</Button>
               <Button
                 onClick={() => {
                   navigate(`/vehicle/${id}`, { replace: true });
@@ -80,12 +83,11 @@ const ProductCard = ({
               >
                 Ver como
               </Button>
+              <FormUpdateAd />
             </ProductCardBtn>
           )}
         </ProductCardInfo>
       </ProductCardContainer>
-
-      {/* <FormUpdateAd /> */}
     </>
   );
 };

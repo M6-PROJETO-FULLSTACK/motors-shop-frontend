@@ -10,11 +10,13 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import api, { config } from "../../services/api";
 import { toast } from "react-toastify";
+import { VehiclelContext } from "../../providers/VehicleContext";
 
 const FormCreateAd = () => {
 	const [quantityImage, setQuantityImage] = useState([0]);
 
-	const { handleClose } = useContext(ModalContext);
+	const { handleCloseCreateAd, handleOpenCreateAd, openCreateAd } = useContext(ModalContext);
+	const {setResponse, response } = useContext(VehiclelContext)
 
 	const shemaRegisterVehicle = yup.object().shape({
 		advertiseType: yup.string().required("Tipo de anuncio é obrigatório"),
@@ -61,28 +63,30 @@ const FormCreateAd = () => {
 
 		objFinaly.gallery = listUrlTreated;
 
-		console.log(objFinaly);
-
 		api.post("vehicles", objFinaly, config())
 			.then((res) => {
 				toast.success("Anúncio Criado!");
-				handleClose();
+				handleCloseCreateAd();
+				setResponse(!response)
 			})
 			.catch((err) => {
 				toast.error("Erro ao criar, verifique os dados!");
 			});
+		
+		reset()
 	};
 
 	const {
 		register,
 		handleSubmit,
+		reset,
 		formState: { errors },
 	} = useForm({
 		resolver: yupResolver(shemaRegisterVehicle),
 	});
 
 	return (
-		<ModalBox title="Criar Anúncio" title_button="Criar Anúncio">
+		<ModalBox title="Criar Anúncio" title_button="Criar Anúncio" open={openCreateAd} handleOpen={handleOpenCreateAd} handleClose={handleCloseCreateAd} >
 			<FormContainer onSubmit={handleSubmit(onCreate)}>
 				<section>
 					<Text className="body2" weight="500">
@@ -103,14 +107,14 @@ const FormCreateAd = () => {
 					<Text className="body2" weight="500">
 						Infomações do veículo
 					</Text>
-          <Input type="text" title="Título" placeholder="Digitar título" {...register("title")} />
-          {errors.title && (<span className="error-message">{errors.title.message?.toString()}</span>)}
+					<Input type="text" title="Título" placeholder="Digitar título" {...register("title")} />
+					{errors.title && (<span className="error-message">{errors.title.message?.toString()}</span>)}
 					<div className="input--box">
 						<Input type="text" title="Ano" placeholder="2018" {...register("year")} />
 						<Input type="text" title="Quilometragem" placeholder="0" {...register("mileage")} />
 					</div>
-          <Input type="text" title="Preço" placeholder="50.000,00" {...register("price")} />
-          {errors.price && (<span className="error-message">{errors.price.message?.toString()}</span>)}
+					<Input type="text" title="Preço" placeholder="50.000,00" {...register("price")} />
+					{errors.price && (<span className="error-message">{errors.price.message?.toString()}</span>)}
 					<Input
 						type="text"
 						title="Descrição"
@@ -161,7 +165,7 @@ const FormCreateAd = () => {
 					</div>
 				</section>
 				<div className="input--box input--box_button">
-					<Button className="negative" onClick={handleClose}>
+					<Button className="negative" onClick={handleCloseCreateAd}>
 						Cancelar
 					</Button>
 					<Button type="submit" className="brand">
