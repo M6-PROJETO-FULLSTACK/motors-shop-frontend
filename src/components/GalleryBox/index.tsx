@@ -1,10 +1,18 @@
 import { Container } from "./style";
 import Text from "../../styles/texts";
-import car from "../../assets/car.png";
 import GalleryCard from "../GalleryCard";
 
-const GalleryBox = () => {
-  const gallery = [car, car, car, car, car, car];
+interface IImageProps{
+  id: string
+  url:string
+  vehicle_id:string
+}
+
+interface IGalleryProps{
+  gallery: IImageProps[]
+  name: string
+}
+const GalleryBox = ({gallery, name}:IGalleryProps) => {
 
   return (
     <Container>
@@ -12,8 +20,8 @@ const GalleryBox = () => {
         <Text weight="600">Fotos</Text>
       </span>
       <div className="container__img">
-        {gallery.map((elem, index) => (
-          <GalleryCard car={elem} key={index} />
+        {gallery.map((elem) => (
+          <GalleryCard car={elem.url} name={name} key={elem.id} />
         ))}
       </div>
     </Container>
