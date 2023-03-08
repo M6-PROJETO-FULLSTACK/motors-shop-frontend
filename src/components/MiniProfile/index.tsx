@@ -1,11 +1,10 @@
 import { MiniProfileAvatar, MiniProfileContainer } from "./style";
 import Text from "../../styles/texts";
-import { useContext } from "react";
-import { AuthContext } from "../../providers/AuthContext";
+
 
 interface MiniProfileProps {
-	userId: string;
-	userName: string;
+	userId?: string;
+	userName?: string;
 }
 
 const MiniProfile = ({ userId, userName }: MiniProfileProps) => {

@@ -8,8 +8,7 @@ export const ProductCardContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #fff;
-  /* border: 1px solid red; */
+
 
   .productLink {
     text-decoration: none;
@@ -44,11 +43,6 @@ export const ProductCardContainer = styled.div`
   .inactive {
     background-color: ${({ theme }) => theme.colors.grey4};
   }
-
-  @media screen and (max-width: 375px) {
-    min-width: 80vw;
-    min-height: 100vh;
-  }
 `;
 
 export const ProductCardInfo = styled.div`
@@ -60,11 +54,6 @@ export const ProductCardInfo = styled.div`
 
   & > .body2 {
     color: ${({ theme }) => theme.colors.grey2};
-  }
-
-  @media screen and (max-width: 375px) {
-    max-width: 90%;
-    min-height: 50vh;
   }
 `;
 
@@ -82,6 +71,7 @@ export const ProductCardFooter = styled.div`
 export const ProductCardBtn = styled.div`
   width: 100%;
   margin-top: 10px;
+  display: flex;
 
   button {
     margin-right: 10px;
@@ -90,9 +80,5 @@ export const ProductCardBtn = styled.div`
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-
-    @media screen and (max-width: 375px) {
-      width: 40%;
-    }
   }
 `;
