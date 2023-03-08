@@ -45,6 +45,12 @@ export const Comment = styled.div`
   width: 100%;
   margin-top: 44px;
 
+  .comment__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
   div {
     display: flex;
     align-items: center;

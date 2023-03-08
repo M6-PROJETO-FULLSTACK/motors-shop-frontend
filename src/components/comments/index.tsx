@@ -79,19 +79,21 @@ const Comments = () => {
                     {listComments.map((comment: IComment) => (
                       <>
                         <Comment key={comment.id}>
-                          <div className="user">
-                            <MiniProfile
-                              userId={""}
-                              userName={comment.user.name}
-                            />
-                            <span>
-                              &bull;{" "}
-                              {comment.created_at !== comment.updated_at
-                                ? getDate(comment.updated_at)
-                                : getDate(comment.created_at)}
-                            </span>
+                          <div className="comment__header">
+                            <div className="user">
+                              <MiniProfile
+                                userId={""}
+                                userName={comment.user.name}
+                              />
+                              <span>
+                                &bull;{" "}
+                                {comment.created_at !== comment.updated_at
+                                  ? getDate(comment.updated_at)
+                                  : getDate(comment.created_at)}
+                              </span>
+                            </div>
                             {userId === comment.user_id && (
-                              <>
+                              <div>
                                 <BtnEditComment
                                   onClick={() => {
                                     setTargetComment(comment.id);
@@ -100,7 +102,7 @@ const Comments = () => {
                                 >
                                   <FiEdit3 />
                                 </BtnEditComment>
-                              </>
+                              </div>
                             )}
                           </div>
                           {targetComment === comment.id ? (
