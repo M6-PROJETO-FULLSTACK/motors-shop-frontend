@@ -23,7 +23,6 @@ import { BsCheckLg } from "react-icons/bs";
 import { RiCloseFill } from "react-icons/ri";
 import ModalDelete from "../DeleteModal";
 
-
 const Comments = () => {
   const {
     comment,
@@ -38,7 +37,7 @@ const Comments = () => {
     deleteComment,
     userId,
     editCommentFn,
-    setOpenDelete
+    setOpenDelete,
   } = useContext(VehiclelContext);
 
   const { user } = useContext(AuthContext);
@@ -71,7 +70,7 @@ const Comments = () => {
             </Text>
             {vehicle && (
               <>
-                {listComments ? (
+                {listComments.length >= 1 ? (
                   <>
                     {listComments.map((comment: IComment) => (
                       <>
@@ -79,8 +78,8 @@ const Comments = () => {
                           <div className="comment__header">
                             <div className="user">
                               <MiniProfile
-                              userId={comment.user.id}
-                              userName={comment.user.name}
+                                userId={comment.user.id}
+                                userName={comment.user.name}
                               />
                               <span>
                                 &bull;{" "}
