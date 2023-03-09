@@ -20,8 +20,8 @@ const HomePage = () => {
   useEffect(() => {
     api.get("/vehicles")
         .then(res => {
-          setCars(res.data.filter((elem: IVehicleProps) => elem.vehicleType))
-          setMotocycles(res.data.filter((elem: IVehicleProps) => !elem.vehicleType))
+          setCars(res.data.filter((elem: IVehicleProps) => elem.vehicleType && elem.isActive))
+          setMotocycles(res.data.filter((elem: IVehicleProps) => !elem.vehicleType && elem.isActive))
         })
         .catch(err => console.log(err))
   }, [response])

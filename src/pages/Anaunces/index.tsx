@@ -1,20 +1,15 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import Footer from "../../components/footer";
-import Navbar from "../../components/navbar";
-import { IUserCardProps } from "../../components/UserCard";
-import VehicleList from "../../components/VehicleList";
-import api from "../../services/api";
-import { Button } from "../../styles/buttons";
-import Text from "../../styles/texts";
-import { ContainerPage } from "../Login/style";
-import { ProductsContainer } from "../Profile/style";
-import {
-  ContainerAnaunces,
-  ContainerUserCard,
-  UserCardImg,
-  UserInfo,
-} from "./style";
+import { useContext, useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import Footer from "../../components/footer"
+import Navbar from "../../components/navbar"
+import VehicleList from "../../components/VehicleList"
+import { VehiclelContext } from "../../providers/VehicleContext"
+import api from "../../services/api"
+import Text from "../../styles/texts"
+import { ContainerPage } from "../Login/style"
+import { ProductsContainer } from "../Profile/style"
+import { ContainerAnaunces, ContainerUserCard, UserCardImg, UserInfo } from "./style"
+
 
 export interface IVehicleProps {
   id: string;
@@ -44,7 +39,10 @@ const AnauncesPage = () => {
   const [existsProduct, setExistsProduct] = useState(true);
   const [user, setUser] = useState<IUserProps[]>([]);
 
-  const { id } = useParams();
+    const { response } = useContext(VehiclelContext)
+
+    const {id} = useParams()
+
 
   useEffect(() => {
     api
@@ -55,19 +53,19 @@ const AnauncesPage = () => {
           res.data.filter((elem: IVehicleProps) => !elem.vehicleType)
         );
 
-        api
-          .get(`/users/${id}`)
-          .then((res) => {
-            setUser(res.data);
-          })
-          .catch((err) => err);
-      })
-      .catch((err) => setExistsProduct(false));
-  }, []);
-
-  return (
-    <>
-      {existsProduct ? (
+                api.get(`/users/${id}`)
+                    .then(res => {
+                        setUser(res.data)
+                    })
+                    .catch(err => err)
+            })
+            .catch(err => setExistsProduct(false))
+    }, [response])
+    
+    return (
+        <>  
+        {
+            existsProduct ? 
         <>
           <Navbar />
           <ContainerPage>

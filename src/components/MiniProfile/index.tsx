@@ -20,10 +20,10 @@ const MiniProfile = ({ userId, userName }: MiniProfileProps) => {
 
 	return (
 		<MiniProfileContainer>
-			<a href={`/profile/${userId}`}>
+			<a href={`/anaunces/${userId}`}>
 				<MiniProfileAvatar>{initials}</MiniProfileAvatar>
 			</a>
-			<a href={`/profile/${userId}`}>
+			<a href={`/anaunces/${userId}`}>
 				<Text className="body2 mini-username" weight="500">
 					{userName.length > 30 ? userName.slice(0, 30) + "..." : userName}
 				</Text>
