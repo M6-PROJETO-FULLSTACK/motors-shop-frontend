@@ -1,6 +1,8 @@
 import Text from "../../styles/texts";
 import ProductCard from "../ProductCard";
 import { ContainerList, ContainerSection } from "./style";
+import {AiOutlineLeft, AiOutlineRight} from  'react-icons/ai'
+import { useRef } from "react";
 
 interface ICardProps {
   title: string;
@@ -21,13 +23,27 @@ interface IListProps {
 }
 
 const VehicleList = ({ list, id }: IListProps) => {
+  const carousel = useRef<null | HTMLDivElement>(null)
+
+  const handleLeftClick = (e: { preventDefault: () => void; }) => {
+    e.preventDefault()
+    carousel.current!.scrollLeft -= carousel.current!.offsetWidth
+
+  }
+  const handleRightClick = (e: { preventDefault: () => void; }) => {
+    e.preventDefault()
+    carousel.current!.scrollLeft += carousel.current!.offsetWidth
+
+  }
+
   return (
     <ContainerSection>
       <Text className="heading5" weight="500">
         {id[0].toUpperCase() + id.slice(1)}
       </Text>
       {list.length > 0 ? (
-        <ContainerList id={id}>
+        <>
+        <ContainerList id={id} ref={carousel}>
           {list.map((card, index) => (
             <ProductCard
               key={index}
@@ -44,11 +60,17 @@ const VehicleList = ({ list, id }: IListProps) => {
             />
           ))}
         </ContainerList>
+        <div className="carrossel_container" >
+        <button className="carrossel" onClick={handleLeftClick}><AiOutlineLeft size={30}/></button>
+        <button className="carrossel" onClick={handleRightClick}><AiOutlineRight size={30}/></button>
+        </div>
+        </>
       ) : (
         <div className="list--cards__empty">
           <Text weight="500">Ainda não existem {id} cadastrados</Text>
         </div>
       )}
+      
     </ContainerSection>
   );
 };
