@@ -46,25 +46,10 @@ git clone git@github.com:M6-PROJETO-FULLSTACK/motors-shop-frontend.git
   + You cannot send questions or comments in the advertisements.
   <br/>
 
-> ## Routes:
-  + '/home':
-    + access to ads;
-    + login shortcut;
-    + shortcut to register;  
-    
-  + '/register'
-    
-  + '/login'
-    
-  + '/vehicle':
-    + vehicle and vendor details;
-    + ad comments;
-    + comment field;
-    
-  + '/profile' _*protected_:
-    + creation, update and deletion of ad;
-    + account update and deletion;
-
+> ## Interface Previews
+![home](https://i.imgur.com/SqGTzR3.png)
+![auction](https://i.imgur.com/PMPreeE.png)
+![seller](https://i.imgur.com/8OnQoUR.png)
 <br/>
 
 > ## Technologies Used:
