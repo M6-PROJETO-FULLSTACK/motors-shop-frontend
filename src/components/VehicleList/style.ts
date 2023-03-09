@@ -5,6 +5,19 @@ export const ContainerSection = styled.section`
 
   .list--cards__empty {
     margin: 30px;
+  }  
+  .carrossel_container{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+
+    .carrossel{
+      border: none;
+      background-color: transparent;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
   }
 `;
 
@@ -16,19 +29,8 @@ export const ContainerList = styled.div`
 
   padding: 20px 0px;
 
-  ::-webkit-scrollbar-track {
-    border-radius: 8px;
-    background-color: ${(props) => props.theme.colors.grey8};
+  ::-webkit-scrollbar{
+    display: none;
   }
 
-  ::-webkit-scrollbar {
-    height: 8px;
-    width: 12px;
-    background-color: ${(props) => props.theme.colors.grey8};
-  }
-
-  ::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    background-color: rgba(0, 0, 0, 0.3);
-  }
 `;
