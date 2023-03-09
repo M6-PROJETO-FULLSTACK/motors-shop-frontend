@@ -5,7 +5,7 @@ import Login from "../pages/Login";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import VehiclePage from "../pages/Vehicle";
-import ProtectedRoute from "./protectedRoutes/index ";
+import ProtectedRoute, { ProtectedRouteAnaunces, ProtectedRouteProfile } from "./protectedRoutes/index ";
 
 const RoutesMain = () => {
   return (
@@ -15,10 +15,18 @@ const RoutesMain = () => {
       <Route path="/home" element={<HomePage />} />
       <Route path="/vehicle" element={<VehiclePage />} />
       <Route path="*" element={<HomePage/>} />
+      
       <Route element={<ProtectedRoute/>}>
-        <Route path="/profile/:id" element={<Profile />} />
         <Route path="/vehicle/:id" element={<VehiclePage />} />
-        <Route path="/anaunces/:id" element={<AnauncesPage />} />
+
+        <Route element={<ProtectedRouteAnaunces />}>
+          <Route path="/anaunces/:id" element={<AnauncesPage />} />
+        </Route>
+
+        <Route element={<ProtectedRouteProfile />}>
+          <Route path="/profile/:id" element={<Profile />} />
+        </Route>
+
       </Route>
     </Routes>
   );
