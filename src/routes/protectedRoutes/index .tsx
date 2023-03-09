@@ -3,19 +3,6 @@ import { Navigate, Outlet, useParams } from "react-router"
 import { AuthContext } from "../../providers/AuthContext"
 import api from "../../services/api"
 
-const ProtectedRoute = () => {
-    const { user, loading } = useContext(AuthContext)
-
-    if (loading){
-        return <div>Loading...</div>
-    }
-
-    return user ? 
-        <Outlet/> 
-    :
-        <Navigate to='/login' replace/>
-}
-
 export const ProtectedRouteProfile = () => {
     const { user } = useContext(AuthContext)
     
@@ -50,5 +37,3 @@ export const ProtectedRouteAnaunces = () => {
     )
 
 }
-
-export default ProtectedRoute
