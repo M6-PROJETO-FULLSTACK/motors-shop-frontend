@@ -9,7 +9,6 @@ export const ProductCardContainer = styled.div`
   flex-direction: column;
   align-items: center;
 
-
   .productLink {
     text-decoration: none;
     color: ${({ theme }) => theme.colors.grey1};
@@ -19,12 +18,32 @@ export const ProductCardContainer = styled.div`
     width: 100%;
     height: 48%;
     position: relative;
+    border: 2px solid transparent;
 
     & img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: fit;
       position: relative;
+      border: 2px solid transparent;
+
+      &:hover {
+        cursor: pointer;
+        animation: pulse 3s infinite;
+        border: 2px solid ${({ theme }) => theme.colors.random10};
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.04);
+      }
+      100% {
+        transform: scale(1);
+      }
     }
   }
 
