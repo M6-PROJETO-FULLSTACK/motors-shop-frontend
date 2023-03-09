@@ -11,19 +11,19 @@ import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
-		<ThemeProvider theme={light}>
-			<AuthProvider>
-				<VehiclelProvider>
-					<ModalProvider>
-						<ModalProviderImg>
-							<GlobalStyle />
-							<Routes />
-						</ModalProviderImg>
-					</ModalProvider>
-				</VehiclelProvider>
-			</AuthProvider>
-			<ToastContainer />
-		</ThemeProvider>
+    <ThemeProvider theme={light}>
+      <VehiclelProvider>
+        <ModalProvider>
+          <AuthProvider>
+            <ModalProviderImg>
+              <GlobalStyle />
+              <Routes />
+            </ModalProviderImg>
+          </AuthProvider>
+        </ModalProvider>
+      </VehiclelProvider>
+      <ToastContainer />
+    </ThemeProvider>
   );
 }
 
