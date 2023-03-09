@@ -2,6 +2,10 @@ import styled from "styled-components";
 
 export const ContainerSection = styled.section`
   margin: 60px 0px;
+
+  .list--cards__empty {
+    margin: 30px;
+  }
 `;
 
 export const ContainerList = styled.div`

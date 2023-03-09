@@ -42,17 +42,21 @@ const ProductCard = ({
 
   const navigate = useNavigate();
 
-  const profileId = useParams().id;
+  const location = window.location.href.split("/")[3];
 
   return (
     <>
       <ProductCardContainer>
         <div className="card__container-header">
           <img src={cover} alt={title} />
-          {isActive ? (
-            <span className="card--status active">Ativo</span>
-          ) : (
-            <span className="card--status inactive">Inativo</span>
+          {location === "anaunces" && (
+            <>
+              {isActive ? (
+                <span className="card--status active">Ativo</span>
+              ) : (
+                <span className="card--status inactive">Inativo</span>
+              )}
+            </>
           )}
         </div>
 
@@ -67,7 +71,7 @@ const ProductCard = ({
               ? description.slice(0, 100) + "..."
               : description}
           </Text>
-          <MiniProfile userName={userName} userId={userId}/>
+          <MiniProfile userName={userName} userId={userId} />
           <ProductCardFooter>
             <Text className="body2" weight={500}>
               {mileage} KM
@@ -79,14 +83,19 @@ const ProductCard = ({
               R$ {price}
             </Text>
           </ProductCardFooter>
-          {profileId && (
+          {location === "profile" && (
             <>
               {loggedId === userId && (
                 <ProductCardBtn>
-                  <Button className="outline" onClick={() => {
-                    setVehicleIdClicked(id)
-                    handleOpenEditAd()
-                  }}>Editar</Button>
+                  <Button
+                    className="outline"
+                    onClick={() => {
+                      setVehicleIdClicked(id);
+                      handleOpenEditAd();
+                    }}
+                  >
+                    Editar
+                  </Button>
                   <Button
                     className="outline"
                     onClick={() => {
