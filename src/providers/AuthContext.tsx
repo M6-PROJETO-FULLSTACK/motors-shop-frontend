@@ -1,7 +1,14 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 import { toast } from "react-toastify";
+import { ModalContext } from "./ModalContext";
 
 export const AuthContext = createContext({} as IAuthContext);
 
@@ -34,6 +41,8 @@ export interface IUserResponse {
 }
 
 const AuthProvider = ({ children }: IAuthProviderProp) => {
+  const { setChildOpen } = useContext(ModalContext);
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -87,9 +96,7 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
         },
       })
       .then((res) => {
-        console.log(res);
-        sucessToast();
-        navigate("/login", { replace: true });
+        setChildOpen(true);
       })
       .catch((err) => {
         console.log(err);
