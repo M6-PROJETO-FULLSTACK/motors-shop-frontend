@@ -9,9 +9,10 @@ import Footer from "../../components/footer";
 import Comments from "../../components/comments";
 import ModalImgVehicle from "../../components/ModalImgVehicle";
 import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import api from "../../services/api";
 import { IUserResponse } from "../../providers/AuthContext";
+import { VehiclelContext } from "../../providers/VehicleContext";
 
 interface IImageProps{
   id: string
@@ -40,6 +41,8 @@ const VehiclePage = () => {
   const [userId, setUserId] = useState('')
   const [user, setUser] = useState({} as IUserResponse)
   const [gallery, setGallery] = useState<IImageProps[]>([])
+
+  const { setResponse, response } = useContext(VehiclelContext)
   
   useEffect(() => {
   const getVehicle = async () => {
@@ -49,6 +52,7 @@ const VehiclePage = () => {
       setProduct(data.vehicle)
       setUserId(data.userId)
       setGallery(data.vehicle.galleryImages)
+      setResponse(!response)
       } catch (error) {
       console.error(error);
       }
@@ -96,7 +100,7 @@ const VehiclePage = () => {
             name={product.title}
             />
             <ModalImgVehicle />
-            <UserCard />
+            <UserCard userOwnerId={userId}/>
           </ContainerCards>
       </ContainerPage>
       <Footer/>

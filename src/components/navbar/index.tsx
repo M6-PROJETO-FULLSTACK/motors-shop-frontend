@@ -6,7 +6,6 @@ import { GrFormClose } from 'react-icons/gr'
 import { LinkBtn } from "../../styles/buttons"
 import logo from '../../assets/Logo_prymary.png'
 import { AuthContext } from '../../providers/AuthContext'
-import MiniProfile from '../MiniProfile'
 import { ModalContext } from '../../providers/ModalContext'
 import ModalEditUser from '../ModalEditUser'
 import ModalEditAddress from '../ModalEditAddress'
