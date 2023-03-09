@@ -37,12 +37,14 @@ const UserCard = ({ profile, createButton, userOwnerId }: IUserCardProps) => {
           ? 
             <p>{userOwner?.name?.split(" ")[0][0] + userOwner?.name?.split(" ")[userOwner?.name?.split(" ").length - 1][0]}</p>
           : 
+            user ? 
             <p>{user!.name.split(" ")[0][0] + user!.name.split(" ")[user!.name.split(" ").length - 1][0]}</p>
+            : <p>User</p>
           }
         </UserCardImg>
         <div className="info__card--heading">
           <Text className="heading6" weight="600">
-            {userOwner ? userOwner?.name : user!.name}
+            {userOwner ? userOwner?.name : user ? user!.name : <p>User</p> }
           </Text>
           {profile && (
             user!.type === true?
@@ -60,7 +62,7 @@ const UserCard = ({ profile, createButton, userOwnerId }: IUserCardProps) => {
           )}
         </div>
         <Text className="body1" weight="400">
-          {userOwner ? userOwner?.bio : user!.bio}
+          {userOwner ? userOwner?.bio : user ? user!.bio : <p>Minha bio</p> }
         </Text>
         {createButton && <FormCreateAd />}
         {!profile && <Link to={`/anaunces/${userOwner?.id}`}><Button className="grey veiw_more">Ver todos anuncios</Button></Link>}
