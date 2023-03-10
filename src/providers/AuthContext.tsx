@@ -76,6 +76,13 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
   }, []);
 
   const registerUser = async (data: any) => {
+    
+    if (data.userType === "true") {
+			data.userType = true;
+		} else {
+			data.userType = false;
+		}
+
     api
       .post("/users", {
         name: data.name,
