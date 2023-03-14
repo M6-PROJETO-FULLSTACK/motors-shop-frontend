@@ -15,29 +15,62 @@ const FormLogin = () => {
   const { login, recoverPassword } = useContext(AuthContext);
   const { register, handleSubmit } = useForm();
 
-  const { handleOpenForgotPassword, handleCloseForgotPassword, openForgotPassword } = useContext(ModalContext);
+  const {
+    handleOpenForgotPassword,
+    handleCloseForgotPassword,
+    openForgotPassword,
+    isEmailSent,
+    setSentEmail,
+  } = useContext(ModalContext);
 
   return (
     <>
       <Container>
-        <ModalBox title="Esqueceu sua senha?" small recovery open={openForgotPassword} handleClose={handleCloseForgotPassword} handleOpen={handleOpenForgotPassword}>
+        <ModalBox
+          title="Esqueceu sua senha?"
+          small
+          recovery
+          open={openForgotPassword}
+          handleClose={handleCloseForgotPassword}
+          handleOpen={handleOpenForgotPassword}
+        >
           <form onSubmit={handleSubmit(recoverPassword)}>
-            <p>Insira seu e-mail e enviaremos uma nova senha.</p>
-            <Input
-              id="email_recovery"
-              type="email"
-              title="E-mail"
-              placeholder="Digite seu e-mail"
-              {...register("email")}
-            />
-            <ContainerBtn>
-              <Button onClick={handleCloseForgotPassword} className="outline">
-                Cancelar
-              </Button>
-              <Button className="brand" type="submit">
-                Solicitar senha
-              </Button>
-            </ContainerBtn>
+            {isEmailSent ? (
+              <>
+                <p>Uma nova senha foi enviada para o seu e-mail.</p>
+                <Button
+                  className="brand"
+                  onClick={() => {
+                    handleCloseForgotPassword();
+                    setSentEmail(false);
+                  }}
+                >
+                  Login
+                </Button>
+              </>
+            ) : (
+              <>
+                <p>Insira seu e-mail e enviaremos uma nova senha.</p>
+                <Input
+                  id="email_recovery"
+                  type="email"
+                  title="E-mail"
+                  placeholder="Digite seu e-mail"
+                  {...register("email")}
+                />
+                <ContainerBtn>
+                  <Button
+                    onClick={handleCloseForgotPassword}
+                    className="outline"
+                  >
+                    Cancelar
+                  </Button>
+                  <Button className="brand" type="submit">
+                    Solicitar senha
+                  </Button>
+                </ContainerBtn>
+              </>
+            )}
           </form>
         </ModalBox>
 
@@ -61,7 +94,11 @@ const FormLogin = () => {
               {...register("password")}
             />
             <span>
-              <Text className="body2" weight="400" onClick={handleOpenForgotPassword}>
+              <Text
+                className="body2"
+                weight="400"
+                onClick={handleOpenForgotPassword}
+              >
                 Esqueci minha senha
               </Text>
             </span>

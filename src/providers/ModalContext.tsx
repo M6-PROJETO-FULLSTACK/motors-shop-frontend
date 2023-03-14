@@ -30,6 +30,8 @@ interface IModelContextProps {
   handleCloseForgotPassword: () => void;
   vehicleIdClicked: string;
   setVehicleIdClicked: React.Dispatch<React.SetStateAction<string>>;
+  setSentEmail: React.Dispatch<React.SetStateAction<boolean>>;
+  isEmailSent: boolean;
 }
 
 export const ModalContext = createContext<IModelContextProps>(
@@ -37,7 +39,7 @@ export const ModalContext = createContext<IModelContextProps>(
 );
 
 export const ModalProvider = ({ children }: { children: ReactNode }) => {
-  const [vehicleIdClicked, setVehicleIdClicked] = useState<string>("")
+  const [vehicleIdClicked, setVehicleIdClicked] = useState<string>("");
 
   const [open, setOpen] = useState(false);
   const [openEditUser, setOpenEditUser] = useState(false);
@@ -47,7 +49,7 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
   const [openForgotPassword, setOpenForgotPassword] = useState(false);
 
   const [childOpen, setChildOpen] = useState(false);
- 
+  const [isEmailSent, setSentEmail] = useState(false);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -60,13 +62,18 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
 
   const handleOpenEditAd = () => setOpenEditAd(true);
   const handleCloseEditAd = () => setOpenEditAd(false);
-  
-  const handleOpenCreateAd= () => setOpenCreateAd(true);
-  const handleCloseCreateAd= () => setOpenCreateAd(false);
 
-  const handleOpenForgotPassword= () => setOpenForgotPassword(true);
-  const handleCloseForgotPassword= () => setOpenForgotPassword(false);
-  
+  const handleOpenCreateAd = () => setOpenCreateAd(true);
+  const handleCloseCreateAd = () => setOpenCreateAd(false);
+
+  const handleOpenForgotPassword = () => {
+    setSentEmail(false);
+    setOpenForgotPassword(true);
+  };
+  const handleCloseForgotPassword = () => {
+    setOpenForgotPassword(false);
+    setSentEmail(false);
+  };
 
   return (
     <ModalContext.Provider
@@ -98,7 +105,9 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
         handleOpenForgotPassword,
         handleCloseForgotPassword,
         vehicleIdClicked,
-        setVehicleIdClicked
+        setVehicleIdClicked,
+        isEmailSent,
+        setSentEmail,
       }}
     >
       {children}

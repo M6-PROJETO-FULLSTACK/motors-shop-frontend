@@ -174,7 +174,10 @@ const Comments = () => {
                 />
                 <Button
                   className="brand medium btn"
-                  onClick={() => postComment(comment, id)}
+                  onClick={() => {
+                    postComment(comment, id);
+                    setComment("");
+                  }}
                 >
                   Comentar
                 </Button>
