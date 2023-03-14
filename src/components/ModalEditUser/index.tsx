@@ -6,15 +6,6 @@ import { ModalContext } from "../../providers/ModalContext";
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthContext";
 
-export interface ModalEditUserProps {
-  name: string;
-  email: string;
-  cpf: string;
-  phone: string;
-  birthdate: Date;
-  bio: string;
-}
-
 const ModalEditUser = () => {
   const { handleCloseEditUser, handleOpenEditUser, openEditUser } =
     useContext(ModalContext);

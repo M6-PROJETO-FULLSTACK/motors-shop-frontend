@@ -22,6 +22,7 @@ const ModalImgVehicle = () => {
     boxShadow: 24,
     p: 4,
     borderRadius: "5px",
+    onfocus: "border: none",
   };
 
   return (
