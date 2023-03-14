@@ -23,6 +23,7 @@ export interface IAuthContext {
   recoverPassword: (data: object) => void;
   user: null | IUserResponse;
   loading: boolean;
+  editUser: (data: any) => void;
 }
 export interface IUserResponse {
   id: string;
@@ -41,7 +42,7 @@ export interface IUserResponse {
 }
 
 const AuthProvider = ({ children }: IAuthProviderProp) => {
-  const { setChildOpen } = useContext(ModalContext);
+  const { setChildOpen, setSentEmail } = useContext(ModalContext);
 
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -76,12 +77,11 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
   }, []);
 
   const registerUser = async (data: any) => {
-    
     if (data.userType === "true") {
-			data.userType = true;
-		} else {
-			data.userType = false;
-		}
+      data.userType = true;
+    } else {
+      data.userType = false;
+    }
 
     api
       .post("/users", {
@@ -111,6 +111,15 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
       });
   };
 
+  const editUser = async (data: any) => {
+    const id = localStorage.getItem("@MotorsShop:id");
+    const token = localStorage.getItem("@MotorsShop:token");
+
+    api.defaults.headers.authorization = `Bearer ${token}`;
+
+    await api.patch(`users/${id}`, data);
+  };
+
   const login = async (data: object) => {
     const res = await api.post("/login", data);
     const { token, user: userData } = res.data;
@@ -128,7 +137,7 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
     await api
       .post("/login/recover-password", data)
       .then((res) => {
-        toast.success("E-mail enviado com sucesso!");
+        setSentEmail(true);
       })
       .catch((err) => {
         toast.error("Erro ao enviar e-mail, verifique os dados!");
@@ -143,7 +152,15 @@ const AuthProvider = ({ children }: IAuthProviderProp) => {
 
   return (
     <AuthContext.Provider
-      value={{ login, logOut, user, loading, recoverPassword, registerUser }}
+      value={{
+        login,
+        logOut,
+        user,
+        loading,
+        recoverPassword,
+        registerUser,
+        editUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

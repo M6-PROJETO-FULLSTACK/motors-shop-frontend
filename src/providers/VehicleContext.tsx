@@ -3,7 +3,6 @@ import { IComment } from "../interfaces/Comments";
 import { IVehicle } from "../interfaces/Vehicle";
 import api from "../services/api";
 
-
 interface IVehicleContextProps {
   comment: string;
   setComment: React.Dispatch<React.SetStateAction<string>>;
@@ -28,7 +27,6 @@ export const VehiclelContext = createContext<IVehicleContextProps>(
 );
 
 export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
-
   const [comment, setComment] = useState<string>("");
   const [listComments, setListComments] = useState<IComment[]>([]);
   const [vehicle, setVehicle] = useState<IVehicle>({} as IVehicle);
@@ -67,13 +65,15 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
     const res = await api.post(`/comments/${id}`, data);
 
     setResponse(!response);
+
+    // reset();
   };
 
   const deleteComment = async (id: string) => {
     api.defaults.headers.authorization = `Bearer ${token}`;
-    await api.delete(`/comments/${id}`).then((res) =>{
-      setOpenDelete(false)
-      setResponse(!response)
+    await api.delete(`/comments/${id}`).then((res) => {
+      setOpenDelete(false);
+      setResponse(!response);
     });
   };
 
@@ -93,7 +93,7 @@ export const VehiclelProvider = ({ children }: { children: ReactNode }) => {
       .delete(`vehicles/${id}`)
       .then((res) => {
         setOpenDelete(false);
-        setResponse(!response)
+        setResponse(!response);
       })
       .catch((err) => console.error(err));
   };
