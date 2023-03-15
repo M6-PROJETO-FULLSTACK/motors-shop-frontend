@@ -4,7 +4,7 @@
 
 ### Motors shop is a simple frontend application integrated with a RESTful API, where through a dynamic interface, it is possible to register as a 'buyer' or 'seller' user. Browse vehicle ads (even without being registered) and send questions or comments on desired ads.
 <br/>
-
+URL: https://motors-shop-frontend-nine.vercel.app/
 
 ## GETTING STARTED
 
